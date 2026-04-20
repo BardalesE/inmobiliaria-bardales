@@ -1,0 +1,21 @@
+{
+  "name": "inmobiliaria-bardales",
+  "version": "1.0.0",
+  "description": "Plataforma inmobiliaria completa — Inmobiliaria Bardales",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "setup": "npm run install:all && cd backend && cp .env.example .env && cd ../frontend && cp .env.example .env.local",
+    "db:migrate": "cd backend && npx prisma migrate dev --name init",
+    "db:seed": "cd backend && node prisma/seed.js",
+    "db:studio": "cd backend && npx prisma studio",
+    "db:reset": "cd backend && npx prisma migrate reset --force && node prisma/seed.js",
+    "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

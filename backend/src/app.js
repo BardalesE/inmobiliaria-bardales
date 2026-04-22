@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const morgan = require('morgan')
-
 const propertyRoutes = require('./routes/property.routes')
 const leadRoutes = require('./routes/lead.routes')
 const uploadRoutes = require('./routes/upload.routes')
@@ -13,8 +12,8 @@ const app = express()
 // ── Middlewares ──
 app.use(helmet())
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
+  origin: '*',
+  credentials: false
 }))
 app.use(morgan('dev'))
 app.use(express.json({ limit: '10mb' }))

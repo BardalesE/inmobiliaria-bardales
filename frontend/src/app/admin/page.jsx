@@ -1,23 +1,23 @@
-'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'bardales2025'
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const router = useRouter()
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleLogin = (e) => {
-    e.preventDefault()
-    if (password === ADMIN_PASSWORD) {
-      localStorage.setItem('admin_auth', 'true')
-      router.push('/admin/dashboard')
+    e.preventDefault();
+    if (password === "bardales2025") {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("admin_auth", "true");
+      }
+      router.push("/admin/dashboard");
     } else {
-      setError('Contraseña incorrecta')
+      setError("Contraseña incorrecta");
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-bark-900 flex items-center justify-center px-4">
@@ -31,11 +31,13 @@ export default function AdminLogin() {
         </div>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">Contraseña</label>
+            <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">
+              Contraseña
+            </label>
             <input
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               className="w-full px-4 py-3 bg-bark-700 border border-white/10 rounded-xl text-sand placeholder-sand-muted/50 focus:outline-none focus:border-terra/60"
             />
@@ -50,5 +52,5 @@ export default function AdminLogin() {
         </form>
       </div>
     </div>
-  )
+  );
 }

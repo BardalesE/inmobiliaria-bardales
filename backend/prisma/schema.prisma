@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id          Int       @id @default(autoincrement())
+  ref         String    @unique
+  title       String
+  description String?
+  price       Float
+  area        Float
+  frontage    Float?
+  depth       Float?
+  sector      String?
+  block       String?
+  lot         String?
+  address     String
+  district    String
+  province    String
+  department  String
+  latitude    Float?
+  longitude   Float?
+  status      String    @default("AVAILABLE")  // AVAILABLE, RESERVED, SOLD, HIDDEN, DRAFT
+  type        String    @default("URBAN_LOT")
+  features    String    @default("[]")
+  featured    Boolean   @default(false)
+  likes       Int       @default(0)
+  images      Image[]
+  leads       Lead[]
+  reviews     Review[]
+  commissions Commission[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("properties")
+}
+
+model Image {
+  id         Int      @id @default(autoincrement())
+  url        String
+  alt        String?
+  order      Int      @default(0)
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@map("images")
+}
+
+model Lead {
+  id         Int       @id @default(autoincrement())
+  name       String
+  phone      String
+  email      String?
+  message    String?
+  source     String    @default("website")  // website, seller, whatsapp
+  propertyId Int?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  createdAt  DateTime  @default(now())
+
+  @@map("leads")
+}
+
+// Testimonios / videos de clientes reales
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String?                    // "Cliente", "Comprador", etc.
+  city      String?
+  comment   String
+  rating    Int      @default(5)
+  videoUrl  String?                    // URL de video de YouTube o direct
+  avatar    String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+// Empresas aliadas / que confían en EE-Stars
+model Company {
+  id        Int      @id @default(autoincrement())
+  name      String
+  logo      String?
+  comment   String?
+  type      String?  // banco, constructora, inmobiliaria, etc.
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@map("companies")
+}
+
+// Reseñas de propiedades
+model Review {
+  id         Int      @id @default(autoincrement())
+  name       String
+  comment    String
+  rating     Int      @default(5)
+  propertyId Int?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@map("reviews")
+}
+
+// Comisiones por venta
+model Commission {
+  id           Int      @id @default(autoincrement())
+  propertyId   Int
+  property     Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  salePrice    Float
+  percentage   Float    @default(3.0)
+  amount       Float
+  notes        String?
+  createdAt    DateTime @default(now())
+
+  @@map("commissions")
+}

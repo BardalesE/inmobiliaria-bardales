@@ -1,0 +1,13 @@
+{
+  "name": "ee-stars",
+  "version": "2.0.0",
+  "description": "EE-Stars — Inmobiliaria Digital Perú",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "npm run install:all && concurrently --names \"API,WEB\" --prefix-colors \"yellow,cyan\" \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "setup": "npm install --prefix backend && npm install --prefix frontend && echo \"\n✅ Instalación completa. Ahora configura tu .env en backend/.env y ejecuta: npm run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

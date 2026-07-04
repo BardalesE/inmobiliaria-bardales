@@ -1,7 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
+const prisma = require('../lib/prisma')
 const { notifyNewLead } = require('../services/notifications')
-
-const prisma = new PrismaClient()
 
 // ── POST /api/leads ──
 const createLead = async (req, res, next) => {
@@ -51,23 +49,25 @@ const createLead = async (req, res, next) => {
 // ── GET /api/leads ──
 const getLeads = async (req, res, next) => {
   try {
-    const { page = 1, limit = 20, search } = req.query
+    const { page = 1, limit = 20, search, source, status } = req.query
     const skip = (parseInt(page) - 1) * parseInt(limit)
 
-    const where = search
-      ? {
-          OR: [
-            { name: { contains: search, mode: 'insensitive' } },
-            { phone: { contains: search } },
-            { email: { contains: search, mode: 'insensitive' } },
-          ],
-        }
-      : {}
+    const where = {}
+    if (source) where.source = source
+    if (status) where.status = status
+    if (search) {
+      // MySQL ya es case-insensitive por collation; `mode: 'insensitive'` solo existe en Postgres
+      where.OR = [
+        { name:  { contains: search } },
+        { phone: { contains: search } },
+        { email: { contains: search } },
+      ]
+    }
 
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
         where,
-        include: { property: { select: { id: true, ref: true, title: true } } },
+        include: { property: { select: { id: true, ref: true, title: true, district: true } } },
         orderBy: { createdAt: 'desc' },
         skip,
         take: parseInt(limit),
@@ -90,6 +90,24 @@ const getLeads = async (req, res, next) => {
   }
 }
 
+// ── PATCH /api/leads/:id/status ──
+const updateLeadStatus = async (req, res, next) => {
+  try {
+    const { status } = req.body
+    const VALID = ['NUEVO', 'CONTACTADO', 'CERRADO']
+    if (!VALID.includes(status)) {
+      return res.status(400).json({ success: false, message: 'Estado inválido' })
+    }
+    const lead = await prisma.lead.update({
+      where: { id: parseInt(req.params.id) },
+      data: { status },
+    })
+    res.json({ success: true, data: lead })
+  } catch (error) {
+    next(error)
+  }
+}
+
 // ── DELETE /api/leads/:id ──
 const deleteLead = async (req, res, next) => {
   try {
@@ -101,4 +119,4 @@ const deleteLead = async (req, res, next) => {
   }
 }
 
-module.exports = { createLead, getLeads, deleteLead }
+module.exports = { createLead, getLeads, deleteLead, updateLeadStatus }

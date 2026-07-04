@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { createLead } from '@/lib/api'
 
 export default function LeadForm({ propertyId, propertyTitle }) {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
-  const [error, setError] = useState('')
+  const [form, setForm]     = useState({ name: '', phone: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle')
+  const [error, setError]   = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,82 +23,136 @@ export default function LeadForm({ propertyId, propertyTitle }) {
 
   if (status === 'success') {
     return (
-      <div className="bg-emerald-900/30 border border-emerald-500/30 rounded-2xl p-6 text-center">
-        <div className="text-4xl mb-3">✅</div>
-        <h3 className="font-display text-xl tracking-wide text-sand mb-2">¡Mensaje enviado!</h3>
-        <p className="text-sm text-sand-muted">Nos comunicaremos contigo a la brevedad.</p>
-        <button onClick={() => setStatus('idle')} className="mt-4 text-terra-light text-sm underline">
-          Enviar otro mensaje
+      <div
+        className="rounded-2xl p-8 text-center"
+        style={{
+          background: 'rgba(16,185,129,0.06)',
+          border: '1px solid rgba(16,185,129,0.22)',
+        }}
+      >
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+          style={{ background: 'rgba(16,185,129,0.12)' }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <h3 className="font-display text-xl tracking-wide text-sand mb-1.5">¡Mensaje enviado!</h3>
+        <p className="text-sm" style={{ color: 'rgba(154,130,104,0.8)' }}>Nos comunicaremos contigo a la brevedad.</p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="mt-5 text-xs font-semibold transition-colors"
+          style={{ color: '#E07840' }}
+        >
+          Enviar otro mensaje →
         </button>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4">
+
       {propertyTitle && (
-        <p className="text-xs text-sand-muted bg-bark-700 px-3 py-2 rounded-lg border border-white/5">
-          Consultando: <span className="text-sand font-semibold">{propertyTitle}</span>
-        </p>
+        <div
+          className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs"
+          style={{ background: 'rgba(196,98,45,0.07)', border: '1px solid rgba(196,98,45,0.18)' }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+          </svg>
+          <span style={{ color: 'rgba(154,130,104,0.8)' }}>Consultando: </span>
+          <span className="font-semibold text-sand">{propertyTitle}</span>
+        </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">Nombre *</label>
+          <label className="block text-[10px] font-bold uppercase tracking-[0.16em] mb-1.5" style={{ color: 'rgba(154,130,104,0.7)' }}>
+            Nombre *
+          </label>
           <input
             required
             type="text"
             placeholder="Tu nombre completo"
             value={form.name}
             onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
-            className="w-full px-3 py-2.5 bg-bark-700 border border-white/10 rounded-lg text-sm text-sand placeholder-sand-muted/50 focus:outline-none focus:border-terra/60 transition-colors"
+            className="input-premium"
           />
         </div>
         <div>
-          <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">Teléfono *</label>
+          <label className="block text-[10px] font-bold uppercase tracking-[0.16em] mb-1.5" style={{ color: 'rgba(154,130,104,0.7)' }}>
+            Teléfono *
+          </label>
           <input
             required
             type="tel"
-            placeholder="Ej: 951234567"
+            placeholder="Ej: 951 234 567"
             value={form.phone}
             onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-            className="w-full px-3 py-2.5 bg-bark-700 border border-white/10 rounded-lg text-sm text-sand placeholder-sand-muted/50 focus:outline-none focus:border-terra/60 transition-colors"
+            className="input-premium"
           />
         </div>
       </div>
 
       <div>
-        <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">Email (opcional)</label>
+        <label className="block text-[10px] font-bold uppercase tracking-[0.16em] mb-1.5" style={{ color: 'rgba(154,130,104,0.7)' }}>
+          Email <span className="normal-case tracking-normal font-normal opacity-60">(opcional)</span>
+        </label>
         <input
           type="email"
           placeholder="tu@email.com"
           value={form.email}
           onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
-          className="w-full px-3 py-2.5 bg-bark-700 border border-white/10 rounded-lg text-sm text-sand placeholder-sand-muted/50 focus:outline-none focus:border-terra/60 transition-colors"
+          className="input-premium"
         />
       </div>
 
       <div>
-        <label className="text-[10px] uppercase tracking-wide text-sand-muted block mb-1">Mensaje</label>
+        <label className="block text-[10px] font-bold uppercase tracking-[0.16em] mb-1.5" style={{ color: 'rgba(154,130,104,0.7)' }}>
+          Mensaje <span className="normal-case tracking-normal font-normal opacity-60">(opcional)</span>
+        </label>
         <textarea
           rows={3}
           placeholder="¿Tienes alguna pregunta sobre esta propiedad?"
           value={form.message}
           onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-          className="w-full px-3 py-2.5 bg-bark-700 border border-white/10 rounded-lg text-sm text-sand placeholder-sand-muted/50 focus:outline-none focus:border-terra/60 transition-colors resize-none"
+          className="input-premium resize-none"
         />
       </div>
 
       {error && (
-        <p className="text-red-400 text-xs bg-red-900/20 border border-red-500/20 rounded-lg px-3 py-2">{error}</p>
+        <p
+          className="text-xs px-3 py-2.5 rounded-xl"
+          style={{ color: '#F87171', background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.18)' }}
+        >
+          {error}
+        </p>
       )}
 
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-3 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white font-bold text-sm tracking-wide shadow-lg shadow-terra/30 hover:shadow-terra/50 transition-shadow disabled:opacity-60 disabled:cursor-not-allowed"
+        className="cta-terra w-full py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        style={{ background: 'linear-gradient(135deg, #C4622D, #E07840)' }}
       >
-        {status === 'loading' ? 'Enviando...' : '📩 Solicitar información'}
+        {status === 'loading' ? (
+          <>
+            <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+              <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.25"/>
+              <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
+            </svg>
+            Enviando…
+          </>
+        ) : (
+          <>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+            Solicitar información
+          </>
+        )}
       </button>
     </form>
   )

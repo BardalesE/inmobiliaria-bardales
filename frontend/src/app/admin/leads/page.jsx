@@ -1,36 +1,64 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import api, { updateLeadStatus } from '@/lib/api'
+import { useAdminAuth } from '@/lib/useAdminAuth'
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
+const STATUS_LABELS = {
+  NUEVO:      { label: 'Nuevo',      color: 'text-blue-400 bg-blue-900/20 border-blue-500/20' },
+  CONTACTADO: { label: 'Contactado', color: 'text-yellow-400 bg-yellow-900/20 border-yellow-500/20' },
+  CERRADO:    { label: 'Cerrado',    color: 'text-emerald-400 bg-emerald-900/20 border-emerald-500/20' },
+}
 
 export default function AdminLeads() {
+  const { user, loading: authLoading } = useAdminAuth()
   const router = useRouter()
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem('admin_auth') !== 'true') {
-      router.push('/admin'); return
-    }
-    axios.get(`${API}/leads?limit=100`)
+    if (!user) return
+    api.get('/leads', { params: { limit: 100 } })
       .then(res => setLeads(res.data.data || []))
       .catch(console.error)
       .finally(() => setLoading(false))
-  }, [router])
+  }, [user])
 
   const deleteLead = async (id) => {
     if (!confirm('¿Eliminar esta consulta?')) return
-    await axios.delete(`${API}/leads/${id}`).catch(console.error)
-    setLeads(leads.filter(l => l.id !== id))
+    await api.delete(`/leads/${id}`).catch(console.error)
+    setLeads(prev => prev.filter(l => l.id !== id))
   }
 
-  const filtered = filter === 'all' ? leads
-    : filter === 'sellers' ? leads.filter(l => l.source === 'seller')
+  const changeStatus = async (id, status) => {
+    await updateLeadStatus(id, status).catch(console.error)
+    setLeads(prev => prev.map(l => l.id === id ? { ...l, status } : l))
+  }
+
+  const handleCreateProperty = (lead) => {
+    const params = new URLSearchParams({
+      prefill_name:    lead.name,
+      prefill_phone:   lead.phone,
+      prefill_email:   lead.email  || '',
+      prefill_message: lead.message || '',
+      prefill_leadId:  lead.id,
+    })
+    router.push(`/admin/properties/new?${params.toString()}`)
+  }
+
+  const filtered = filter === 'all'     ? leads
+    : filter === 'sellers'              ? leads.filter(l => l.source === 'seller')
     : leads.filter(l => l.source !== 'seller')
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-bark-900 flex items-center justify-center">
+        <p className="text-sand-muted text-sm">Verificando sesión...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-bark-900">
@@ -63,44 +91,82 @@ export default function AdminLeads() {
           </div>
         ) : (
           <div className="space-y-3">
-            {filtered.map(lead => (
-              <div key={lead.id} className="bg-bark-800 border border-white/5 rounded-2xl p-5 hover:border-terra/20 transition-colors">
-                <div className="flex items-start justify-between gap-4 flex-wrap">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <h3 className="font-semibold text-sand">{lead.name}</h3>
-                      <span className={`text-[10px] uppercase tracking-wide font-bold px-2 py-0.5 rounded-full border ${
-                        lead.source === 'seller'
-                          ? 'text-terra-light bg-terra/10 border-terra/20'
-                          : 'text-blue-400 bg-blue-900/20 border-blue-500/20'
-                      }`}>
-                        {lead.source === 'seller' ? 'Quiere publicar' : 'Comprador'}
-                      </span>
+            {filtered.map(lead => {
+              const statusInfo = STATUS_LABELS[lead.status] || STATUS_LABELS.NUEVO
+              return (
+                <div key={lead.id} className="bg-bark-800 border border-white/5 rounded-2xl p-5 hover:border-terra/20 transition-colors">
+                  <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h3 className="font-semibold text-sand">{lead.name}</h3>
+                        <span className={`text-[10px] uppercase tracking-wide font-bold px-2 py-0.5 rounded-full border ${
+                          lead.source === 'seller'
+                            ? 'text-terra-light bg-terra/10 border-terra/20'
+                            : 'text-blue-400 bg-blue-900/20 border-blue-500/20'
+                        }`}>
+                          {lead.source === 'seller' ? 'Quiere publicar' : 'Comprador'}
+                        </span>
+                        {/* Status badge */}
+                        <span className={`text-[10px] uppercase tracking-wide font-bold px-2 py-0.5 rounded-full border ${statusInfo.color}`}>
+                          {statusInfo.label}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-4 text-sm text-sand-muted mb-2">
+                        <a href={`tel:${lead.phone}`} className="hover:text-terra-light">📞 {lead.phone}</a>
+                        {lead.email && <a href={`mailto:${lead.email}`} className="hover:text-terra-light">✉️ {lead.email}</a>}
+                      </div>
+                      {lead.message && (
+                        <p className="text-xs text-sand-muted bg-bark-700 rounded-lg px-3 py-2 border border-white/5 mb-2">{lead.message}</p>
+                      )}
+                      {lead.property && (
+                        <p className="text-xs text-terra-light">🏠 {lead.property.title} ({lead.property.ref})</p>
+                      )}
+
+                      {/* Status selector */}
+                      <div className="mt-3 flex items-center gap-2">
+                        <span className="text-[10px] uppercase tracking-wide text-sand-muted">Estado:</span>
+                        <select
+                          value={lead.status || 'NUEVO'}
+                          onChange={e => changeStatus(lead.id, e.target.value)}
+                          className="text-xs bg-bark-700 border border-white/10 text-sand rounded-lg px-2 py-1 cursor-pointer"
+                        >
+                          <option value="NUEVO">Nuevo</option>
+                          <option value="CONTACTADO">Contactado</option>
+                          <option value="CERRADO">Cerrado</option>
+                        </select>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-4 text-sm text-sand-muted mb-2">
-                      <a href={`tel:${lead.phone}`} className="hover:text-terra-light">📞 {lead.phone}</a>
-                      {lead.email && <a href={`mailto:${lead.email}`} className="hover:text-terra-light">✉️ {lead.email}</a>}
+
+                    <div className="flex flex-col gap-2 items-end flex-shrink-0">
+                      <p className="text-[10px] text-sand-muted">
+                        {new Date(lead.createdAt).toLocaleDateString('es-PE', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })}
+                      </p>
+                      <a
+                        href={`https://wa.me/${(lead.phone||'').replace(/\D/g,'')}?text=Hola%20${encodeURIComponent(lead.name)}%2C%20soy%20de%20EE-Stars.`}
+                        target="_blank" rel="noopener noreferrer"
+                        className="px-3 py-1.5 rounded-lg bg-emerald-900/30 border border-emerald-500/20 text-emerald-400 text-xs font-bold hover:bg-emerald-900/50"
+                      >
+                        💬 WhatsApp
+                      </a>
+                      {lead.source === 'seller' && (
+                        <button
+                          onClick={() => handleCreateProperty(lead)}
+                          className="px-3 py-1.5 rounded-lg bg-terra/20 border border-terra/30 text-terra-light text-xs font-bold hover:bg-terra/30"
+                        >
+                          + Crear propiedad
+                        </button>
+                      )}
+                      <button
+                        onClick={() => deleteLead(lead.id)}
+                        className="px-3 py-1.5 rounded-lg bg-red-900/20 border border-red-500/20 text-red-400 text-xs font-bold hover:bg-red-900/40"
+                      >
+                        Eliminar
+                      </button>
                     </div>
-                    {lead.message && <p className="text-xs text-sand-muted bg-bark-700 rounded-lg px-3 py-2 border border-white/5">{lead.message}</p>}
-                    {lead.property && <p className="text-xs text-terra-light mt-2">🏠 {lead.property.title} ({lead.property.ref})</p>}
-                  </div>
-                  <div className="flex flex-col gap-2 items-end flex-shrink-0">
-                    <p className="text-[10px] text-sand-muted">
-                      {new Date(lead.createdAt).toLocaleDateString('es-PE', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })}
-                    </p>
-                    <a href={`https://wa.me/${(lead.phone||'').replace(/\D/g,'')}?text=Hola%20${encodeURIComponent(lead.name)}%2C%20soy%20de%20EE-Stars.`}
-                      target="_blank" rel="noopener noreferrer"
-                      className="px-3 py-1.5 rounded-lg bg-emerald-900/30 border border-emerald-500/20 text-emerald-400 text-xs font-bold hover:bg-emerald-900/50">
-                      💬 WhatsApp
-                    </a>
-                    <button onClick={() => deleteLead(lead.id)}
-                      className="px-3 py-1.5 rounded-lg bg-red-900/20 border border-red-500/20 text-red-400 text-xs font-bold hover:bg-red-900/40">
-                      Eliminar
-                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         )}
       </div>

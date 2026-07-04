@@ -6,6 +6,7 @@ const {
   getStats, updateImages
 } = require('../controllers/property.controller')
 const { validate } = require('../middleware/validate.middleware')
+const { authMiddleware, requireRole } = require('../middleware/auth.middleware')
 
 const router = Router()
 
@@ -24,9 +25,9 @@ router.get('/stats', getStats)
 router.get('/ref/:ref', getPropertyByRef)
 router.get('/', getProperties)
 router.get('/:id', param('id').isInt(), validate, getPropertyById)
-router.post('/', propertyValidation, validate, createProperty)
-router.put('/:id', param('id').isInt(), validate, updateProperty)
-router.put('/:id/images', param('id').isInt(), validate, updateImages)
-router.delete('/:id', param('id').isInt(), validate, deleteProperty)
+router.post('/', authMiddleware, propertyValidation, validate, createProperty)
+router.put('/:id', authMiddleware, param('id').isInt(), validate, updateProperty)
+router.put('/:id/images', authMiddleware, param('id').isInt(), validate, updateImages)
+router.delete('/:id', authMiddleware, requireRole('ADMIN'), param('id').isInt(), validate, deleteProperty)
 
 module.exports = router

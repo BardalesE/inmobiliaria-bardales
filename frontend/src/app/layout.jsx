@@ -1,14 +1,23 @@
 import './globals.css'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
 export const metadata = {
-  title: 'Inmobiliaria Bardales — Lotes en Trujillo',
-  description: 'Terrenos urbanos en los mejores sectores de Trujillo, La Libertad. Títulos saneados, precios negociables.',
-  keywords: 'lotes, terrenos, Trujillo, La Libertad, inmobiliaria, venta, Luz del Sol',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Inmobiliaria Bardales — Lotes y casas en Chepén',
+    template: '%s | Inmobiliaria Bardales',
+  },
+  description: 'Lotes, terrenos y casas en venta en Chepén, La Libertad. Títulos saneados, precios negociables y atención directa por WhatsApp.',
+  keywords: 'lotes, terrenos, casas, Chepén, La Libertad, inmobiliaria, venta, Inmobiliaria Bardales',
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Inmobiliaria Bardales',
-    description: 'Terrenos urbanos en Trujillo. Títulos saneados.',
+    description: 'Lotes, terrenos y casas en venta en Chepén, La Libertad. Títulos saneados.',
     type: 'website',
-  }
+    locale: 'es_PE',
+    siteName: 'Inmobiliaria Bardales',
+  },
 }
 
 export default function RootLayout({ children }) {

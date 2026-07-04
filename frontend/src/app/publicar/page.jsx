@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
+import { WHATSAPP } from '@/lib/site'
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
 
@@ -221,7 +222,7 @@ export default function PublicarPage() {
               </p>
               <div className="flex flex-col gap-3">
                 <a
-                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP || '51999999999'}?text=Hola,%20acabo%20de%20registrar%20mi%20propiedad%20en%20EE-Stars.%20Soy%20${encodeURIComponent(form.name)}`}
+                  href={`https://wa.me/${WHATSAPP}?text=Hola,%20acabo%20de%20registrar%20mi%20propiedad%20en%20EE-Stars.%20Soy%20${encodeURIComponent(form.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 rounded-xl bg-gradient-to-br from-[#25D366] to-[#1aad52] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-green-900/30"

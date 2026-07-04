@@ -3,15 +3,28 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+// Usuarios del panel admin. Roles: ADMIN (todo) | AGENT (ver leads, publicar propiedades)
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("AGENT")  // ADMIN, AGENT
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  @@map("users")
 }
 
 model Property {
   id          Int       @id @default(autoincrement())
   ref         String    @unique
   title       String
-  description String?
+  description String?   @db.Text
   price       Float
   area        Float
   frontage    Float?
@@ -27,9 +40,20 @@ model Property {
   longitude   Float?
   status      String    @default("AVAILABLE")  // AVAILABLE, RESERVED, SOLD, HIDDEN, DRAFT
   type        String    @default("URBAN_LOT")
-  features    String    @default("[]")
+  operation   String    @default("SALE")       // SALE, RENT
+  // Sin @default: MySQL no admite defaults en columnas TEXT.
+  // El controlador siempre asigna '[]' vía serializeFeatures().
+  features    String    @db.Text
   featured    Boolean   @default(false)
   likes       Int       @default(0)
+  rooms       Int?
+  bathrooms   Int?
+  parking     Boolean   @default(false)
+  floors      Int?
+  yearBuilt   Int?
+  videoUrl    String?
+  documentUrl String?
+  notes       String?   @db.Text
   images      Image[]
   leads       Lead[]
   reviews     Review[]
@@ -37,6 +61,12 @@ model Property {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
+  // Índices para los filtros y ordenamientos del catálogo
+  @@index([status])
+  @@index([type])
+  @@index([featured])
+  @@index([price])
+  @@index([createdAt])
   @@map("properties")
 }
 
@@ -57,12 +87,16 @@ model Lead {
   name       String
   phone      String
   email      String?
-  message    String?
+  message    String?   @db.Text
   source     String    @default("website")  // website, seller, whatsapp
+  status     String    @default("NUEVO")    // NUEVO, CONTACTADO, CERRADO
   propertyId Int?
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
   createdAt  DateTime  @default(now())
 
+  // Índices para el listado del panel (filtro por estado + orden cronológico)
+  @@index([status])
+  @@index([createdAt])
   @@map("leads")
 }
 
@@ -70,11 +104,11 @@ model Lead {
 model Testimonial {
   id        Int      @id @default(autoincrement())
   name      String
-  role      String?                    // "Cliente", "Comprador", etc.
+  role      String?
   city      String?
-  comment   String
+  comment   String   @db.Text
   rating    Int      @default(5)
-  videoUrl  String?                    // URL de video de YouTube o direct
+  videoUrl  String?
   avatar    String?
   active    Boolean  @default(true)
   order     Int      @default(0)
@@ -88,8 +122,8 @@ model Company {
   id        Int      @id @default(autoincrement())
   name      String
   logo      String?
-  comment   String?
-  type      String?  // banco, constructora, inmobiliaria, etc.
+  comment   String?  @db.Text
+  type      String?
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 
@@ -100,7 +134,7 @@ model Company {
 model Review {
   id         Int      @id @default(autoincrement())
   name       String
-  comment    String
+  comment    String   @db.Text
   rating     Int      @default(5)
   propertyId Int?
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
@@ -108,6 +142,22 @@ model Review {
   createdAt  DateTime @default(now())
 
   @@map("reviews")
+}
+
+// Videos del Hero principal (administrables desde panel)
+model HeroVideo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  videoUrl  String
+  thumbnail String?
+  active    Boolean  @default(true)
+  autoplay  Boolean  @default(true)
+  loop      Boolean  @default(true)
+  muted     Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("hero_videos")
 }
 
 // Comisiones por venta
@@ -118,7 +168,7 @@ model Commission {
   salePrice    Float
   percentage   Float    @default(3.0)
   amount       Float
-  notes        String?
+  notes        String?  @db.Text
   createdAt    DateTime @default(now())
 
   @@map("commissions")

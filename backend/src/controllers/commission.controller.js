@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const prisma = require('../lib/prisma')
 
 // GET /api/commissions — todas las comisiones con stats
 const getCommissions = async (req, res, next) => {

@@ -6,22 +6,36 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "db:migrate": "npx prisma migrate dev",
+    "db:migrate:deploy": "npx prisma migrate deploy",
     "db:seed": "node prisma/seed.js",
-    "db:studio": "npx prisma studio"
+    "db:studio": "npx prisma studio",
+    "user:create": "node scripts/create-user.js",
+    "lint": "eslint src prisma scripts",
+    "test": "node --test tests/api.test.js"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "express-rate-limit": "^7.4.1",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.8"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.0.2",
     "prisma": "^5.7.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

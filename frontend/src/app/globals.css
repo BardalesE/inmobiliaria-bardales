@@ -48,3 +48,249 @@ body {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Hero AAA Premium — keyframes & microinteraction classes
+   All animations are GPU-composited (transform/opacity/filter only).
+   No layout, no paint.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Entrance: opacity + lift + focus-blur */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Badge entrance with subtle blur focus-in */
+@keyframes revealBlur {
+  from { opacity: 0; transform: translateY(18px); filter: blur(3px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+}
+
+/* Continuous gentle float — badge only */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-7px); }
+}
+
+/* Slow ambient drift on the terra glow overlay — GPU-only, no repaint */
+@keyframes driftAmbient {
+  0%   { transform: translate(-3%, -2%) scale(1.06); }
+  100% { transform: translate(3%,  2%) scale(1.06);  }
+}
+
+/* Base reveal — used by most hero elements with inline animationDelay */
+.hero-reveal {
+  animation: revealUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Badge: blur-reveal then infinite float; GPU layer promoted */
+.hero-badge-anim {
+  will-change: transform, opacity;
+  animation:
+    revealBlur 0.85s cubic-bezier(0.16, 1, 0.3, 1) both,
+    floatY     8s    0.9s ease-in-out infinite;
+}
+
+/* ── CTA microinteractions ───────────────────────────────────────────────── */
+
+.cta-terra {
+  box-shadow:
+    0 8px 28px rgba(196, 98, 45, 0.30),
+    0 2px 8px  rgba(0,   0,  0, 0.42);
+  transition:
+    box-shadow 0.35s ease,
+    transform  0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cta-terra:hover {
+  box-shadow:
+    0 18px 56px rgba(196, 98, 45, 0.55),
+    0  0px 34px rgba(224, 120, 64, 0.22),
+    0  4px 12px rgba(0,   0,   0, 0.40);
+  transform: translateY(-3px) scale(1.025);
+}
+.cta-terra:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(196, 98, 45, 0.40);
+}
+
+.cta-outline {
+  transition:
+    box-shadow   0.28s ease,
+    transform    0.25s ease,
+    background   0.22s ease,
+    border-color 0.22s ease;
+}
+.cta-outline:hover {
+  box-shadow:    0 0 0 1px rgba(196, 98, 45, 0.50), 0 4px 24px rgba(196, 98, 45, 0.10);
+  transform:     translateY(-2px);
+  background:    rgba(196, 98, 45, 0.07);
+  border-color:  rgba(196, 98, 45, 0.65);
+}
+.cta-outline:active { transform: translateY(0px); }
+
+.cta-wa {
+  box-shadow: 0 4px 22px rgba(37, 211, 102, 0.18);
+  transition:
+    box-shadow 0.3s ease,
+    transform  0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cta-wa:hover {
+  box-shadow:
+    0 12px 44px rgba(37, 211, 102, 0.40),
+    0  0px 22px rgba(37, 211, 102, 0.16);
+  transform: translateY(-3px) scale(1.02);
+}
+.cta-wa:active {
+  transform: translateY(-1px) scale(1.005);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.28);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Design System — page-wide shared classes
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Section eyebrow label */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 98, 45, 0.26);
+  background: rgba(196, 98, 45, 0.07);
+  color: #E07840;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Premium card base */
+.card-premium {
+  background: #1C1308;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 16px;
+  transition:
+    border-color 0.28s ease,
+    transform    0.28s cubic-bezier(0.34, 1.2, 0.64, 1),
+    box-shadow   0.28s ease;
+}
+.card-premium:hover {
+  border-color: rgba(196, 98, 45, 0.24);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(196, 98, 45, 0.09);
+}
+
+/* Shared input/textarea — FilterBar, LeadForm */
+.input-premium {
+  width: 100%;
+  background: rgba(42, 30, 16, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #FDF6E9;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13.5px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.input-premium::placeholder { color: rgba(154, 130, 104, 0.45); }
+.input-premium:focus {
+  outline: none;
+  border-color: rgba(196, 98, 45, 0.52);
+  box-shadow: 0 0 0 3px rgba(196, 98, 45, 0.09);
+  background: rgba(53, 38, 21, 0.75);
+}
+
+/* Navbar link */
+.nav-link {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9A8268;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.nav-link:hover {
+  color: #FDF6E9;
+  background: rgba(255, 255, 255, 0.04);
+}
+.nav-link--active {
+  color: #E07840;
+}
+.nav-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 14px;
+  right: 14px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(224, 120, 64, 0.75), transparent);
+}
+
+/* Section horizontal divider */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 98, 45, 0.2), transparent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Admin Panel — toast, modal & utility animations
+───────────────────────────────────────────────────────────────────────────── */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0)    scale(1);    }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(196,98,45,0.35); }
+  70%  { box-shadow: 0 0 0 8px rgba(196,98,45,0); }
+  100% { box-shadow: 0 0 0 0 rgba(196,98,45,0); }
+}
+
+/* Admin nav link */
+.admin-tab {
+  position: relative;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color 0.18s ease, background 0.18s ease;
+  color: rgba(154,130,104,0.75);
+}
+.admin-tab:hover { color: #FDF6E9; background: rgba(255,255,255,0.04); }
+.admin-tab.active { color: #FDF6E9; background: rgba(196,98,45,0.85); box-shadow: 0 2px 12px rgba(196,98,45,0.28); }
+
+/* Admin input — same palette as .input-premium but slightly tighter */
+.input-admin {
+  width: 100%;
+  background: rgba(42, 30, 16, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+  padding: 9px 13px;
+  color: #FDF6E9;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.input-admin::placeholder { color: rgba(154,130,104,0.40); }
+.input-admin:focus {
+  outline: none;
+  border-color: rgba(196,98,45,0.50);
+  box-shadow: 0 0 0 3px rgba(196,98,45,0.08);
+}
+
+/* Prop row hover: handled inline but this provides a baseline */
+.prop-row { transition: border-color 0.18s ease, box-shadow 0.18s ease; }
+.prop-row:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.18); }

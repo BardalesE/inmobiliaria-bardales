@@ -4,7 +4,8 @@ const notFound = (req, res, next) => {
   next(error)
 }
 
-const errorHandler = (err, req, res, next) => {
+// Express identifica el middleware de errores por tener 4 parámetros
+const errorHandler = (err, req, res, _next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode
 
   console.error(`❌ Error [${statusCode}]:`, err.message)

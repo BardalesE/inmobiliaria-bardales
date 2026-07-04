@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client')
+const bcrypt = require('bcryptjs')
 const prisma = new PrismaClient()
 
 async function main() {
@@ -11,6 +12,24 @@ async function main() {
   await prisma.image.deleteMany()
   await prisma.lead.deleteMany()
   await prisma.property.deleteMany()
+  await prisma.user.deleteMany()
+
+  // ── USUARIO ADMIN INICIAL ──
+  // Si ADMIN_PASSWORD_HASH está en .env se usa ese hash; si no, clave de desarrollo.
+  const passwordHash = process.env.ADMIN_PASSWORD_HASH || await bcrypt.hash('bardales2025', 12)
+
+  await prisma.user.upsert({
+    where: { email: 'admin@ee-stars.pe' },
+    update: {},
+    create: {
+      name: 'Administrador',
+      email: 'admin@ee-stars.pe',
+      passwordHash,
+      role: 'ADMIN',
+      active: true,
+    },
+  })
+  console.log('✅ Usuario admin: admin@ee-stars.pe' + (process.env.ADMIN_PASSWORD_HASH ? ' (clave del .env)' : ' / bardales2025'))
 
   // ── PROPIEDADES ──
   const properties = [

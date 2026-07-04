@@ -1,7 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
+const prisma = require('../lib/prisma')
 const { notifyNewSeller } = require('../services/notifications')
-
-const prisma = new PrismaClient()
 
 // ── POST /api/sellers ──
 // Alguien quiere publicar su propiedad → guardamos sus datos y notificamos a Elian

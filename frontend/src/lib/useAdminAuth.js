@@ -1,20 +1,19 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { getMe } from './api'
 
 export function useAdminAuth() {
   const router = useRouter()
-  const [ready, setReady] = useState(false)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (localStorage.getItem('admin_auth') !== 'true') {
-        router.push('/admin')
-      } else {
-        setReady(true)
-      }
-    }
+    getMe()
+      .then((data) => setUser(data.user))
+      .catch(() => router.push('/admin'))
+      .finally(() => setLoading(false))
   }, [router])
 
-  return ready
+  return { user, loading }
 }

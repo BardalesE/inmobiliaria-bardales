@@ -128,7 +128,7 @@ export default function HeroVideoPlayer({ videos = [] }) {
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          opacity: opacityA * 0.48,
+          opacity: opacityA * 0.85,
           transition: `opacity ${CROSSFADE_MS}ms cubic-bezier(0.4,0,0.2,1)`,
           zIndex: front === 'A' ? 1 : 0,
         }}
@@ -144,7 +144,10 @@ export default function HeroVideoPlayer({ videos = [] }) {
           preload="auto"
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          onError={e => { e.currentTarget.style.visibility = 'hidden' }}
+          onError={e => {
+            console.warn('[HeroVideo] fallo al cargar', e.currentTarget.currentSrc)
+            e.currentTarget.style.visibility = 'hidden'
+          }}
         />
       </div>
 
@@ -152,7 +155,7 @@ export default function HeroVideoPlayer({ videos = [] }) {
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          opacity: opacityB * 0.48,
+          opacity: opacityB * 0.85,
           transition: `opacity ${CROSSFADE_MS}ms cubic-bezier(0.4,0,0.2,1)`,
           zIndex: front === 'B' ? 1 : 0,
         }}
@@ -166,7 +169,10 @@ export default function HeroVideoPlayer({ videos = [] }) {
           preload="auto"
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          onError={e => { e.currentTarget.style.visibility = 'hidden' }}
+          onError={e => {
+            console.warn('[HeroVideo] fallo al cargar', e.currentTarget.currentSrc)
+            e.currentTarget.style.visibility = 'hidden'
+          }}
         />
       </div>
 

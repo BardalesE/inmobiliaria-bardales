@@ -59,6 +59,7 @@ export default function PropertySlider({
   const count               = media.length
   const [idx, setIdx]       = useState(0)
   const [hovered, setHovered] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const touchX              = useRef(null)
   // Ref-based flag so go() doesn't depend on transitioning state (prevents interval reset bug)
   const inTransition        = useRef(false)
@@ -66,6 +67,7 @@ export default function PropertySlider({
   const go = useCallback((delta) => {
     if (count <= 1 || inTransition.current) return
     inTransition.current = true
+    setPlaying(false)
     setIdx(i => ((i + delta) % count + count) % count)
     setTimeout(() => { inTransition.current = false }, 520)
   }, [count])
@@ -73,16 +75,18 @@ export default function PropertySlider({
   const goTo = useCallback((n) => {
     if (inTransition.current) return
     inTransition.current = true
+    setPlaying(false)
     setIdx(((n % count) + count) % count)
     setTimeout(() => { inTransition.current = false }, 520)
   }, [count])
 
-  /* Auto-advance — stable: go() only changes when count changes, not on every transition */
+  /* Auto-advance — stable: go() only changes when count changes, not on every transition.
+     Pauses while a video slide is actually playing. */
   useEffect(() => {
-    if (!autoPlay || count <= 1 || hovered) return
+    if (!autoPlay || count <= 1 || hovered || playing) return
     const id = setInterval(() => go(1), interval)
     return () => clearInterval(id)
-  }, [autoPlay, count, hovered, go, interval])
+  }, [autoPlay, count, hovered, playing, go, interval])
 
   /* Touch / swipe */
   const onTouchStart = (e) => { touchX.current = e.touches[0].clientX }
@@ -119,33 +123,53 @@ export default function PropertySlider({
             }}
           >
             {m.type === 'video' ? (
-              /* Video slide — Cloudinary thumbnail + play icon overlay */
+              /* Video slide — thumbnail + play button; click plays the real <video> inline */
               <div className="w-full h-full relative">
-                {m.thumb ? (
-                  <Image src={m.thumb} alt="Video" fill draggable={false}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover" />
+                {active && playing ? (
+                  <video
+                    src={m.url}
+                    poster={m.thumb || undefined}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onClick={e => { e.preventDefault(); e.stopPropagation() }}
+                    onError={e => console.warn('[PropertySlider] fallo al cargar video', e.currentTarget.currentSrc)}
+                  />
                 ) : (
-                  <div className="w-full h-full" style={{ background: '#0F0A04' }} />
+                  <>
+                    {m.thumb ? (
+                      <Image src={m.thumb} alt="Video" fill draggable={false}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover" />
+                    ) : (
+                      <div className="w-full h-full" style={{ background: '#0F0A04' }} />
+                    )}
+                    <button
+                      type="button"
+                      aria-label="Reproducir video"
+                      onClick={e => { e.preventDefault(); e.stopPropagation(); setPlaying(true) }}
+                      className="absolute inset-0 flex items-center justify-center w-full"
+                      style={{ background: 'rgba(0,0,0,0.28)', border: 'none', cursor: 'pointer' }}
+                    >
+                      <div className="w-14 h-14 rounded-full flex items-center justify-center"
+                        style={{
+                          background: 'rgba(196,98,45,0.88)',
+                          boxShadow: '0 4px 20px rgba(196,98,45,0.45)',
+                          border: '2px solid rgba(255,255,255,0.18)',
+                        }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
+                          <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                      </div>
+                    </button>
+                    <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full"
+                      style={{ background: 'rgba(0,0,0,0.58)', backdropFilter: 'blur(4px)', zIndex: 3 }}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                      <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.85)', fontWeight: 700, letterSpacing: '0.1em' }}>VIDEO</span>
+                    </div>
+                  </>
                 )}
-                <div className="absolute inset-0 flex items-center justify-center"
-                  style={{ background: 'rgba(0,0,0,0.28)' }}>
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'rgba(196,98,45,0.88)',
-                      boxShadow: '0 4px 20px rgba(196,98,45,0.45)',
-                      border: '2px solid rgba(255,255,255,0.18)',
-                    }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
-                      <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                  </div>
-                </div>
-                <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full"
-                  style={{ background: 'rgba(0,0,0,0.58)', backdropFilter: 'blur(4px)', zIndex: 3 }}>
-                  <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.85)', fontWeight: 700, letterSpacing: '0.1em' }}>VIDEO</span>
-                </div>
               </div>
             ) : (
               /* Image slide — Ken Burns zoom on active slide */
@@ -217,41 +241,4 @@ export default function PropertySlider({
 
       {/* ── Dot indicators ── */}
       {count > 1 && (
-        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5" style={{ zIndex: 5 }}>
-          {media.map((_, i) => (
-            <button key={i} type="button"
-              onClick={e => { e.preventDefault(); e.stopPropagation(); goTo(i) }}
-              style={{
-                width: i === idx ? 20 : 5,
-                height: 5,
-                borderRadius: 99,
-                background: i === idx ? '#E07840' : 'rgba(255,255,255,0.38)',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                transition: 'width 0.32s cubic-bezier(0.4,0,0.2,1), background 0.25s ease',
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* ── Slide counter (top-left) ── */}
-      {count > 1 && (
-        <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full"
-          style={{
-            zIndex: 5,
-            background: 'rgba(0,0,0,0.52)',
-            backdropFilter: 'blur(4px)',
-            fontSize: 9,
-            color: 'rgba(255,255,255,0.72)',
-            fontWeight: 600,
-            letterSpacing: '0.05em',
-          }}
-        >
-          {idx + 1}/{count}
-        </div>
-      )}
-    </div>
-  )
-}
+        <div className="absolute bottom-2.5 left-1/2 -translate-

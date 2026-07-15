@@ -25,10 +25,12 @@ export default function ImageGallery({ images = [], videoUrl = '', title = '' })
   const slides = buildSlides(images, videoUrl, title)
   const [current, setCurrent]   = useState(0)
   const [fading, setFading]     = useState(false)
+  const [playing, setPlaying]   = useState(false)
 
   const goTo = useCallback((n) => {
     if (fading || n === current) return
     setFading(true)
+    setPlaying(false)
     setTimeout(() => { setCurrent(n); setFading(false) }, 240)
   }, [fading, current])
 
@@ -54,27 +56,46 @@ export default function ImageGallery({ images = [], videoUrl = '', title = '' })
           style={{ opacity: fading ? 0 : 1 }}
         >
           {slide.type === 'video' ? (
-            /* Video slide */
+            /* Video slide — click plays the real <video> inline */
             <div className="w-full h-full relative">
-              {slide.thumb ? (
-                <Image src={slide.thumb} alt="Video" fill className="object-cover" sizes="100vw" priority />
+              {playing ? (
+                <video
+                  src={slide.url}
+                  poster={slide.thumb || undefined}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onError={e => console.warn('[ImageGallery] fallo al cargar video', e.currentTarget.currentSrc)}
+                />
               ) : (
-                <div className="w-full h-full" style={{ background: '#0F0A04' }} />
+                <>
+                  {slide.thumb ? (
+                    <Image src={slide.thumb} alt="Video" fill className="object-cover" sizes="100vw" priority />
+                  ) : (
+                    <div className="w-full h-full" style={{ background: '#0F0A04' }} />
+                  )}
+                  <button
+                    type="button"
+                    aria-label="Reproducir video"
+                    onClick={() => setPlaying(true)}
+                    className="absolute inset-0 flex items-center justify-center w-full"
+                    style={{ background: 'rgba(0,0,0,0.32)', border: 'none', cursor: 'pointer' }}
+                  >
+                    <div
+                      className="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        background: 'rgba(196,98,45,0.90)',
+                        boxShadow: '0 8px 36px rgba(196,98,45,0.55), 0 0 0 1px rgba(255,255,255,0.15)',
+                      }}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 3 }}>
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                      </svg>
+                    </div>
+                  </button>
+                </>
               )}
-              <div className="absolute inset-0 flex items-center justify-center"
-                style={{ background: 'rgba(0,0,0,0.32)' }}>
-                <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    background: 'rgba(196,98,45,0.90)',
-                    boxShadow: '0 8px 36px rgba(196,98,45,0.55), 0 0 0 1px rgba(255,255,255,0.15)',
-                  }}
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 3 }}>
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                  </svg>
-                </div>
-              </div>
             </div>
           ) : (
             /* Image slide */
@@ -186,26 +207,4 @@ export default function ImageGallery({ images = [], videoUrl = '', title = '' })
                   boxShadow: active ? '0 0 0 1px rgba(224,120,64,0.3), 0 4px 16px rgba(196,98,45,0.25)' : 'none',
                   transform: active ? 'scale(1.04)' : 'scale(1)',
                   opacity: active ? 1 : 0.55,
-                }}
-                onMouseEnter={e => { if (!active) e.currentTarget.style.opacity = '0.9' }}
-                onMouseLeave={e => { if (!active) e.currentTarget.style.opacity = '0.55' }}
-              >
-                {thumbSrc ? (
-                  <Image src={thumbSrc} alt={s.alt || ''} fill className="object-cover" sizes="96px" />
-                ) : (
-                  <div className="w-full h-full" style={{ background: '#0F0A04' }} />
-                )}
-                {s.type === 'video' && (
-                  <div className="absolute inset-0 flex items-center justify-center"
-                    style={{ background: 'rgba(0,0,0,0.35)' }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </div>
-                )}
-              </button>
-            )
-          })}
-        </div>
-      )}
-    </div>
-  )
-}
+                }

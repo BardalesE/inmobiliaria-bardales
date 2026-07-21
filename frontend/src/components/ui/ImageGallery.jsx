@@ -207,4 +207,26 @@ export default function ImageGallery({ images = [], videoUrl = '', title = '' })
                   boxShadow: active ? '0 0 0 1px rgba(224,120,64,0.3), 0 4px 16px rgba(196,98,45,0.25)' : 'none',
                   transform: active ? 'scale(1.04)' : 'scale(1)',
                   opacity: active ? 1 : 0.55,
-                }
+                }}
+                onMouseEnter={e => { if (!active) e.currentTarget.style.opacity = '0.9' }}
+                onMouseLeave={e => { if (!active) e.currentTarget.style.opacity = '0.55' }}
+              >
+                {thumbSrc ? (
+                  <Image src={thumbSrc} alt={s.alt || ''} fill className="object-cover" sizes="96px" />
+                ) : (
+                  <div className="w-full h-full" style={{ background: '#0F0A04' }} />
+                )}
+                {s.type === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center"
+                    style={{ background: 'rgba(0,0,0,0.35)' }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}

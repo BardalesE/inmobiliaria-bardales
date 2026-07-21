@@ -241,4 +241,41 @@ export default function PropertySlider({
 
       {/* ── Dot indicators ── */}
       {count > 1 && (
-        <div className="absolute bottom-2.5 left-1/2 -translate-
+        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5" style={{ zIndex: 5 }}>
+          {media.map((_, i) => (
+            <button key={i} type="button"
+              onClick={e => { e.preventDefault(); e.stopPropagation(); goTo(i) }}
+              style={{
+                width: i === idx ? 20 : 5,
+                height: 5,
+                borderRadius: 99,
+                background: i === idx ? '#E07840' : 'rgba(255,255,255,0.38)',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+                transition: 'width 0.32s cubic-bezier(0.4,0,0.2,1), background 0.25s ease',
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* ── Slide counter (top-left) ── */}
+      {count > 1 && (
+        <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full"
+          style={{
+            zIndex: 5,
+            background: 'rgba(0,0,0,0.52)',
+            backdropFilter: 'blur(4px)',
+            fontSize: 9,
+            color: 'rgba(255,255,255,0.72)',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+          }}
+        >
+          {idx + 1}/{count}
+        </div>
+      )}
+    </div>
+  )
+}

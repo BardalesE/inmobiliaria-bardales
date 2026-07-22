@@ -89,11 +89,15 @@ router.post('/media', authMiddleware, (req, res, next) => {
             transformation: [{ quality: 'auto', fetch_format: 'auto' }],
           }
         : {
-            // PDFs: preserve original filename so URL keeps .pdf extension
+            // PDFs: resource_type 'raw' no agrega la extensión .pdf solo — hay
+            // que forzarla con `format`. Sin esto, la URL final queda sin
+            // extensión (ej: /file_aoedfy) y el navegador la descarga como
+            // archivo genérico en vez de abrirla inline.
             folder: 'ee-stars/documents',
             resource_type: 'raw',
             use_filename: true,
             unique_filename: true,
+            format: 'pdf',
           }
 
       const result = await uploadToCloudinary(req.file.buffer, uploadOptions)

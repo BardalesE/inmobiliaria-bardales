@@ -46,14 +46,21 @@ function EmptySlide({ height }) {
 /* ── Main component ───────────────────────────── */
 export default function PropertySlider({
   images   = [],
-  videoUrl = '',
+  videos   = [],   // [{ url, thumbnail? }] o [string]
+  videoUrl = '',   // legado — un solo video (compat con propiedades antiguas)
   height   = 216,
   autoPlay = true,
   interval = 3000,
 }) {
+  const videoList = videos.length
+    ? videos.map(v => (typeof v === 'string' ? { url: v } : v)).filter(v => v?.url?.trim())
+    : (isCloudinaryVideo(videoUrl) ? [{ url: videoUrl }] : [])
+
   const media = [
     ...normalizeImages(images),
-    ...(isCloudinaryVideo(videoUrl) ? [{ type: 'video', url: videoUrl, thumb: cloudinaryThumb(videoUrl) }] : []),
+    ...videoList
+      .filter(v => isCloudinaryVideo(v.url))
+      .map(v => ({ type: 'video', url: v.url, thumb: v.thumbnail || cloudinaryThumb(v.url) })),
   ]
 
   const count               = media.length

@@ -40,6 +40,9 @@ export const propertySchema = z.object({
   features:  z.array(z.string()).default([]),
 
   images:      z.array(z.object({ url: z.string(), alt: z.string().optional().default('') })).default([]),
+  videos:      z.array(z.object({ url: z.string(), thumbnail: z.string().optional().default(''), name: z.string().optional().default('') })).default([]),
+  documents:   z.array(z.object({ url: z.string(), name: z.string().optional().default('') })).default([]),
+  // Legado — se mantienen por compatibilidad con propiedades creadas antes de multi-video/multi-documento
   videoUrl:    z.string().optional().default(''),
   documentUrl: z.string().optional().default(''),
 
@@ -63,7 +66,7 @@ export const FIELD_TO_STEP = {
   sector: 1, block: 1, lot: 1, latitude: 1, longitude: 1,
   price: 2, area: 2, frontage: 2, depth: 2,
   rooms: 2, bathrooms: 2, floors: 2, yearBuilt: 2, parking: 2, features: 2,
-  images: 3, videoUrl: 3, documentUrl: 3,
+  images: 3, videos: 3, documents: 3, videoUrl: 3, documentUrl: 3,
   featured: 4, notes: 4,
 }
 

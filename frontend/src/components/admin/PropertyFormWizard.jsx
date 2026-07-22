@@ -58,7 +58,7 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
     latitude: null, longitude: null,
     price: undefined, area: undefined, frontage: null, depth: null,
     rooms: null, bathrooms: null, floors: null, yearBuilt: null, parking: false,
-    features: [], images: [], videoUrl: '', documentUrl: '', featured: false, notes: '',
+    features: [], images: [], videos: [], documents: [], videoUrl: '', documentUrl: '', featured: false, notes: '',
     ...(initialData || {}),
   }
 
@@ -124,15 +124,19 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
   const onSubmit = async (data) => {
     setSubmitting(true)
     try {
-      const images = (data.images || []).filter(i => i.url?.trim())
+      const images    = (data.images    || []).filter(i => i.url?.trim())
+      const videos    = (data.videos    || []).filter(v => v.url?.trim())
+      const documents = (data.documents || []).filter(d => d.url?.trim())
       if (mode === 'create') {
-        await api.post('/properties', { ...data, images })
+        await api.post('/properties', { ...data, images, videos, documents })
         localStorage.removeItem(DRAFT_KEY(null))
         showToast('Propiedad publicada con éxito', 'success')
       } else {
         await api.put(`/properties/${propertyId}`, data)
-        // Always sync images (even empty array clears them)
+        // Always sync images/videos/documents (even empty array clears them)
         await api.put(`/properties/${propertyId}/images`, { images }).catch(() => {})
+        await api.put(`/properties/${propertyId}/videos`, { videos }).catch(() => {})
+        await api.put(`/properties/${propertyId}/documents`, { documents }).catch(() => {})
         localStorage.removeItem(DRAFT_KEY(propertyId))
         showToast('Cambios guardados', 'success')
       }
@@ -242,7 +246,7 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
             {step === 0 && <StepBasic    {...formProps} />}
             {step === 1 && <StepLocation {...formProps} />}
             {step === 2 && <StepDetails  {...formProps} />}
-            {step === 3 && <StepMedia    {...formProps} initialImages={watch('images')} videoUrl={watch('videoUrl')} documentUrl={watch('documentUrl')} />}
+            {step === 3 && <StepMedia    {...formProps} initialImages={watch('images')} initialVideos={watch('videos')} initialDocuments={watch('documents')} />}
             {step === 4 && <StepPublish  {...formProps} isEdit={mode === 'edit'} />}
           </div>
 

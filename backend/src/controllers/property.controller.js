@@ -50,7 +50,11 @@ const getProperties = async (req, res, next) => {
     const [data, total] = await Promise.all([
       prisma.property.findMany({
         where,
-        include: { images: { orderBy: { order: 'asc' } } },
+        include: {
+          images: { orderBy: { order: 'asc' } },
+          videos: { orderBy: { order: 'asc' } },
+          documents: { orderBy: { order: 'asc' } },
+        },
         orderBy: { [safeSortBy]: safeOrder },
         skip,
         take: limitInt,
@@ -71,7 +75,12 @@ const getPropertyById = async (req, res, next) => {
   try {
     const property = await prisma.property.findUnique({
       where: { id: parseInt(req.params.id) },
-      include: { images: { orderBy: { order: 'asc' } }, leads: { select: { id: true, createdAt: true } } }
+      include: {
+        images: { orderBy: { order: 'asc' } },
+        videos: { orderBy: { order: 'asc' } },
+        documents: { orderBy: { order: 'asc' } },
+        leads: { select: { id: true, createdAt: true } },
+      }
     })
     if (!property) return res.status(404).json({ success: false, message: 'Propiedad no encontrada' })
     res.json({ success: true, data: { ...property, features: parseFeatures(property.features) } })
@@ -83,7 +92,11 @@ const getPropertyByRef = async (req, res, next) => {
   try {
     const property = await prisma.property.findUnique({
       where: { ref: req.params.ref },
-      include: { images: { orderBy: { order: 'asc' } } }
+      include: {
+        images: { orderBy: { order: 'asc' } },
+        videos: { orderBy: { order: 'asc' } },
+        documents: { orderBy: { order: 'asc' } },
+      }
     })
     if (!property) return res.status(404).json({ success: false, message: 'Propiedad no encontrada' })
     res.json({ success: true, data: { ...property, features: parseFeatures(property.features) } })
@@ -102,6 +115,7 @@ const createProperty = async (req, res, next) => {
       sector, block, lot, address, district, province, department,
       latitude, longitude, status, type, operation, features, images,
       rooms, bathrooms, parking, floors, yearBuilt, videoUrl, documentUrl, notes,
+      videos, documents,
     } = req.body
 
     const property = await prisma.property.create({
@@ -122,9 +136,15 @@ const createProperty = async (req, res, next) => {
         notes: notes || null,
         images: images?.length ? {
           create: images.filter(i => i.url?.trim()).map((img, i) => ({ url: img.url, alt: img.alt || title, order: i }))
-        } : undefined
+        } : undefined,
+        videos: videos?.length ? {
+          create: videos.filter(v => v.url?.trim()).map((v, i) => ({ url: v.url, thumbnail: v.thumbnail || null, order: i }))
+        } : undefined,
+        documents: documents?.length ? {
+          create: documents.filter(d => d.url?.trim()).map((d, i) => ({ url: d.url, name: d.name || null, order: i }))
+        } : undefined,
       },
-      include: { images: true }
+      include: { images: true, videos: true, documents: true }
     })
 
     res.status(201).json({ success: true, data: { ...property, features: parseFeatures(property.features) }, message: 'Propiedad creada' })
@@ -139,6 +159,8 @@ const updateProperty = async (req, res, next) => {
   try {
     const raw = { ...req.body }
     delete raw.images
+    delete raw.videos
+    delete raw.documents
 
     const data = {
       ...raw,
@@ -186,6 +208,46 @@ const updateImages = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+// ── PUT /api/properties/:id/videos ──
+const updateVideos = async (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id)
+    const { videos } = req.body
+
+    await prisma.propertyVideo.deleteMany({ where: { propertyId: id } })
+
+    if (videos?.length) {
+      await prisma.propertyVideo.createMany({
+        data: videos.filter(v => v.url?.trim()).map((v, i) => ({
+          url: v.url, thumbnail: v.thumbnail || null, order: i, propertyId: id,
+        }))
+      })
+    }
+
+    res.json({ success: true, message: 'Videos actualizados' })
+  } catch (error) { next(error) }
+}
+
+// ── PUT /api/properties/:id/documents ──
+const updateDocuments = async (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id)
+    const { documents } = req.body
+
+    await prisma.propertyDocument.deleteMany({ where: { propertyId: id } })
+
+    if (documents?.length) {
+      await prisma.propertyDocument.createMany({
+        data: documents.filter(d => d.url?.trim()).map((d, i) => ({
+          url: d.url, name: d.name || null, order: i, propertyId: id,
+        }))
+      })
+    }
+
+    res.json({ success: true, message: 'Documentos actualizados' })
+  } catch (error) { next(error) }
+}
+
 // ── DELETE /api/properties/:id ──
 const deleteProperty = async (req, res, next) => {
   try {
@@ -212,4 +274,4 @@ const getStats = async (req, res, _next) => {
   }
 }
 
-module.exports = { getProperties, getPropertyById, getPropertyByRef, createProperty, updateProperty, updateImages, deleteProperty, getStats }
+module.exports = { getProperties, getPropertyById, getPropertyByRef, createProperty, updateProperty, updateImages, updateVideos, updateDocuments, deleteProperty, getStats }

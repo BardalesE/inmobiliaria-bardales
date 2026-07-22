@@ -3,7 +3,7 @@ const { body, param } = require('express-validator')
 const {
   getProperties, getPropertyById, getPropertyByRef,
   createProperty, updateProperty, deleteProperty,
-  getStats, updateImages
+  getStats, updateImages, updateVideos, updateDocuments
 } = require('../controllers/property.controller')
 const { validate } = require('../middleware/validate.middleware')
 const { authMiddleware, requireRole } = require('../middleware/auth.middleware')
@@ -28,6 +28,8 @@ router.get('/:id', param('id').isInt(), validate, getPropertyById)
 router.post('/', authMiddleware, propertyValidation, validate, createProperty)
 router.put('/:id', authMiddleware, param('id').isInt(), validate, updateProperty)
 router.put('/:id/images', authMiddleware, param('id').isInt(), validate, updateImages)
+router.put('/:id/videos', authMiddleware, param('id').isInt(), validate, updateVideos)
+router.put('/:id/documents', authMiddleware, param('id').isInt(), validate, updateDocuments)
 router.delete('/:id', authMiddleware, requireRole('ADMIN'), param('id').isInt(), validate, deleteProperty)
 
 module.exports = router

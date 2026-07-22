@@ -119,6 +119,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                 <div className="relative overflow-hidden" style={{ height: 216 }}>
                   <PropertySlider
                     images={p.images || []}
+                    videos={p.videos || []}
                     videoUrl={p.videoUrl || ''}
                     height={216}
                   />

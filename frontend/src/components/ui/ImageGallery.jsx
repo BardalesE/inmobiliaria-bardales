@@ -12,17 +12,23 @@ function cloudinaryThumb(url) {
 }
 function isCloudinaryVideo(url) { return !!url && /\/video\//.test(url) }
 
-function buildSlides(images, videoUrl, title) {
+function buildSlides(images, videos, videoUrl, title) {
   const imgs = images.length > 0 ? images : [{ url: FALLBACK, alt: title }]
   const slides = imgs.map(img => ({ type: 'image', url: img.url || FALLBACK, alt: img.alt || title }))
-  if (isCloudinaryVideo(videoUrl)) {
-    slides.push({ type: 'video', url: videoUrl, thumb: cloudinaryThumb(videoUrl) })
-  }
+
+  const videoList = videos.length
+    ? videos.map(v => (typeof v === 'string' ? { url: v } : v)).filter(v => v?.url?.trim())
+    : (isCloudinaryVideo(videoUrl) ? [{ url: videoUrl }] : [])
+
+  videoList
+    .filter(v => isCloudinaryVideo(v.url))
+    .forEach(v => slides.push({ type: 'video', url: v.url, thumb: v.thumbnail || cloudinaryThumb(v.url) }))
+
   return slides
 }
 
-export default function ImageGallery({ images = [], videoUrl = '', title = '' }) {
-  const slides = buildSlides(images, videoUrl, title)
+export default function ImageGallery({ images = [], videos = [], videoUrl = '', title = '' }) {
+  const slides = buildSlides(images, videos, videoUrl, title)
   const [current, setCurrent]   = useState(0)
   const [fading, setFading]     = useState(false)
   const [playing, setPlaying]   = useState(false)

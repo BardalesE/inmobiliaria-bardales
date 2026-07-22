@@ -128,7 +128,7 @@ export default function PropertyDetailClient({ property }) {
         <div className="space-y-8">
 
           {/* Hero gallery */}
-          <ImageGallery images={property.images} videoUrl={property.videoUrl || ''} title={property.title} />
+          <ImageGallery images={property.images} videos={property.videos || []} videoUrl={property.videoUrl || ''} title={property.title} />
 
           {/* ── Title block ── */}
           <div className="space-y-4">
@@ -272,56 +272,67 @@ export default function PropertyDetailClient({ property }) {
             </div>
           )}
 
-          {/* ── Document ── */}
-          {property.documentUrl && (
-            <div
-              className="flex items-center gap-4 p-4 rounded-2xl"
-              style={{
-                background: 'rgba(196,98,45,0.06)',
-                border: '1px solid rgba(196,98,45,0.15)',
-              }}
-            >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: 'rgba(196,98,45,0.12)', border: '1px solid rgba(196,98,45,0.22)' }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
+          {/* ── Documentos ── */}
+          {(() => {
+            const docs = property.documents?.length
+              ? property.documents
+              : (property.documentUrl ? [{ url: property.documentUrl, name: null }] : [])
+            if (!docs.length) return null
+            return (
+              <div className="space-y-2.5">
+                {docs.map((doc, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-4 rounded-2xl"
+                    style={{
+                      background: 'rgba(196,98,45,0.06)',
+                      border: '1px solid rgba(196,98,45,0.15)',
+                    }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'rgba(196,98,45,0.12)', border: '1px solid rgba(196,98,45,0.22)' }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-sand">{doc.name || 'Documentación disponible'}</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: 'rgba(154,130,104,0.5)' }}>Planos, escrituras o brochure adjunto</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {/* Open in browser — works when URL ends in .pdf (new uploads) */}
+                      <a
+                        href={doc.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
+                        style={{ background: 'rgba(196,98,45,0.15)', border: '1px solid rgba(196,98,45,0.25)', color: '#E07840' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(196,98,45,0.28)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(196,98,45,0.15)'}
+                      >
+                        Ver PDF ↗
+                      </a>
+                      {/* Force download with correct .pdf filename */}
+                      <a
+                        href={pdfDownloadUrl(doc.url, doc.name || property.title)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
+                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(154,130,104,0.75)' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.10)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                      >
+                        ↓ Descargar
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold text-sand">Documentación disponible</p>
-                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(154,130,104,0.5)' }}>Planos, escrituras o brochure adjunto</p>
-              </div>
-              <div className="flex items-center gap-2">
-                {/* Open in browser — works when URL ends in .pdf (new uploads) */}
-                <a
-                  href={property.documentUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
-                  style={{ background: 'rgba(196,98,45,0.15)', border: '1px solid rgba(196,98,45,0.25)', color: '#E07840' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(196,98,45,0.28)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(196,98,45,0.15)'}
-                >
-                  Ver PDF ↗
-                </a>
-                {/* Force download with correct .pdf filename */}
-                <a
-                  href={pdfDownloadUrl(property.documentUrl, property.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
-                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(154,130,104,0.75)' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.10)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
-                >
-                  ↓ Descargar
-                </a>
-              </div>
-            </div>
-          )}
+            )
+          })()}
         </div>
 
         {/* ════════════════ RIGHT COLUMN ════════════════ */}

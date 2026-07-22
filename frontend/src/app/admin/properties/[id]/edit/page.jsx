@@ -29,6 +29,15 @@ export default function EditProperty() {
           operation: p.operation || 'SALE',
           features: Array.isArray(p.features) ? p.features : [],
           images: p.images?.map(img => ({ url: img.url, alt: img.alt || '' })) || [],
+          // Si ya existen videos/documentos en las tablas nuevas, úsalos. Si no, y hay
+          // un videoUrl/documentUrl legado (propiedades creadas antes de este cambio),
+          // precárgalo como primer item para que se migre solo al guardar.
+          videos: p.videos?.length
+            ? p.videos.map(v => ({ url: v.url, thumbnail: v.thumbnail || '' }))
+            : (p.videoUrl ? [{ url: p.videoUrl, thumbnail: '' }] : []),
+          documents: p.documents?.length
+            ? p.documents.map(d => ({ url: d.url, name: d.name || '' }))
+            : (p.documentUrl ? [{ url: p.documentUrl, name: '' }] : []),
           rooms: p.rooms ?? null, bathrooms: p.bathrooms ?? null,
           floors: p.floors ?? null, yearBuilt: p.yearBuilt ?? null,
           parking: p.parking ?? false,

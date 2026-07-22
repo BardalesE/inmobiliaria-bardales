@@ -56,6 +56,8 @@ model Property {
   documentUrl String?
   notes       String?   @db.Text
   images      Image[]
+  videos      PropertyVideo[]
+  documents   PropertyDocument[]
   leads       Lead[]
   reviews     Review[]
   commissions Commission[]
@@ -81,6 +83,32 @@ model Image {
   createdAt  DateTime @default(now())
 
   @@map("images")
+}
+
+// Videos adicionales de una propiedad (además del videoUrl legado)
+model PropertyVideo {
+  id         Int      @id @default(autoincrement())
+  url        String
+  thumbnail  String?
+  order      Int      @default(0)
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@map("property_videos")
+}
+
+// Documentos adicionales de una propiedad (además del documentUrl legado)
+model PropertyDocument {
+  id         Int      @id @default(autoincrement())
+  url        String
+  name       String?
+  order      Int      @default(0)
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@map("property_documents")
 }
 
 model Lead {

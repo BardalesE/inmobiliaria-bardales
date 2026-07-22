@@ -1,6 +1,9 @@
 # ── EE-Stars Backend (Express + Prisma + MySQL) ──
 FROM node:20-alpine AS base
 WORKDIR /app
+# Prisma's engine binaries need OpenSSL — Alpine doesn't ship it by default,
+# which makes the schema/query engine crash on startup ("Error load..." JSON parse error).
+RUN apk add --no-cache openssl
 
 # ── deps ──
 FROM base AS deps

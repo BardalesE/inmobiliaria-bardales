@@ -122,7 +122,7 @@ export default function PropertyDetailClient({ property }) {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-16 pt-2 grid md:grid-cols-[1fr_390px] gap-8 lg:gap-12 items-start">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-16 pt-2 grid grid-cols-1 md:grid-cols-[1fr_390px] gap-8 lg:gap-12 items-start">
 
         {/* ════════════════ LEFT COLUMN ════════════════ */}
         <div className="space-y-8">

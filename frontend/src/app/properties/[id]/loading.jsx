@@ -7,7 +7,7 @@ export default function Loading() {
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="skeleton h-3 w-40 rounded-full mb-8" />
-        <div className="grid md:grid-cols-[1fr_380px] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_380px] gap-8">
           <div className="space-y-5">
             <div className="skeleton rounded-2xl" style={{ height: 480 }} />
             <div className="skeleton h-4 w-32 rounded-full" />

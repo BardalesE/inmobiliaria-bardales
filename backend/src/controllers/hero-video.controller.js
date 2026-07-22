@@ -9,9 +9,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
+// Límite de 100 MB: tope real de video del plan gratuito de Cloudinary.
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 200 * 1024 * 1024 },
+  limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
     if (file.mimetype.startsWith('video/') || file.mimetype.startsWith('image/')) cb(null, true)
     else cb(new Error('Solo archivos de video o imagen'))
@@ -83,7 +84,7 @@ const uploadHeroVideoFile = [
     upload.single('file')(req, res, (err) => {
       if (!err) return next()
       if (err.code === 'LIMIT_FILE_SIZE') {
-        return res.status(413).json({ success: false, message: 'Archivo demasiado grande. Máximo 200 MB.' })
+        return res.status(413).json({ success: false, message: 'Archivo demasiado grande. Máximo 100 MB (límite del plan gratuito de Cloudinary).' })
       }
       return res.status(400).json({ success: false, message: err.message || 'Error al procesar el archivo' })
     })

@@ -93,8 +93,8 @@ export default function AdminHeroVideos() {
     if (!file.type.startsWith('video/') && !file.type.startsWith('image/')) {
       return notify('error', 'Solo se permiten archivos de video o imagen (MP4, WebM, MOV…)')
     }
-    if (file.size > 200 * 1024 * 1024) {
-      return notify('error', `Archivo demasiado grande (${(file.size/1024/1024).toFixed(0)} MB). Máximo 200 MB.`)
+    if (file.size > 100 * 1024 * 1024) {
+      return notify('error', `Archivo demasiado grande (${(file.size/1024/1024).toFixed(0)} MB). Máximo 100 MB (límite del plan gratuito de Cloudinary).`)
     }
 
     setUploading(true); setUploadPct(1)
@@ -260,7 +260,7 @@ export default function AdminHeroVideos() {
                       <p className="text-sm font-semibold text-sand">
                         {dragging ? 'Suelta el video aquí' : 'Arrastra un video o haz clic para seleccionar'}
                       </p>
-                      <p className="text-[11px] text-sand-muted">MP4 · WebM · MOV · Máximo 200 MB</p>
+                      <p className="text-[11px] text-sand-muted">MP4 · WebM · MOV · Máximo 100 MB</p>
                     </div>
                   )}
                 </div>

@@ -55,13 +55,13 @@ function buildPdfDownloadUrl(url, originalName) {
 }
 
 // ── POST /api/upload/media — video + PDF ─────────────────────────────────────
-// Límite de 200 MB: válido porque el backend corre en Railway (servidor
-// persistente, sin límite de payload serverless). Si algún día se migra a un
-// host serverless (Vercel ~4.5 MB), cambiar a subida firmada directa del
-// navegador a Cloudinary para no pasar el archivo por el servidor.
+// Límite de 100 MB: es el tope real de video que acepta el plan gratuito de
+// Cloudinary (no 200MB). Además el backend corre en Render free tier (512MB
+// RAM) con multer en memoria, así que un límite más bajo también evita que
+// el proceso se quede sin memoria al bufferear archivos grandes.
 const mediaMulter = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 200 * 1024 * 1024 },
+  limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
     if (file.mimetype.startsWith('video/') || file.mimetype === 'application/pdf') cb(null, true)
     else cb(new Error('Solo se permiten videos (MP4, MOV, WEBM) y PDFs'), false)
@@ -72,7 +72,7 @@ router.post('/media', authMiddleware, (req, res, next) => {
   mediaMulter.single('file')(req, res, async (err) => {
     if (err) {
       if (err.code === 'LIMIT_FILE_SIZE')
-        return res.status(413).json({ success: false, message: 'Archivo demasiado grande (máx 200 MB)' })
+        return res.status(413).json({ success: false, message: 'Archivo demasiado grande (máx 100 MB — límite del plan gratuito de Cloudinary)' })
       return res.status(400).json({ success: false, message: err.message || 'Error al procesar archivo' })
     }
     try {

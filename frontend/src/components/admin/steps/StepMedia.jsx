@@ -29,14 +29,14 @@ export default function StepMedia({ watch, setValue, initialImages, initialVideo
             Videos de la propiedad
           </h3>
           <p className="text-[11px] text-sand-muted/50 mt-0.5">
-            Sube uno o varios videos desde tu dispositivo (MP4, MOV, WEBM). Se guardan en Cloudinary.
+            Sube uno o varios videos desde tu dispositivo (MP4, MOV, WEBM). Máx. 100 MB cada uno — límite del plan gratuito de Cloudinary. Se guardan en Cloudinary.
           </p>
         </div>
         <MultiMediaUploader
           initialItems={initialVideos || []}
           onChange={items => setValue('videos', items, { shouldDirty: true })}
           mode="video"
-          maxMB={200}
+          maxMB={100}
           label="videos"
         />
       </section>

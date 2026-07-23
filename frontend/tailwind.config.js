@@ -8,10 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          DEFAULT: '#C9A227',
+          light: '#E8C766',
+          dark: '#8A6A0E',
+        },
         terra: {
-          DEFAULT: '#C4622D',
-          light: '#E07840',
-          dark: '#9B4A1F',
+          DEFAULT: '#C9A227',
+          light: '#E8C766',
+          dark: '#8A6A0E',
+        },
+        emerald: {
+          DEFAULT: '#1F6D45',
+          light: '#2F8557',
+          dark: '#14432B',
         },
         bark: {
           900: '#0F0A04',

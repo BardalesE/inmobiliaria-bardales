@@ -22,14 +22,14 @@ export default function Error({ error, reset }) {
           <button
             onClick={reset}
             className="px-6 py-3 rounded-xl text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #C4622D, #E07840)' }}
+            style={{ background: 'linear-gradient(135deg, #C9A227, #E8C766)' }}
           >
             Reintentar
           </button>
           <Link
             href="/"
             className="px-6 py-3 rounded-xl font-bold text-sm"
-            style={{ border: '1px solid rgba(196,98,45,0.4)', color: '#E07840' }}
+            style={{ border: '1px solid rgba(201,162,39,0.4)', color: '#E8C766' }}
           >
             Ir al inicio
           </Link>

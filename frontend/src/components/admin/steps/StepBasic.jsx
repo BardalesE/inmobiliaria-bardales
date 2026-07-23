@@ -13,7 +13,7 @@ const F = ({ label, error, children, required }) => (
 
 const inputCls = (err) =>
   `w-full px-3.5 py-2.5 bg-bark-700 border rounded-xl text-sm text-sand placeholder-sand-muted/35 focus:outline-none transition-all ${
-    err ? 'border-red-500/50 focus:border-red-400' : 'border-white/8 focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(196,98,45,0.10)]'
+    err ? 'border-red-500/50 focus:border-red-400' : 'border-white/8 focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,162,39,0.10)]'
   }`
 
 export default function StepBasic({ register, watch, setValue, errors }) {
@@ -42,7 +42,7 @@ export default function StepBasic({ register, watch, setValue, errors }) {
               onClick={() => setValue('operation', v, { shouldDirty: true })}
               className={`flex-1 py-2.5 rounded-xl text-sm font-bold border transition-all ${
                 operation === v
-                  ? 'bg-terra/20 border-terra text-terra-light shadow-[0_0_12px_rgba(196,98,45,0.20)]'
+                  ? 'bg-terra/20 border-terra text-terra-light shadow-[0_0_12px_rgba(201,162,39,0.20)]'
                   : 'bg-bark-700 border-white/8 text-sand-muted hover:border-terra/30'
               }`}>
               {l}
@@ -62,7 +62,7 @@ export default function StepBasic({ register, watch, setValue, errors }) {
               onClick={() => setValue('type', value, { shouldDirty: true })}
               className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border text-center transition-all ${
                 type === value
-                  ? 'bg-terra/15 border-terra text-terra-light shadow-[0_0_14px_rgba(196,98,45,0.18)]'
+                  ? 'bg-terra/15 border-terra text-terra-light shadow-[0_0_14px_rgba(201,162,39,0.18)]'
                   : 'bg-bark-700 border-white/8 text-sand-muted hover:border-terra/25'
               }`}>
               <span className="text-xl leading-none">{icon}</span>

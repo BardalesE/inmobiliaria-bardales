@@ -23,7 +23,7 @@ export default function Companies({ companies }) {
                 transition: 'border-color 0.25s ease, transform 0.25s ease',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'rgba(196,98,45,0.22)'
+                e.currentTarget.style.borderColor = 'rgba(201,162,39,0.22)'
                 e.currentTarget.style.transform = 'translateY(-2px)'
               }}
               onMouseLeave={e => {
@@ -36,7 +36,7 @@ export default function Companies({ companies }) {
                 : (
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm"
-                    style={{ background: 'rgba(196,98,45,0.15)', color: '#E07840' }}
+                    style={{ background: 'rgba(201,162,39,0.15)', color: '#E8C766' }}
                   >
                     {c.name[0]}
                   </div>

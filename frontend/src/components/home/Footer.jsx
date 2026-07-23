@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-4">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-display text-sm flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg,#C4622D,#E07840)', boxShadow: '0 2px 12px rgba(196,98,45,0.3)' }}
+                style={{ background: 'linear-gradient(135deg,#C9A227,#E8C766)', boxShadow: '0 2px 12px rgba(201,162,39,0.3)' }}
               >
                 EE
               </div>

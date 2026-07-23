@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             width: 120,
             height: 120,
             borderRadius: 28,
-            background: 'linear-gradient(135deg, #C4622D 0%, #E07840 100%)',
+            background: 'linear-gradient(135deg, #C9A227 0%, #E8C766 100%)',
             color: '#FDF6E9',
             fontSize: 64,
             fontWeight: 700,
@@ -41,7 +41,7 @@ export default function OpengraphImage() {
         <div style={{ display: 'flex', fontSize: 64, fontWeight: 700, color: '#FDF6E9' }}>
           Inmobiliaria Bardales
         </div>
-        <div style={{ display: 'flex', fontSize: 32, color: '#E07840', marginTop: 16 }}>
+        <div style={{ display: 'flex', fontSize: 32, color: '#E8C766', marginTop: 16 }}>
           Lotes y casas en Chepén · La Libertad · Perú
         </div>
         <div style={{ display: 'flex', fontSize: 24, color: 'rgba(154,130,104,0.8)', marginTop: 28 }}>

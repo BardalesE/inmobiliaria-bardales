@@ -12,7 +12,7 @@ const LocationPickerMap = dynamic(
 
 const inputCls = (err) =>
   `w-full px-3.5 py-2.5 bg-bark-700 border rounded-xl text-sm text-sand placeholder-sand-muted/35 focus:outline-none transition-all ${
-    err ? 'border-red-500/50 focus:border-red-400' : 'border-white/8 focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(196,98,45,0.10)]'
+    err ? 'border-red-500/50 focus:border-red-400' : 'border-white/8 focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,162,39,0.10)]'
   }`
 
 const F = ({ label, error, children, required }) => (

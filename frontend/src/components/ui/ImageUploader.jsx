@@ -127,28 +127,28 @@ export default function ImageUploader({ initialImages = [], onChange }) {
         onClick={() => fileRef.current?.click()}
         className="relative cursor-pointer overflow-hidden rounded-2xl"
         style={{
-          border: `2px dashed ${dropActive ? 'rgba(196,98,45,0.65)' : 'rgba(255,255,255,0.09)'}`,
-          background: dropActive ? 'rgba(196,98,45,0.06)' : 'rgba(28,19,8,0.60)',
+          border: `2px dashed ${dropActive ? 'rgba(201,162,39,0.65)' : 'rgba(255,255,255,0.09)'}`,
+          background: dropActive ? 'rgba(201,162,39,0.06)' : 'rgba(28,19,8,0.60)',
           padding: '30px 20px',
           transition: 'border-color 0.18s ease, background 0.18s ease',
         }}
       >
         {dropActive && (
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(196,98,45,0.09), transparent)',
+            background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,162,39,0.09), transparent)',
           }} />
         )}
         <div className="relative flex flex-col items-center gap-2.5">
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center"
             style={{
-              background: dropActive ? 'rgba(196,98,45,0.16)' : 'rgba(42,30,16,0.85)',
-              border: `1px solid ${dropActive ? 'rgba(196,98,45,0.38)' : 'rgba(255,255,255,0.06)'}`,
+              background: dropActive ? 'rgba(201,162,39,0.16)' : 'rgba(42,30,16,0.85)',
+              border: `1px solid ${dropActive ? 'rgba(201,162,39,0.38)' : 'rgba(255,255,255,0.06)'}`,
               transition: 'all 0.18s ease',
             }}
           >
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
-              stroke={dropActive ? '#E07840' : '#9A8268'} strokeWidth="1.8"
+              stroke={dropActive ? '#E8C766' : '#9A8268'} strokeWidth="1.8"
               strokeLinecap="round" strokeLinejoin="round"
               style={{ transition: 'stroke 0.18s ease' }}
             >
@@ -159,7 +159,7 @@ export default function ImageUploader({ initialImages = [], onChange }) {
           </div>
           <div className="text-center">
             <p className="text-sm font-semibold" style={{
-              color: dropActive ? '#E07840' : '#9A8268',
+              color: dropActive ? '#E8C766' : '#9A8268',
               transition: 'color 0.18s ease',
             }}>
               {dropActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar'}
@@ -171,7 +171,7 @@ export default function ImageUploader({ initialImages = [], onChange }) {
           {items.length > 0 && (
             <div
               className="mt-1 px-3 py-1.5 rounded-lg text-[11px] font-semibold"
-              style={{ background: 'rgba(196,98,45,0.10)', color: '#E07840' }}
+              style={{ background: 'rgba(201,162,39,0.10)', color: '#E8C766' }}
             >
               + Agregar más fotos
             </div>
@@ -184,12 +184,12 @@ export default function ImageUploader({ initialImages = [], onChange }) {
       {/* ── Upload progress banner ── */}
       {uploadingCount > 0 && (
         <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl"
-          style={{ background: 'rgba(196,98,45,0.06)', border: '1px solid rgba(196,98,45,0.18)' }}>
-          <svg className="animate-spin flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2.5">
+          style={{ background: 'rgba(201,162,39,0.06)', border: '1px solid rgba(201,162,39,0.18)' }}>
+          <svg className="animate-spin flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2.5">
             <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.22"/>
             <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
           </svg>
-          <span className="text-xs font-semibold" style={{ color: '#E07840' }}>
+          <span className="text-xs font-semibold" style={{ color: '#E8C766' }}>
             Subiendo {uploadingCount} {uploadingCount === 1 ? 'foto' : 'fotos'}…
           </span>
         </div>
@@ -267,13 +267,13 @@ function ImageCard({ item, idx, isDragging, isDragOver, onDragStart, onDragOver,
       className="relative overflow-hidden rounded-xl"
       style={{
         border: isDragOver
-          ? '2px dashed rgba(196,98,45,0.65)'
+          ? '2px dashed rgba(201,162,39,0.65)'
           : '1px solid rgba(255,255,255,0.07)',
         background: '#1C1308',
         opacity: isDragging ? 0.40 : 1,
         cursor: 'grab',
         transition: 'opacity 0.15s ease, border-color 0.15s ease',
-        boxShadow: isDragOver ? '0 0 0 4px rgba(196,98,45,0.12)' : 'none',
+        boxShadow: isDragOver ? '0 0 0 4px rgba(201,162,39,0.12)' : 'none',
       }}
     >
       {/* Thumbnail */}
@@ -294,7 +294,7 @@ function ImageCard({ item, idx, isDragging, isDragOver, onDragStart, onDragOver,
         <div
           className="absolute top-2 left-2 px-2 py-0.5 rounded-md"
           style={{
-            background: 'rgba(196,98,45,0.92)',
+            background: 'rgba(201,162,39,0.92)',
             backdropFilter: 'blur(4px)',
             fontSize: 9, fontWeight: 700, color: '#FDF6E9',
             letterSpacing: '0.10em', textTransform: 'uppercase',
@@ -308,14 +308,14 @@ function ImageCard({ item, idx, isDragging, isDragOver, onDragStart, onDragOver,
       {item.status === 'uploading' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2"
           style={{ background: 'rgba(15,10,4,0.78)', backdropFilter: 'blur(2px)' }}>
-          <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2.5">
+          <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2.5">
             <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.22"/>
             <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
           </svg>
           <div style={{ width: '68%', height: 3, background: 'rgba(255,255,255,0.10)', borderRadius: 99, overflow: 'hidden' }}>
             <div style={{
               height: '100%', borderRadius: 99,
-              background: 'linear-gradient(90deg, #C4622D, #E07840)',
+              background: 'linear-gradient(90deg, #C9A227, #E8C766)',
               width: `${item.progress}%`,
               transition: 'width 0.25s ease',
             }} />
@@ -341,7 +341,7 @@ function ImageCard({ item, idx, isDragging, isDragOver, onDragStart, onDragOver,
               type="button"
               onClick={e => { e.stopPropagation(); onRetry() }}
               style={{
-                fontSize: 10, color: '#E07840', fontWeight: 700,
+                fontSize: 10, color: '#E8C766', fontWeight: 700,
                 background: 'none', border: 'none', cursor: 'pointer', padding: '2px 10px',
               }}
             >
@@ -368,7 +368,7 @@ function ImageCard({ item, idx, isDragging, isDragOver, onDragStart, onDragOver,
               title="Hacer portada"
               onClick={e => { e.stopPropagation(); onMakeCover() }}
               className="w-7 h-7 rounded-lg flex items-center justify-center"
-              style={{ background: 'rgba(196,98,45,0.88)', border: 'none', cursor: 'pointer' }}
+              style={{ background: 'rgba(201,162,39,0.88)', border: 'none', cursor: 'pointer' }}
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="white">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>

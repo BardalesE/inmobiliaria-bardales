@@ -202,7 +202,7 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
                 className={`flex items-center gap-2 transition-all ${i < step ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 transition-all ${
                   i === step
-                    ? 'bg-terra text-white shadow-[0_0_16px_rgba(196,98,45,0.50)] scale-110'
+                    ? 'bg-terra text-white shadow-[0_0_16px_rgba(201,162,39,0.50)] scale-110'
                     : i < step
                     ? 'bg-emerald-500/18 text-emerald-400 border-2 border-emerald-500/45'
                     : 'bg-bark-700 text-sand-muted/40 border border-white/8'

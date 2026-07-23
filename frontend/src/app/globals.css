@@ -34,7 +34,7 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #1C1308; }
-::-webkit-scrollbar-thumb { background: #C4622D; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #C9A227; border-radius: 3px; }
 
 /* Animaciones */
 @keyframes fadeUp {
@@ -100,7 +100,7 @@ body {
 
 .cta-terra {
   box-shadow:
-    0 8px 28px rgba(196, 98, 45, 0.30),
+    0 8px 28px rgba(201, 162, 39, 0.30),
     0 2px 8px  rgba(0,   0,  0, 0.42);
   transition:
     box-shadow 0.35s ease,
@@ -108,14 +108,14 @@ body {
 }
 .cta-terra:hover {
   box-shadow:
-    0 18px 56px rgba(196, 98, 45, 0.55),
-    0  0px 34px rgba(224, 120, 64, 0.22),
+    0 18px 56px rgba(201, 162, 39, 0.55),
+    0  0px 34px rgba(232, 199, 102, 0.22),
     0  4px 12px rgba(0,   0,   0, 0.40);
   transform: translateY(-3px) scale(1.025);
 }
 .cta-terra:active {
   transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 6px 24px rgba(196, 98, 45, 0.40);
+  box-shadow: 0 6px 24px rgba(201, 162, 39, 0.40);
 }
 
 .cta-outline {
@@ -126,10 +126,10 @@ body {
     border-color 0.22s ease;
 }
 .cta-outline:hover {
-  box-shadow:    0 0 0 1px rgba(196, 98, 45, 0.50), 0 4px 24px rgba(196, 98, 45, 0.10);
+  box-shadow:    0 0 0 1px rgba(201, 162, 39, 0.50), 0 4px 24px rgba(201, 162, 39, 0.10);
   transform:     translateY(-2px);
-  background:    rgba(196, 98, 45, 0.07);
-  border-color:  rgba(196, 98, 45, 0.65);
+  background:    rgba(201, 162, 39, 0.07);
+  border-color:  rgba(201, 162, 39, 0.65);
 }
 .cta-outline:active { transform: translateY(0px); }
 
@@ -160,9 +160,9 @@ body {
   align-items: center;
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(196, 98, 45, 0.26);
-  background: rgba(196, 98, 45, 0.07);
-  color: #E07840;
+  border: 1px solid rgba(201, 162, 39, 0.26);
+  background: rgba(201, 162, 39, 0.07);
+  color: #E8C766;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -181,9 +181,9 @@ body {
     box-shadow   0.28s ease;
 }
 .card-premium:hover {
-  border-color: rgba(196, 98, 45, 0.24);
+  border-color: rgba(201, 162, 39, 0.24);
   transform: translateY(-4px);
-  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(196, 98, 45, 0.09);
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(201, 162, 39, 0.09);
 }
 
 /* Shared input/textarea — FilterBar, LeadForm */
@@ -201,8 +201,8 @@ body {
 .input-premium::placeholder { color: rgba(154, 130, 104, 0.45); }
 .input-premium:focus {
   outline: none;
-  border-color: rgba(196, 98, 45, 0.52);
-  box-shadow: 0 0 0 3px rgba(196, 98, 45, 0.09);
+  border-color: rgba(201, 162, 39, 0.52);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.09);
   background: rgba(53, 38, 21, 0.75);
 }
 
@@ -221,7 +221,7 @@ body {
   background: rgba(255, 255, 255, 0.04);
 }
 .nav-link--active {
-  color: #E07840;
+  color: #E8C766;
 }
 .nav-link--active::after {
   content: '';
@@ -231,14 +231,14 @@ body {
   right: 14px;
   height: 1.5px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(224, 120, 64, 0.75), transparent);
+  background: linear-gradient(90deg, transparent, rgba(232, 199, 102, 0.75), transparent);
 }
 
 /* Section horizontal divider */
 .section-divider {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 98, 45, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.2), transparent);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -257,9 +257,9 @@ body {
   to   { opacity: 1; }
 }
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(196,98,45,0.35); }
-  70%  { box-shadow: 0 0 0 8px rgba(196,98,45,0); }
-  100% { box-shadow: 0 0 0 0 rgba(196,98,45,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(201,162,39,0.35); }
+  70%  { box-shadow: 0 0 0 8px rgba(201,162,39,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,162,39,0); }
 }
 
 /* Admin nav link */
@@ -274,7 +274,7 @@ body {
   color: rgba(154,130,104,0.75);
 }
 .admin-tab:hover { color: #FDF6E9; background: rgba(255,255,255,0.04); }
-.admin-tab.active { color: #FDF6E9; background: rgba(196,98,45,0.85); box-shadow: 0 2px 12px rgba(196,98,45,0.28); }
+.admin-tab.active { color: #FDF6E9; background: rgba(201,162,39,0.85); box-shadow: 0 2px 12px rgba(201,162,39,0.28); }
 
 /* Admin input — same palette as .input-premium but slightly tighter */
 .input-admin {
@@ -291,8 +291,8 @@ body {
 .input-admin::placeholder { color: rgba(154,130,104,0.40); }
 .input-admin:focus {
   outline: none;
-  border-color: rgba(196,98,45,0.50);
-  box-shadow: 0 0 0 3px rgba(196,98,45,0.08);
+  border-color: rgba(201,162,39,0.50);
+  box-shadow: 0 0 0 3px rgba(201,162,39,0.08);
 }
 
 /* Prop row hover: handled inline but this provides a baseline */

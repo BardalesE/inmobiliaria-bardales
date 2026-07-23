@@ -49,7 +49,7 @@ export default function HowItWorks() {
               {/* Step number watermark */}
               <div
                 className="absolute top-4 right-5 font-display text-6xl leading-none select-none"
-                style={{ color: 'rgba(196,98,45,0.08)' }}
+                style={{ color: 'rgba(201,162,39,0.08)' }}
               >
                 {s.n}
               </div>
@@ -57,9 +57,9 @@ export default function HowItWorks() {
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
                 style={{
-                  background: 'rgba(196,98,45,0.10)',
-                  border: '1px solid rgba(196,98,45,0.20)',
-                  color: '#E07840',
+                  background: 'rgba(201,162,39,0.10)',
+                  border: '1px solid rgba(201,162,39,0.20)',
+                  color: '#E8C766',
                 }}
               >
                 {s.icon}
@@ -67,7 +67,7 @@ export default function HowItWorks() {
               {/* Step indicator */}
               <div
                 className="text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
-                style={{ color: 'rgba(196,98,45,0.6)' }}
+                style={{ color: 'rgba(201,162,39,0.6)' }}
               >
                 Paso {s.n}
               </div>

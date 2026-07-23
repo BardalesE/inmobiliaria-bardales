@@ -27,11 +27,11 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-bark-900 flex items-center justify-center px-4"
-      style={{ background: 'radial-gradient(ellipse 100% 70% at 50% 100%, rgba(196,98,45,0.07) 0%, #0F0A04 60%)' }}>
+      style={{ background: 'radial-gradient(ellipse 100% 70% at 50% 100%, rgba(201,162,39,0.07) 0%, #0F0A04 60%)' }}>
 
       {/* Ambient glow */}
       <div className="fixed inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(196,98,45,0.06), transparent)',
+        background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,162,39,0.06), transparent)',
       }} />
 
       <div className="relative w-full max-w-sm">
@@ -39,7 +39,7 @@ export default function AdminLogin() {
         <div className="rounded-2xl p-8"
           style={{
             background: 'rgba(22,14,5,0.90)',
-            border: '1px solid rgba(196,98,45,0.18)',
+            border: '1px solid rgba(201,162,39,0.18)',
             backdropFilter: 'blur(24px)',
             boxShadow: '0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03)',
           }}>
@@ -48,8 +48,8 @@ export default function AdminLogin() {
           <div className="text-center mb-8">
             <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-display text-2xl mx-auto mb-4"
               style={{
-                background: 'linear-gradient(135deg, #C4622D 0%, #E07840 100%)',
-                boxShadow: '0 6px 28px rgba(196,98,45,0.45)',
+                background: 'linear-gradient(135deg, #C9A227 0%, #E8C766 100%)',
+                boxShadow: '0 6px 28px rgba(201,162,39,0.45)',
               }}>
               EE
             </div>
@@ -117,7 +117,7 @@ export default function AdminLogin() {
               type="submit"
               disabled={loading}
               className="cta-terra w-full py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-2"
-              style={{ background: 'linear-gradient(135deg, #C4622D, #E07840)' }}
+              style={{ background: 'linear-gradient(135deg, #C9A227, #E8C766)' }}
             >
               {loading ? (
                 <>

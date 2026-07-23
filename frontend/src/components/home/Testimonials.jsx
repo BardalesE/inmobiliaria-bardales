@@ -35,7 +35,7 @@ export default function Testimonials({ testimonials }) {
               {/* Quote mark + stars */}
               <div className="flex items-start justify-between mb-4">
                 <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
-                  <path d="M0 20V12.5C0 8.833 1.167 5.917 3.5 3.75 5.833 1.583 8.833.333 12.5 0L13.5 2C11.167 2.667 9.333 3.75 8 5.25S6 8.5 6 10.5H12V20H0zm16 0V12.5c0-3.667 1.167-6.583 3.5-8.75C21.833 1.583 24.833.333 28.5 0L29.5 2c-2.333.667-4.167 1.75-5.5 3.25S22 8.5 22 10.5H28V20H16z" fill="rgba(196,98,45,0.18)"/>
+                  <path d="M0 20V12.5C0 8.833 1.167 5.917 3.5 3.75 5.833 1.583 8.833.333 12.5 0L13.5 2C11.167 2.667 9.333 3.75 8 5.25S6 8.5 6 10.5H12V20H0zm16 0V12.5c0-3.667 1.167-6.583 3.5-8.75C21.833 1.583 24.833.333 28.5 0L29.5 2c-2.333.667-4.167 1.75-5.5 3.25S22 8.5 22 10.5H28V20H16z" fill="rgba(201,162,39,0.18)"/>
                 </svg>
                 <Stars n={t.rating} />
               </div>
@@ -51,7 +51,7 @@ export default function Testimonials({ testimonials }) {
                   : (
                     <div
                       className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm"
-                      style={{ background: 'rgba(196,98,45,0.15)', color: '#E07840' }}
+                      style={{ background: 'rgba(201,162,39,0.15)', color: '#E8C766' }}
                     >
                       {t.name[0]}
                     </div>

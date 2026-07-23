@@ -25,8 +25,8 @@ export default function Navbar() {
       className="sticky top-0 z-50 backdrop-blur-xl"
       style={{
         background: 'rgba(15,10,4,0.90)',
-        borderBottom: '1px solid rgba(196,98,45,0.13)',
-        boxShadow: '0 1px 0 rgba(196,98,45,0.07), 0 4px 32px rgba(0,0,0,0.35)',
+        borderBottom: '1px solid rgba(201,162,39,0.13)',
+        boxShadow: '0 1px 0 rgba(201,162,39,0.07), 0 4px 32px rgba(0,0,0,0.35)',
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-[58px]">
@@ -36,8 +36,8 @@ export default function Navbar() {
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-display text-sm flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, #C4622D 0%, #E07840 100%)',
-              boxShadow: '0 2px 14px rgba(196,98,45,0.38)',
+              background: 'linear-gradient(135deg, #C9A227 0%, #E8C766 100%)',
+              boxShadow: '0 2px 14px rgba(201,162,39,0.38)',
               transition: 'box-shadow 0.25s ease',
             }}
           >
@@ -47,7 +47,7 @@ export default function Navbar() {
             <span className="font-display text-[15px] tracking-widest text-sand group-hover:text-terra-light transition-colors duration-200">
               EE-Stars
             </span>
-            <span className="text-[8px] tracking-[0.22em] uppercase" style={{ color: 'rgba(224,120,64,0.65)' }}>
+            <span className="text-[8px] tracking-[0.22em] uppercase" style={{ color: 'rgba(232,199,102,0.65)' }}>
               Inmobiliaria Digital · Perú
             </span>
           </div>
@@ -75,7 +75,7 @@ export default function Navbar() {
           <Link
             href="/publicar"
             className="cta-outline px-4 py-2 rounded-lg text-terra-light text-xs font-bold tracking-wide"
-            style={{ border: '1px solid rgba(196,98,45,0.35)', background: 'transparent' }}
+            style={{ border: '1px solid rgba(201,162,39,0.35)', background: 'transparent' }}
           >
             + Publicar propiedad
           </Link>
@@ -96,7 +96,7 @@ export default function Navbar() {
         {/* ── Mobile toggle ── */}
         <button
           className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg transition-colors"
-          style={{ color: open ? '#E07840' : '#9A8268' }}
+          style={{ color: open ? '#E8C766' : '#9A8268' }}
           onClick={() => setOpen(!open)}
           aria-label="Menú"
         >
@@ -118,7 +118,7 @@ export default function Navbar() {
           className="md:hidden px-4 pb-4 pt-2 flex flex-col gap-1"
           style={{
             background: 'rgba(20,13,5,0.98)',
-            borderTop: '1px solid rgba(196,98,45,0.10)',
+            borderTop: '1px solid rgba(201,162,39,0.10)',
           }}
         >
           {links.map((l) => {
@@ -129,8 +129,8 @@ export default function Navbar() {
                 href={l.href}
                 className="px-4 py-3 rounded-xl text-sm font-medium transition-colors"
                 style={{
-                  color:      active ? '#E07840' : '#9A8268',
-                  background: active ? 'rgba(196,98,45,0.08)' : 'transparent',
+                  color:      active ? '#E8C766' : '#9A8268',
+                  background: active ? 'rgba(201,162,39,0.08)' : 'transparent',
                 }}
                 onClick={() => setOpen(false)}
               >
@@ -144,7 +144,7 @@ export default function Navbar() {
           <Link
             href="/publicar"
             className="px-4 py-3 rounded-xl text-terra-light text-sm font-bold text-center"
-            style={{ border: '1px solid rgba(196,98,45,0.32)', background: 'rgba(196,98,45,0.05)' }}
+            style={{ border: '1px solid rgba(201,162,39,0.32)', background: 'rgba(201,162,39,0.05)' }}
             onClick={() => setOpen(false)}
           >
             + Publicar mi propiedad

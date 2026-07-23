@@ -69,7 +69,7 @@ export default function PublicarPage() {
             Publica gratis hoy
           </div>
           <h1 className="font-display text-4xl sm:text-5xl tracking-wider mb-3"
-            style={{ background: 'linear-gradient(135deg,#FDF6E9 40%,#E07840 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            style={{ background: 'linear-gradient(135deg,#FDF6E9 40%,#E8C766 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             PUBLICA TU<br />PROPIEDAD
           </h1>
           <p className="text-sand-muted text-sm leading-relaxed">

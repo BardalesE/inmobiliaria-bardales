@@ -25,7 +25,7 @@ const STATUS_CFG = {
 }
 
 const OP_CFG = {
-  SALE: { label: 'En venta',   bg: 'rgba(196,98,45,0.14)',  border: 'rgba(196,98,45,0.30)',  color: '#E07840' },
+  SALE: { label: 'En venta',   bg: 'rgba(201,162,39,0.14)',  border: 'rgba(201,162,39,0.30)',  color: '#E8C766' },
   RENT: { label: 'En alquiler', bg: 'rgba(99,102,241,0.12)', border: 'rgba(99,102,241,0.28)', color: '#818cf8' },
 }
 
@@ -45,7 +45,7 @@ function SpecCard({ label, value, accent }) {
         backdropFilter: 'blur(8px)',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(196,98,45,0.22)'
+        e.currentTarget.style.borderColor = 'rgba(201,162,39,0.22)'
         e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.22)'
       }}
       onMouseLeave={e => {
@@ -58,7 +58,7 @@ function SpecCard({ label, value, accent }) {
         {label}
       </p>
       <p className={`font-bold text-sm leading-tight ${accent ? '' : 'text-sand'}`}
-        style={accent ? { color: '#E07840' } : {}}>
+        style={accent ? { color: '#E8C766' } : {}}>
         {value}
       </p>
     </div>
@@ -85,7 +85,7 @@ export default function PropertyDetailClient({ property }) {
         <div style={{
           position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)',
           width: '80%', height: '50%',
-          background: 'radial-gradient(ellipse, rgba(196,98,45,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(201,162,39,0.06) 0%, transparent 70%)',
         }} />
       </div>
 
@@ -95,7 +95,7 @@ export default function PropertyDetailClient({ property }) {
           onClick={() => router.push('/')}
           className="flex items-center gap-1.5 text-xs font-medium transition-colors duration-200"
           style={{ color: 'rgba(154,130,104,0.55)' }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E07840'}
+          onMouseEnter={e => e.currentTarget.style.color = '#E8C766'}
           onMouseLeave={e => e.currentTarget.style.color = 'rgba(154,130,104,0.55)'}
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -110,7 +110,7 @@ export default function PropertyDetailClient({ property }) {
           onClick={() => router.back()}
           className="text-xs font-medium transition-colors duration-200"
           style={{ color: 'rgba(154,130,104,0.55)' }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E07840'}
+          onMouseEnter={e => e.currentTarget.style.color = '#E8C766'}
           onMouseLeave={e => e.currentTarget.style.color = 'rgba(154,130,104,0.55)'}
         >
           Propiedades
@@ -118,7 +118,7 @@ export default function PropertyDetailClient({ property }) {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(154,130,104,0.3)" strokeWidth="2">
           <path d="M9 18l6-6-6-6"/>
         </svg>
-        <span className="text-xs font-semibold" style={{ color: '#E07840' }}>{property.ref}</span>
+        <span className="text-xs font-semibold" style={{ color: '#E8C766' }}>{property.ref}</span>
       </div>
 
       {/* ── Main content ── */}
@@ -134,7 +134,7 @@ export default function PropertyDetailClient({ property }) {
           <div className="space-y-4">
             {/* Badges row */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: 'rgba(224,120,64,0.7)' }}>
+              <span className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: 'rgba(232,199,102,0.7)' }}>
                 {property.ref}
               </span>
               <span className="w-1 h-1 rounded-full" style={{ background: 'rgba(154,130,104,0.3)' }} />
@@ -166,7 +166,7 @@ export default function PropertyDetailClient({ property }) {
 
             {/* Address */}
             <div className="flex items-start gap-2">
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                 <circle cx="12" cy="10" r="3"/>
               </svg>
@@ -182,7 +182,7 @@ export default function PropertyDetailClient({ property }) {
           {/* ── Separator ── */}
           <div className="flex items-center gap-4">
             <div className="h-px flex-1" style={{ background: 'rgba(255,255,255,0.05)' }} />
-            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(196,98,45,0.4)' }} />
+            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(201,162,39,0.4)' }} />
             <div className="h-px flex-1" style={{ background: 'rgba(255,255,255,0.05)' }} />
           </div>
 
@@ -215,10 +215,10 @@ export default function PropertyDetailClient({ property }) {
               style={{
                 background: 'rgba(28,19,8,0.55)',
                 border: '1px solid rgba(255,255,255,0.055)',
-                borderLeft: '3px solid rgba(196,98,45,0.45)',
+                borderLeft: '3px solid rgba(201,162,39,0.45)',
               }}
             >
-              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#E07840' }}>
+              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#E8C766' }}>
                 Descripción
               </h3>
               <p className="text-sm leading-7" style={{ color: 'rgba(154,130,104,0.85)' }}>
@@ -239,9 +239,9 @@ export default function PropertyDetailClient({ property }) {
                     key={i}
                     className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full"
                     style={{
-                      background: 'rgba(196,98,45,0.08)',
-                      border: '1px solid rgba(196,98,45,0.20)',
-                      color: '#E07840',
+                      background: 'rgba(201,162,39,0.08)',
+                      border: '1px solid rgba(201,162,39,0.20)',
+                      color: '#E8C766',
                     }}
                   >
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
@@ -285,15 +285,15 @@ export default function PropertyDetailClient({ property }) {
                     key={i}
                     className="flex items-center gap-4 p-4 rounded-2xl"
                     style={{
-                      background: 'rgba(196,98,45,0.06)',
-                      border: '1px solid rgba(196,98,45,0.15)',
+                      background: 'rgba(201,162,39,0.06)',
+                      border: '1px solid rgba(201,162,39,0.15)',
                     }}
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(196,98,45,0.12)', border: '1px solid rgba(196,98,45,0.22)' }}
+                      style={{ background: 'rgba(201,162,39,0.12)', border: '1px solid rgba(201,162,39,0.22)' }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07840" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
                       </svg>
@@ -309,9 +309,9 @@ export default function PropertyDetailClient({ property }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
-                        style={{ background: 'rgba(196,98,45,0.15)', border: '1px solid rgba(196,98,45,0.25)', color: '#E07840' }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(196,98,45,0.28)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(196,98,45,0.15)'}
+                        style={{ background: 'rgba(201,162,39,0.15)', border: '1px solid rgba(201,162,39,0.25)', color: '#E8C766' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,162,39,0.28)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(201,162,39,0.15)'}
                       >
                         Ver PDF ↗
                       </a>
@@ -341,13 +341,13 @@ export default function PropertyDetailClient({ property }) {
             className="sticky top-24 rounded-2xl overflow-hidden"
             style={{
               background: 'rgba(18,12,6,0.92)',
-              border: '1px solid rgba(196,98,45,0.18)',
+              border: '1px solid rgba(201,162,39,0.18)',
               boxShadow: '0 32px 80px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)',
               backdropFilter: 'blur(24px)',
             }}
           >
             {/* Terra glow header strip */}
-            <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #C4622D 35%, #E07840 65%, transparent 100%)' }} />
+            <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #C9A227 35%, #E8C766 65%, transparent 100%)' }} />
 
             <div className="p-6">
 
@@ -366,7 +366,7 @@ export default function PropertyDetailClient({ property }) {
               {/* Price */}
               <div className="mb-2">
                 <p className="font-display tracking-wide leading-none"
-                  style={{ fontSize: 42, background: 'linear-gradient(135deg,#FDF6E9 30%,#E07840 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  style={{ fontSize: 42, background: 'linear-gradient(135deg,#FDF6E9 30%,#E8C766 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   S/ {property.price.toLocaleString()}
                 </p>
                 {priceM2 && (
@@ -424,9 +424,9 @@ export default function PropertyDetailClient({ property }) {
                   color: 'rgba(154,130,104,0.85)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(196,98,45,0.10)'
-                  e.currentTarget.style.borderColor = 'rgba(196,98,45,0.25)'
-                  e.currentTarget.style.color = '#E07840'
+                  e.currentTarget.style.background = 'rgba(201,162,39,0.10)'
+                  e.currentTarget.style.borderColor = 'rgba(201,162,39,0.25)'
+                  e.currentTarget.style.color = '#E8C766'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.04)'

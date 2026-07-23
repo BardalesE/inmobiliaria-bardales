@@ -120,7 +120,7 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
           <input
             value={query} onChange={e => setQuery(e.target.value)}
             placeholder="Buscar dirección en Perú..."
-            className="w-full pl-9 pr-3.5 py-2.5 bg-bark-700 border border-white/8 rounded-xl text-sm text-sand placeholder-sand-muted/35 focus:outline-none focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,162,39,0.10)] transition-all"
+            className="w-full pl-9 pr-3.5 py-2.5 bg-bark-700 border border-white/8 rounded-xl text-sm text-sand placeholder-sand-muted/35 focus:outline-none focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,179,126,0.10)] transition-all"
           />
         </div>
         <button type="submit" disabled={searching}

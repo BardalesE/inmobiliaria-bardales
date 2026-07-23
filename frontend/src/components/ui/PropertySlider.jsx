@@ -32,7 +32,7 @@ function EmptySlide({ height }) {
       className="flex flex-col items-center justify-center gap-2"
     >
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
-        stroke="rgba(201,162,39,0.25)" strokeWidth="1.2" strokeLinecap="round">
+        stroke="rgba(201,179,126,0.25)" strokeWidth="1.2" strokeLinecap="round">
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
         <path d="M9 21V12h6v9"/>
       </svg>
@@ -161,8 +161,8 @@ export default function PropertySlider({
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center"
                         style={{
-                          background: 'rgba(201,162,39,0.88)',
-                          boxShadow: '0 4px 20px rgba(201,162,39,0.45)',
+                          background: 'rgba(201,179,126,0.88)',
+                          boxShadow: '0 4px 20px rgba(201,179,126,0.45)',
                           border: '2px solid rgba(255,255,255,0.18)',
                         }}>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
@@ -256,7 +256,7 @@ export default function PropertySlider({
                 width: i === idx ? 20 : 5,
                 height: 5,
                 borderRadius: 99,
-                background: i === idx ? '#E8C766' : 'rgba(255,255,255,0.38)',
+                background: i === idx ? '#D8C48D' : 'rgba(255,255,255,0.38)',
                 border: 'none',
                 padding: 0,
                 cursor: 'pointer',

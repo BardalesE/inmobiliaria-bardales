@@ -50,7 +50,7 @@ function IconPdf({ color = '#F87171' }) {
 
 function Spinner() {
   return (
-    <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2.5">
+    <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2.5">
       <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.2"/>
       <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
     </svg>
@@ -132,19 +132,19 @@ export default function MediaUploader({
         onClick={() => fileRef.current?.click()}
         className="relative cursor-pointer rounded-2xl transition-all"
         style={{
-          border: `2px dashed ${dropActive ? 'rgba(201,162,39,0.60)' : 'rgba(255,255,255,0.09)'}`,
-          background: dropActive ? 'rgba(201,162,39,0.05)' : 'rgba(21,15,7,0.55)',
+          border: `2px dashed ${dropActive ? 'rgba(201,179,126,0.60)' : 'rgba(255,255,255,0.09)'}`,
+          background: dropActive ? 'rgba(201,179,126,0.05)' : 'rgba(21,15,7,0.55)',
           padding: '28px 24px',
           transition: 'border-color 0.18s ease, background 0.18s ease',
         }}
       >
         <div className="flex flex-col items-center gap-3 select-none">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: 'rgba(42,30,16,0.85)', border: `1px solid ${dropActive ? 'rgba(201,162,39,0.30)' : 'rgba(255,255,255,0.06)'}` }}>
-            <IconVideo color={dropActive ? '#E8C766' : '#9A8268'} />
+            style={{ background: 'rgba(42,30,16,0.85)', border: `1px solid ${dropActive ? 'rgba(201,179,126,0.30)' : 'rgba(255,255,255,0.06)'}` }}>
+            <IconVideo color={dropActive ? '#D8C48D' : '#9A8268'} />
           </div>
           <div className="text-center">
-            <p className="text-sm font-semibold" style={{ color: dropActive ? '#E8C766' : '#9A8268' }}>
+            <p className="text-sm font-semibold" style={{ color: dropActive ? '#D8C48D' : '#9A8268' }}>
               {dropActive ? 'Suelta el archivo aquí' : 'Arrastra aquí o haz clic para seleccionar'}
             </p>
             <p className="text-[11px] mt-0.5" style={{ color: 'rgba(154,130,104,0.50)' }}>
@@ -152,7 +152,7 @@ export default function MediaUploader({
             </p>
           </div>
           <div className="px-3.5 py-1.5 rounded-lg text-[11px] font-bold"
-            style={{ background: 'rgba(201,162,39,0.10)', color: '#E8C766' }}>
+            style={{ background: 'rgba(201,179,126,0.10)', color: '#D8C48D' }}>
             Seleccionar archivo
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function MediaUploader({
       </div>
       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.07)' }}>
         <div className="h-full rounded-full transition-all duration-300"
-          style={{ width: `${progress}%`, background: 'linear-gradient(90deg, #C9A227, #E8C766)' }} />
+          style={{ width: `${progress}%`, background: 'linear-gradient(90deg, #C9B37E, #D8C48D)' }} />
       </div>
       <p className="text-[10px] text-sand-muted/40 text-center">
         No cierres esta página mientras se sube el archivo
@@ -217,7 +217,7 @@ export default function MediaUploader({
           <div className="flex items-center gap-1.5">
             <a href={value} target="_blank" rel="noopener noreferrer"
               className="px-2.5 py-1.5 rounded-lg text-[10px] font-bold transition-colors"
-              style={{ background: 'rgba(201,162,39,0.10)', color: '#E8C766', border: '1px solid rgba(201,162,39,0.20)' }}>
+              style={{ background: 'rgba(201,179,126,0.10)', color: '#D8C48D', border: '1px solid rgba(201,179,126,0.20)' }}>
               Abrir ↗
             </a>
             {(meta?.downloadUrl || value) && (

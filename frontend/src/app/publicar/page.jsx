@@ -69,7 +69,7 @@ export default function PublicarPage() {
             Publica gratis hoy
           </div>
           <h1 className="font-display text-4xl sm:text-5xl tracking-wider mb-3"
-            style={{ background: 'linear-gradient(135deg,#FDF6E9 40%,#E8C766 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            style={{ background: 'linear-gradient(135deg,#FDF6E9 40%,#D8C48D 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             PUBLICA TU<br />PROPIEDAD
           </h1>
           <p className="text-sand-muted text-sm leading-relaxed">
@@ -137,7 +137,7 @@ export default function PublicarPage() {
               <button
                 onClick={() => setStep(1)}
                 disabled={!canNext0}
-                className="w-full py-3 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white font-bold tracking-wide shadow-lg shadow-terra/30 hover:shadow-terra/50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold tracking-wide shadow-lg shadow-esmeralda/30 hover:shadow-esmeralda/50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Siguiente →
               </button>
@@ -201,7 +201,7 @@ export default function PublicarPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={!canNext1 || loading}
-                  className="flex-[2] py-3 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white font-bold tracking-wide shadow-lg shadow-terra/30 hover:shadow-terra/50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="flex-[2] py-3 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold tracking-wide shadow-lg shadow-esmeralda/30 hover:shadow-esmeralda/50 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Enviando...' : 'Enviar solicitud 🚀'}
                 </button>

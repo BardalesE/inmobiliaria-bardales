@@ -47,20 +47,20 @@ export default function About() {
               style={{
                 background: '#0F0A04',
                 borderTopWidth: 2,
-                borderTopColor: 'rgba(201,162,39,0.30)',
+                borderTopColor: 'rgba(201,179,126,0.30)',
               }}
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-5"
                 style={{
-                  background: 'rgba(201,162,39,0.10)',
-                  border: '1px solid rgba(201,162,39,0.22)',
-                  color: '#E8C766',
+                  background: 'rgba(201,179,126,0.10)',
+                  border: '1px solid rgba(201,179,126,0.22)',
+                  color: '#D8C48D',
                 }}
               >
                 {item.icon}
               </div>
-              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#E8C766' }}>{item.title}</h3>
+              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#D8C48D' }}>{item.title}</h3>
               <p className="text-sm leading-relaxed" style={{ color: 'rgba(154,130,104,0.8)' }}>{item.text}</p>
             </div>
           ))}

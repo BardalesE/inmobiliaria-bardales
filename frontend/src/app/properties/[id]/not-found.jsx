@@ -10,9 +10,9 @@ export default function PropertyNotFound() {
         <div className="text-center max-w-md">
           <div
             className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-            style={{ background: 'rgba(201,162,39,0.08)', border: '1px solid rgba(201,162,39,0.15)' }}
+            style={{ background: 'rgba(201,179,126,0.08)', border: '1px solid rgba(201,179,126,0.15)' }}
           >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(232,199,102,0.6)" strokeWidth="1.5" strokeLinecap="round">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(216,196,141,0.6)" strokeWidth="1.5" strokeLinecap="round">
               <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
               <path d="M9 21V12h6v9"/>
             </svg>
@@ -24,7 +24,7 @@ export default function PropertyNotFound() {
           <Link
             href="/properties"
             className="inline-block px-6 py-3 rounded-xl text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #C9A227, #E8C766)' }}
+            style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
           >
             Ver propiedades disponibles
           </Link>

@@ -25,21 +25,21 @@ export default function MapEmbed({ lat, lng, title }) {
           style={{
             background: 'rgba(8,4,1,0.88)',
             backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(201,162,39,0.22)',
+            border: '1px solid rgba(201,179,126,0.22)',
             boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
           }}
         >
           <div
             className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(201,162,39,0.18)', border: '1px solid rgba(201,162,39,0.35)' }}
+            style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.35)' }}
           >
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E8C766" strokeWidth="2.5">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2.5">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
           <div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.1em]" style={{ color: '#E8C766' }}>Ubicación exacta</p>
+            <p className="text-[9px] font-bold uppercase tracking-[0.1em]" style={{ color: '#D8C48D' }}>Ubicación exacta</p>
             <p className="text-[9px] font-mono" style={{ color: 'rgba(154,130,104,0.55)' }}>{lat.toFixed(5)}, {lng.toFixed(5)}</p>
           </div>
         </div>
@@ -59,8 +59,8 @@ export default function MapEmbed({ lat, lng, title }) {
           color: 'rgba(154,130,104,0.7)',
         }}
         onMouseEnter={e => {
-          e.currentTarget.style.background = 'rgba(201,162,39,0.09)'
-          e.currentTarget.style.color = '#E8C766'
+          e.currentTarget.style.background = 'rgba(201,179,126,0.09)'
+          e.currentTarget.style.color = '#D8C48D'
         }}
         onMouseLeave={e => {
           e.currentTarget.style.background = 'rgba(255,255,255,0.03)'

@@ -9,16 +9,16 @@ module.exports = {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#C9A227',
-          light: '#E8C766',
-          dark: '#8A6A0E',
+          DEFAULT: '#C9B37E',
+          light: '#D8C48D',
+          dark: '#8F7A45',
         },
         terra: {
-          DEFAULT: '#C9A227',
-          light: '#E8C766',
-          dark: '#8A6A0E',
+          DEFAULT: '#C9B37E',
+          light: '#D8C48D',
+          dark: '#8F7A45',
         },
-        emerald: {
+        esmeralda: {
           DEFAULT: '#1F6D45',
           light: '#2F8557',
           dark: '#14432B',

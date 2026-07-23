@@ -313,7 +313,7 @@ export default function AdminHeroVideos() {
                   Cancelar
                 </button>
                 <button type="submit" disabled={saving || uploading}
-                  className="flex-[2] py-3 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white font-bold text-sm shadow-lg shadow-terra/30 disabled:opacity-50 hover:shadow-terra/50 transition-all">
+                  className="flex-[2] py-3 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold text-sm shadow-lg shadow-esmeralda/30 disabled:opacity-50 hover:shadow-esmeralda/50 transition-all">
                   {saving ? 'Guardando…' : editing ? '💾 Guardar cambios' : '🚀 Publicar en el hero'}
                 </button>
               </div>

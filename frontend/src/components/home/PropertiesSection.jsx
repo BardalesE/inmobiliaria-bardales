@@ -51,9 +51,9 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                 onClick={() => setViewMode(m)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200"
                 style={{
-                  background: viewMode === m ? '#C9A227'                   : 'transparent',
+                  background: viewMode === m ? '#C9B37E'                   : 'transparent',
                   color:       viewMode === m ? '#FDF6E9'                   : 'rgba(154,130,104,0.8)',
-                  boxShadow:   viewMode === m ? '0 2px 8px rgba(201,162,39,0.3)' : 'none',
+                  boxShadow:   viewMode === m ? '0 2px 8px rgba(201,179,126,0.3)' : 'none',
                 }}
               >
                 {icon}{label}
@@ -82,9 +82,9 @@ export default function PropertiesSection({ properties, loading, pagination, onF
           <div className="text-center py-24">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-              style={{ background: 'rgba(201,162,39,0.08)', border: '1px solid rgba(201,162,39,0.15)' }}
+              style={{ background: 'rgba(201,179,126,0.08)', border: '1px solid rgba(201,179,126,0.15)' }}
             >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(232,199,102,0.6)" strokeWidth="1.5" strokeLinecap="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(216,196,141,0.6)" strokeWidth="1.5" strokeLinecap="round">
                 <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
                 <path d="M9 21V12h6v9"/>
               </svg>
@@ -105,9 +105,9 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   transition: 'border-color 0.28s ease, transform 0.28s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.28s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(201,162,39,0.30)'
+                  e.currentTarget.style.borderColor = 'rgba(201,179,126,0.30)'
                   e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow = '0 16px 52px rgba(0,0,0,0.38), 0 0 0 1px rgba(201,162,39,0.10)'
+                  e.currentTarget.style.boxShadow = '0 16px 52px rgba(0,0,0,0.38), 0 0 0 1px rgba(201,179,126,0.10)'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.borderColor = 'rgba(255,255,255,0.055)'
@@ -146,7 +146,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                     <div className="absolute top-3 z-10" style={{ left: p.status ? 90 : 12 }}>
                       <span className="text-[9px] font-bold px-2 py-0.5 rounded-full"
                         style={{
-                          background: p.operation === 'RENT' ? 'rgba(99,102,241,0.85)' : 'rgba(201,162,39,0.75)',
+                          background: p.operation === 'RENT' ? 'rgba(99,102,241,0.85)' : 'rgba(201,179,126,0.75)',
                           color: '#FDF6E9',
                           backdropFilter: 'blur(4px)',
                         }}>
@@ -166,7 +166,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                     onClick={e => { e.preventDefault(); toggleLike(p.id) }}
                     className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
                     style={{
-                      background: likes[p.id] ? 'rgba(201,162,39,0.88)' : 'rgba(0,0,0,0.48)',
+                      background: likes[p.id] ? 'rgba(201,179,126,0.88)' : 'rgba(0,0,0,0.48)',
                       backdropFilter: 'blur(4px)',
                       transform: likes[p.id] ? 'scale(1.12)' : 'scale(1)',
                     }}
@@ -180,7 +180,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   <div className="absolute bottom-8 left-3 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1.5 group-hover:translate-y-0">
                     <Link href={`/properties/${p.id}`}
                       className="text-[10px] font-bold px-3 py-1.5 rounded-lg text-white"
-                      style={{ background: 'rgba(201,162,39,0.92)', backdropFilter: 'blur(4px)' }}>
+                      style={{ background: 'rgba(201,179,126,0.92)', backdropFilter: 'blur(4px)' }}>
                       Ver ubicación →
                     </Link>
                   </div>
@@ -189,7 +189,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                 {/* ── Card body ── */}
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: '#E8C766' }}>{p.ref}</span>
+                    <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: '#D8C48D' }}>{p.ref}</span>
                     <span className="text-[9px] uppercase tracking-wide font-medium" style={{ color: 'rgba(154,130,104,0.45)' }}>
                       {p.type?.replace('_', ' ')}
                     </span>
@@ -233,7 +233,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-display text-[1.3rem] tracking-wide leading-none" style={{ color: '#E8C766' }}>
+                      <p className="font-display text-[1.3rem] tracking-wide leading-none" style={{ color: '#D8C48D' }}>
                         S/ {p.price?.toLocaleString()}
                       </p>
                       {p.area > 0 && (
@@ -257,8 +257,8 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                       <Link
                         href={`/properties/${p.id}`}
                         className="px-3 py-2 rounded-lg text-white text-[10px] font-bold transition-all duration-200"
-                        style={{ background: 'linear-gradient(135deg,#C9A227,#E8C766)' }}
-                        onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 16px rgba(201,162,39,0.4)'}
+                        style={{ background: 'linear-gradient(135deg,#C9B37E,#D8C48D)' }}
+                        onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 16px rgba(201,179,126,0.4)'}
                         onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
                       >
                         Ver más →
@@ -283,7 +283,7 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   border: '1px solid rgba(255,255,255,0.055)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(201,162,39,0.25)'
+                  e.currentTarget.style.borderColor = 'rgba(201,179,126,0.25)'
                   e.currentTarget.style.transform = 'translateX(-2px)'
                   e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)'
                 }}
@@ -303,17 +303,17 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   />
                 ) : (
                   <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center" style={{ background: 'rgba(42,30,16,0.7)' }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(201,162,39,0.3)" strokeWidth="1.5" strokeLinecap="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(201,179,126,0.3)" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
                     </svg>
                   </div>
                 )}
                 <div className="flex-1 min-w-0 py-0.5">
-                  <p className="text-[10px] font-bold mb-1" style={{ color: '#E8C766' }}>{p.ref}</p>
+                  <p className="text-[10px] font-bold mb-1" style={{ color: '#D8C48D' }}>{p.ref}</p>
                   <h3 className="font-semibold text-sand text-sm group-hover:text-terra-light transition-colors duration-200 truncate">{p.title}</h3>
                   <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(154,130,104,0.6)' }}>{p.address}, {p.district}</p>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="font-display text-base tracking-wide" style={{ color: '#E8C766' }}>S/ {p.price?.toLocaleString()}</span>
+                    <span className="font-display text-base tracking-wide" style={{ color: '#D8C48D' }}>S/ {p.price?.toLocaleString()}</span>
                     <span className="text-xs" style={{ color: 'rgba(154,130,104,0.5)' }}>{p.area} m²</span>
                   </div>
                 </div>
@@ -321,10 +321,10 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   onClick={e => { e.preventDefault(); toggleLike(p.id) }}
                   className="self-center flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
                   style={{
-                    background: likes[p.id] ? 'rgba(201,162,39,0.15)' : 'transparent',
+                    background: likes[p.id] ? 'rgba(201,179,126,0.15)' : 'transparent',
                   }}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill={likes[p.id] ? '#E8C766' : 'none'} stroke={likes[p.id] ? '#E8C766' : 'rgba(154,130,104,0.5)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill={likes[p.id] ? '#D8C48D' : 'none'} stroke={likes[p.id] ? '#D8C48D' : 'rgba(154,130,104,0.5)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
                   </svg>
                 </button>
@@ -344,10 +344,10 @@ export default function PropertiesSection({ properties, loading, pagination, onF
                   onClick={() => onPageChange(i + 1)}
                   className="w-9 h-9 rounded-xl text-sm font-bold transition-all duration-200"
                   style={{
-                    background:  active ? '#C9A227'                       : 'rgba(42,30,16,0.65)',
+                    background:  active ? '#C9B37E'                       : 'rgba(42,30,16,0.65)',
                     color:        active ? '#FDF6E9'                       : 'rgba(154,130,104,0.7)',
-                    border:       active ? '1px solid rgba(201,162,39,0.5)' : '1px solid rgba(255,255,255,0.06)',
-                    boxShadow:    active ? '0 4px 16px rgba(201,162,39,0.28)' : 'none',
+                    border:       active ? '1px solid rgba(201,179,126,0.5)' : '1px solid rgba(255,255,255,0.06)',
+                    boxShadow:    active ? '0 4px 16px rgba(201,179,126,0.28)' : 'none',
                     transform:    active ? 'scale(1.05)'                  : 'scale(1)',
                   }}
                 >

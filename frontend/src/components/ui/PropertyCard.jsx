@@ -49,7 +49,7 @@ export default function PropertyCard({ property }) {
               <p className="font-display text-2xl text-terra-light tracking-wide leading-none">S/ {property.price.toLocaleString()}</p>
               {priceM2 && <p className="text-[10px] text-emerald-400 font-semibold mt-0.5">Negociable</p>}
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white text-xs font-bold">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white text-xs font-bold">
               Ver más →
             </div>
           </div>

@@ -32,7 +32,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 88% 62% at 50% -4%, rgba(201,162,39,0.32) 0%, rgba(201,162,39,0.07) 52%, transparent 76%)',
+          background: 'radial-gradient(ellipse 88% 62% at 50% -4%, rgba(201,179,126,0.32) 0%, rgba(201,179,126,0.07) 52%, transparent 76%)',
           animation: 'driftAmbient 26s ease-in-out infinite alternate',
           willChange: 'transform',
         }}
@@ -47,7 +47,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
       {/* L4 — Central light shaft: Apple/Stripe style focal beam */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 22% 65% at 50% 0%, rgba(201,162,39,0.11) 0%, transparent 68%)' }}
+        style={{ background: 'radial-gradient(ellipse 22% 65% at 50% 0%, rgba(201,179,126,0.11) 0%, transparent 68%)' }}
       />
 
       {/* Content — max 896px, centered, breathing room on all screens */}
@@ -57,9 +57,9 @@ export default function Hero({ heroVideos, stats, onSearch }) {
         <div
           className="hero-badge-anim inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-terra-light text-[11px] font-bold tracking-[0.22em] uppercase mb-8 backdrop-blur-md"
           style={{
-            border: '1px solid rgba(201,162,39,0.28)',
-            background: 'rgba(201,162,39,0.07)',
-            boxShadow: '0 0 0 1px rgba(201,162,39,0.10), 0 4px 22px rgba(201,162,39,0.13), inset 0 1px 0 rgba(255,255,255,0.055)',
+            border: '1px solid rgba(201,179,126,0.28)',
+            background: 'rgba(201,179,126,0.07)',
+            boxShadow: '0 0 0 1px rgba(201,179,126,0.10), 0 4px 22px rgba(201,179,126,0.13), inset 0 1px 0 rgba(255,255,255,0.055)',
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-terra-light animate-pulse flex-shrink-0" />
@@ -71,11 +71,11 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           className="hero-reveal font-display text-[3.25rem] xs:text-6xl sm:text-[5.5rem] md:text-8xl tracking-wider leading-[0.88] mb-0"
           style={{
             animationDelay: '0.16s',
-            background: 'linear-gradient(158deg, #FFFAF3 4%, #F8E8CC 32%, #E8C766 62%, #A6841C 90%)',
+            background: 'linear-gradient(158deg, #FFFAF3 4%, #F8E8CC 32%, #D8C48D 62%, #9A8449 90%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            filter: 'drop-shadow(0 3px 32px rgba(201,162,39,0.24))',
+            filter: 'drop-shadow(0 3px 32px rgba(201,179,126,0.24))',
           }}
         >
           ENCUENTRA TU<br />HOGAR IDEAL
@@ -89,7 +89,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-terra/40" />
           <div
             className="w-1.5 h-1.5 rounded-full bg-terra flex-shrink-0"
-            style={{ boxShadow: '0 0 10px 2px rgba(201,162,39,0.75)' }}
+            style={{ boxShadow: '0 0 10px 2px rgba(201,179,126,0.75)' }}
           />
           <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-terra/40" />
         </div>
@@ -128,7 +128,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           />
           <button type="submit"
             className="px-6 py-3 font-bold text-sm text-white flex-shrink-0 transition-all hover:brightness-110"
-            style={{ background: 'linear-gradient(135deg, #C9A227, #E8C766)' }}
+            style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
           >
             Buscar
           </button>
@@ -141,7 +141,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
         >
           <a
             href="#propiedades"
-            className="cta-terra inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-br from-terra to-terra-light text-white font-bold text-[0.9375rem]"
+            className="cta-terra inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold text-[0.9375rem]"
           >
             <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" strokeLinecap="round"/>
@@ -151,7 +151,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           <Link
             href="/publicar"
             className="cta-outline px-7 py-3.5 rounded-xl text-terra-light font-bold text-[0.9375rem] backdrop-blur-sm"
-            style={{ border: '1px solid rgba(201,162,39,0.42)', background: 'rgba(201,162,39,0.04)' }}
+            style={{ border: '1px solid rgba(201,179,126,0.42)', background: 'rgba(201,179,126,0.04)' }}
           >
             + Publicar mi propiedad
           </Link>

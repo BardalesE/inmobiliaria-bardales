@@ -8,15 +8,15 @@ export default function NotFound() {
       <Navbar />
       <div className="flex items-center justify-center px-4 py-32">
         <div className="text-center max-w-md">
-          <p className="font-display text-7xl tracking-wide mb-4" style={{ color: '#D8C48D' }}>404</p>
+          <p className="font-display text-7xl tracking-wide mb-4" style={{ color: '#D9BC7A' }}>404</p>
           <h1 className="font-display text-3xl tracking-wide text-sand mb-2">Página no encontrada</h1>
           <p className="text-sm mb-8" style={{ color: 'rgba(154,130,104,0.7)' }}>
             La página que buscas no existe o fue movida.
           </p>
           <Link
             href="/"
-            className="inline-block px-6 py-3 rounded-xl text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
+            className="inline-block px-6 py-3 rounded-xl text-bark-900 font-bold text-sm"
+            style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}
           >
             Volver al inicio
           </Link>

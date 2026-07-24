@@ -9,14 +9,14 @@ module.exports = {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#C9B37E',
-          light: '#D8C48D',
-          dark: '#8F7A45',
+          DEFAULT: '#C9A44E',
+          light: '#D9BC7A',
+          dark: '#8F7332',
         },
         terra: {
-          DEFAULT: '#C9B37E',
-          light: '#D8C48D',
-          dark: '#8F7A45',
+          DEFAULT: '#C9A44E',
+          light: '#D9BC7A',
+          dark: '#8F7332',
         },
         esmeralda: {
           DEFAULT: '#1F6D45',

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const STATUS_LABEL = { AVAILABLE: 'Disponible', RESERVED: 'Separado', SOLD: 'Vendido' }
 const STATUS_COLOR = {
-  AVAILABLE: 'bg-emerald-500 text-emerald-950',
+  AVAILABLE: 'bg-terra text-bark-900',
   RESERVED: 'bg-yellow-400 text-yellow-950',
   SOLD: 'bg-zinc-500 text-zinc-100'
 }
@@ -47,9 +47,9 @@ export default function PropertyCard({ property }) {
             <div>
               <p className="text-[10px] uppercase tracking-wide text-sand-muted">Precio</p>
               <p className="font-display text-2xl text-terra-light tracking-wide leading-none">S/ {property.price.toLocaleString()}</p>
-              {priceM2 && <p className="text-[10px] text-emerald-400 font-semibold mt-0.5">Negociable</p>}
+              {priceM2 && <p className="text-[10px] text-terra-light font-semibold mt-0.5">Negociable</p>}
             </div>
-            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white text-xs font-bold">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-terra to-terra-light text-bark-900 text-xs font-bold">
               Ver más →
             </div>
           </div>

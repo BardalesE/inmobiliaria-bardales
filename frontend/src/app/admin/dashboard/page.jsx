@@ -130,7 +130,7 @@ function WaBtn({ phone, name, compact }) {
       target="_blank" rel="noopener noreferrer"
       className="inline-flex items-center gap-1.5 rounded-lg text-xs font-bold transition-colors"
       style={{
-        background: 'rgba(34,197,94,0.10)', border: '1px solid rgba(34,197,94,0.22)', color: '#34D399',
+        background: 'rgba(201,164,78,0.10)', border: '1px solid rgba(201,164,78,0.22)', color: '#34D399',
         padding: compact ? '5px 10px' : '6px 12px',
       }}
     >
@@ -148,7 +148,7 @@ const PropRow = memo(function PropRow({ p, onStatus, onFeatured, onDuplicate, on
   return (
     <div
       className="prop-row bg-bark-800 rounded-xl px-4 py-3 flex items-center gap-3"
-      style={{ border: `1px solid ${hov ? 'rgba(201,179,126,0.22)' : 'rgba(255,255,255,0.05)'}` }}
+      style={{ border: `1px solid ${hov ? 'rgba(201,164,78,0.22)' : 'rgba(255,255,255,0.05)'}` }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
     >
@@ -165,7 +165,7 @@ const PropRow = memo(function PropRow({ p, onStatus, onFeatured, onDuplicate, on
       {/* Info */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-          <span className="text-[10px] font-bold tracking-wide" style={{ color: '#D8C48D' }}>{p.ref}</span>
+          <span className="text-[10px] font-bold tracking-wide" style={{ color: '#D9BC7A' }}>{p.ref}</span>
           {p.featured && (
             <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
               style={{ background: 'rgba(250,204,21,0.12)', color: '#FACC15', border: '1px solid rgba(250,204,21,0.22)' }}>
@@ -545,7 +545,7 @@ export default function AdminDashboard() {
   if (authLoading) return (
     <div className="min-h-screen bg-bark-900 flex items-center justify-center">
       <div className="flex flex-col items-center gap-3">
-        <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(201,179,126,0.6)" strokeWidth="2.5">
+        <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(201,164,78,0.6)" strokeWidth="2.5">
           <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.2"/>
           <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
         </svg>
@@ -569,8 +569,8 @@ export default function AdminDashboard() {
     {
       value: `S/ ${commStats?.totalCommissions?.toLocaleString('es-PE') || '0'}`,
       label: 'Comisiones', sub: `${commStats?.count ?? 0} ventas cerradas`,
-      color: '#D8C48D', border: 'rgba(201,179,126,0.16)', bg: 'rgba(201,179,126,0.04)',
-      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(216,196,141,0.40)" strokeWidth="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>,
+      color: '#D9BC7A', border: 'rgba(201,164,78,0.16)', bg: 'rgba(201,164,78,0.04)',
+      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(217,188,122,0.40)" strokeWidth="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>,
     },
     {
       value: leads.length + sellers.length, label: 'Leads totales',
@@ -586,15 +586,15 @@ export default function AdminDashboard() {
 
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-40 flex items-center justify-between px-5 h-14"
-        style={{ background: 'rgba(20,13,5,0.96)', borderBottom: '1px solid rgba(201,179,126,0.14)', backdropFilter: 'blur(20px)', boxShadow: '0 1px 0 rgba(201,179,126,0.06)' }}>
+        style={{ background: 'rgba(20,13,5,0.96)', borderBottom: '1px solid rgba(201,164,78,0.14)', backdropFilter: 'blur(20px)', boxShadow: '0 1px 0 rgba(201,164,78,0.06)' }}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-display text-sm flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #C9B37E 0%, #D8C48D 100%)', boxShadow: '0 2px 12px rgba(201,179,126,0.35)' }}>
+            style={{ background: 'linear-gradient(135deg, #C9A44E 0%, #D9BC7A 100%)', boxShadow: '0 2px 12px rgba(201,164,78,0.35)' }}>
             EE
           </div>
           <div className="hidden sm:flex flex-col leading-none">
             <span className="font-display text-[14px] tracking-widest text-sand">EE-Stars</span>
-            <span className="text-[8px] tracking-[0.20em] uppercase" style={{ color: 'rgba(216,196,141,0.55)' }}>Panel Admin</span>
+            <span className="text-[8px] tracking-[0.20em] uppercase" style={{ color: 'rgba(217,188,122,0.55)' }}>Panel Admin</span>
           </div>
         </div>
 
@@ -607,7 +607,7 @@ export default function AdminDashboard() {
           </Link>
           <Link href="/admin/properties/new"
             className="flex items-center gap-1.5 text-[11px] font-bold px-3.5 py-2 rounded-lg transition-all"
-            style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.30)', color: '#D8C48D' }}>
+            style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.30)', color: '#D9BC7A' }}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Nueva propiedad
           </Link>
@@ -672,7 +672,7 @@ export default function AdminDashboard() {
                     {commStats ? (
                       <div className="space-y-2.5">
                         {[
-                          { label: 'Total comisiones', value: `S/ ${commStats.totalCommissions?.toLocaleString('es-PE')}`, color: '#D8C48D' },
+                          { label: 'Total comisiones', value: `S/ ${commStats.totalCommissions?.toLocaleString('es-PE')}`, color: '#D9BC7A' },
                           { label: 'Total en ventas', value: `S/ ${commStats.totalSales?.toLocaleString('es-PE')}`, color: '#FDF6E9' },
                           { label: 'Ventas cerradas', value: commStats.count, color: '#34D399' },
                         ].map(({ label, value, color }, i) => (
@@ -683,7 +683,7 @@ export default function AdminDashboard() {
                         ))}
                         <button onClick={() => setTab('commissions')}
                           className="w-full mt-1 py-2 rounded-xl text-xs font-bold transition-colors"
-                          style={{ background: 'rgba(201,179,126,0.12)', border: '1px solid rgba(201,179,126,0.22)', color: '#D8C48D' }}>
+                          style={{ background: 'rgba(201,164,78,0.12)', border: '1px solid rgba(201,164,78,0.22)', color: '#D9BC7A' }}>
                           Ver todas las comisiones →
                         </button>
                       </div>
@@ -692,7 +692,7 @@ export default function AdminDashboard() {
                         <p className="text-sm text-sand-muted">Sin comisiones registradas</p>
                         <button onClick={() => { setTab('commissions'); setShowCommForm(true) }}
                           className="text-xs font-bold px-3 py-1.5 rounded-lg"
-                          style={{ background: 'rgba(201,179,126,0.12)', border: '1px solid rgba(201,179,126,0.22)', color: '#D8C48D' }}>
+                          style={{ background: 'rgba(201,164,78,0.12)', border: '1px solid rgba(201,164,78,0.22)', color: '#D9BC7A' }}>
                           + Registrar primera venta
                         </button>
                       </div>
@@ -706,7 +706,7 @@ export default function AdminDashboard() {
                   <div className="bg-bark-800 border border-white/5 rounded-2xl p-5">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-display text-[17px] tracking-wide" style={{ color: 'rgba(253,246,233,0.90)' }}>Últimas propiedades</h3>
-                      <button onClick={() => setTab('properties')} className="text-[11px] font-bold" style={{ color: '#D8C48D' }}>Ver todas →</button>
+                      <button onClick={() => setTab('properties')} className="text-[11px] font-bold" style={{ color: '#D9BC7A' }}>Ver todas →</button>
                     </div>
                     {properties.slice(0, 5).length === 0
                       ? <p className="text-sand-muted text-sm text-center py-8">Sin propiedades aún</p>
@@ -735,7 +735,7 @@ export default function AdminDashboard() {
                   <div className="bg-bark-800 border border-white/5 rounded-2xl p-5">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-display text-[17px] tracking-wide" style={{ color: 'rgba(253,246,233,0.90)' }}>Últimas consultas</h3>
-                      <button onClick={() => setTab('leads')} className="text-[11px] font-bold" style={{ color: '#D8C48D' }}>Ver todas →</button>
+                      <button onClick={() => setTab('leads')} className="text-[11px] font-bold" style={{ color: '#D9BC7A' }}>Ver todas →</button>
                     </div>
                     {leads.slice(0, 5).length === 0
                       ? (
@@ -802,9 +802,9 @@ export default function AdminDashboard() {
                     <button onClick={() => setPropStatus('')}
                       className="px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all"
                       style={{
-                        background: !propStatus ? 'rgba(201,179,126,0.18)' : 'rgba(42,30,16,0.65)',
-                        color: !propStatus ? '#D8C48D' : 'rgba(154,130,104,0.70)',
-                        border: !propStatus ? '1px solid rgba(201,179,126,0.32)' : '1px solid rgba(255,255,255,0.06)',
+                        background: !propStatus ? 'rgba(201,164,78,0.18)' : 'rgba(42,30,16,0.65)',
+                        color: !propStatus ? '#D9BC7A' : 'rgba(154,130,104,0.70)',
+                        border: !propStatus ? '1px solid rgba(201,164,78,0.32)' : '1px solid rgba(255,255,255,0.06)',
                       }}>
                       Todos
                     </button>
@@ -824,14 +824,14 @@ export default function AdminDashboard() {
                   {/* Count */}
                   <span className="text-[11px] ml-auto flex-shrink-0" style={{ color: 'rgba(154,130,104,0.55)' }}>
                     {filteredProps.length < properties.length
-                      ? <><span className="font-bold" style={{ color: '#D8C48D' }}>{filteredProps.length}</span> de {properties.length}</>
-                      : <><span className="font-bold" style={{ color: '#D8C48D' }}>{properties.length}</span> propiedades</>
+                      ? <><span className="font-bold" style={{ color: '#D9BC7A' }}>{filteredProps.length}</span> de {properties.length}</>
+                      : <><span className="font-bold" style={{ color: '#D9BC7A' }}>{properties.length}</span> propiedades</>
                     }
                   </span>
 
                   <Link href="/admin/properties/new"
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold flex-shrink-0"
-                    style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.28)', color: '#D8C48D' }}>
+                    style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.28)', color: '#D9BC7A' }}>
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     Nueva
                   </Link>
@@ -842,7 +842,7 @@ export default function AdminDashboard() {
                   <div className="flex flex-col items-center justify-center py-20 gap-3">
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(154,130,104,0.25)" strokeWidth="1.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" strokeLinecap="round"/></svg>
                     <p className="text-sand-muted text-sm">Sin resultados para &quot;{propSearch}&quot;</p>
-                    <button onClick={() => { setPropSearch(''); setPropStatus('') }} className="text-xs font-bold" style={{ color: '#D8C48D' }}>Limpiar filtros</button>
+                    <button onClick={() => { setPropSearch(''); setPropStatus('') }} className="text-xs font-bold" style={{ color: '#D9BC7A' }}>Limpiar filtros</button>
                   </div>
                 ) : (
                   <div className="space-y-1.5">
@@ -869,9 +869,9 @@ export default function AdminDashboard() {
                         <button key={page} onClick={() => setPropPage(page)}
                           className="w-8 h-8 rounded-lg text-xs font-bold transition-all"
                           style={{
-                            background: propPage === page ? 'rgba(201,179,126,0.85)' : 'rgba(42,30,16,0.65)',
+                            background: propPage === page ? 'rgba(201,164,78,0.85)' : 'rgba(42,30,16,0.65)',
                             color: propPage === page ? '#FDF6E9' : '#9A8268',
-                            border: propPage === page ? '1px solid rgba(201,179,126,0.50)' : '1px solid rgba(255,255,255,0.07)',
+                            border: propPage === page ? '1px solid rgba(201,164,78,0.50)' : '1px solid rgba(255,255,255,0.07)',
                           }}>
                           {page + 1}
                         </button>
@@ -895,7 +895,7 @@ export default function AdminDashboard() {
                 {commStats && (
                   <div className="grid grid-cols-3 gap-3 mb-5">
                     {[
-                      { n: `S/ ${commStats.totalCommissions?.toLocaleString('es-PE')}`, l: 'Total ganado', c: '#D8C48D' },
+                      { n: `S/ ${commStats.totalCommissions?.toLocaleString('es-PE')}`, l: 'Total ganado', c: '#D9BC7A' },
                       { n: `S/ ${commStats.totalSales?.toLocaleString('es-PE')}`, l: 'En ventas', c: '#34D399' },
                       { n: commStats.count, l: 'Ventas cerradas', c: '#60A5FA' },
                     ].map((s, i) => (
@@ -910,7 +910,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-sand-muted">Registra cada venta para calcular tu comisión automáticamente.</p>
                   <button onClick={() => setShowCommForm(true)}
                     className="text-xs font-bold px-4 py-2 rounded-lg transition-colors"
-                    style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.28)', color: '#D8C48D' }}>
+                    style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.28)', color: '#D9BC7A' }}>
                     + Registrar venta
                   </button>
                 </div>
@@ -942,7 +942,7 @@ export default function AdminDashboard() {
                       </div>
                     </div>
                     {commForm.salePrice && commForm.percentage && (
-                      <div className="px-4 py-3 rounded-xl" style={{ background: 'rgba(201,179,126,0.08)', border: '1px solid rgba(201,179,126,0.18)' }}>
+                      <div className="px-4 py-3 rounded-xl" style={{ background: 'rgba(201,164,78,0.08)', border: '1px solid rgba(201,164,78,0.18)' }}>
                         <p className="text-xs text-sand-muted mb-0.5">Comisión calculada</p>
                         <p className="font-display text-2xl text-terra-light">
                           S/ {Math.round(parseFloat(commForm.salePrice || 0) * parseFloat(commForm.percentage || 0) / 100).toLocaleString('es-PE')}
@@ -951,8 +951,8 @@ export default function AdminDashboard() {
                     )}
                     <div className="flex gap-3">
                       <button onClick={() => setShowCommForm(false)} className="flex-1 py-2.5 rounded-xl border border-white/10 text-sand-muted text-sm">Cancelar</button>
-                      <button onClick={saveCommission} className="flex-[2] py-2.5 rounded-xl text-white font-bold text-sm"
-                        style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}>
+                      <button onClick={saveCommission} className="flex-[2] py-2.5 rounded-xl text-bark-900 font-bold text-sm"
+                        style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}>
                         Registrar venta
                       </button>
                     </div>
@@ -970,7 +970,7 @@ export default function AdminDashboard() {
                     {commissions.map(c => (
                       <div key={c.id} className="bg-bark-800 border border-white/5 rounded-xl px-5 py-4 flex items-center gap-4 flex-wrap hover:border-terra/20 transition-colors">
                         <div className="flex-1 min-w-0">
-                          <p className="text-[10px] font-bold" style={{ color: '#D8C48D' }}>{c.property?.ref}</p>
+                          <p className="text-[10px] font-bold" style={{ color: '#D9BC7A' }}>{c.property?.ref}</p>
                           <p className="text-[13px] font-semibold text-sand">{c.property?.title}</p>
                           {c.notes && <p className="text-xs text-sand-muted mt-0.5">{c.notes}</p>}
                         </div>
@@ -1010,7 +1010,7 @@ export default function AdminDashboard() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap mb-1">
                             <h3 className="font-semibold text-sand text-sm">{s.name}</h3>
-                            {type && <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(201,179,126,0.10)', border: '1px solid rgba(201,179,126,0.20)', color: '#D8C48D' }}>{type}</span>}
+                            {type && <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(201,164,78,0.10)', border: '1px solid rgba(201,164,78,0.20)', color: '#D9BC7A' }}>{type}</span>}
                           </div>
                           <div className="flex flex-wrap gap-4 text-sm text-sand-muted">
                             <a href={`tel:${s.phone}`} className="hover:text-terra-light transition-colors">{s.phone}</a>
@@ -1021,7 +1021,7 @@ export default function AdminDashboard() {
                           <WaBtn phone={s.phone} name={s.name} />
                           <Link href="/admin/properties/new"
                             className="text-[10px] font-bold px-3 py-1.5 rounded-lg"
-                            style={{ background: 'rgba(201,179,126,0.12)', border: '1px solid rgba(201,179,126,0.22)', color: '#D8C48D' }}>
+                            style={{ background: 'rgba(201,164,78,0.12)', border: '1px solid rgba(201,164,78,0.22)', color: '#D9BC7A' }}>
                             + Publicar propiedad
                           </Link>
                           <button onClick={() => deleteLead(s.id)} className="text-[10px] font-bold transition-colors" style={{ color: 'rgba(248,113,113,0.60)' }}>Eliminar</button>
@@ -1052,7 +1052,7 @@ export default function AdminDashboard() {
                         {l.message && (
                           <p className="text-xs text-sand-muted px-3 py-2 rounded-lg" style={{ background: 'rgba(42,30,16,0.60)', border: '1px solid rgba(255,255,255,0.05)' }}>{l.message}</p>
                         )}
-                        {l.property && <p className="text-[11px] mt-2 font-semibold" style={{ color: '#D8C48D' }}>{l.property.title} ({l.property.ref})</p>}
+                        {l.property && <p className="text-[11px] mt-2 font-semibold" style={{ color: '#D9BC7A' }}>{l.property.title} ({l.property.ref})</p>}
                       </div>
                       <div className="flex flex-col gap-2 items-end flex-shrink-0">
                         <p className="text-[10px] text-sand-muted">{new Date(l.createdAt).toLocaleDateString('es-PE', { day:'2-digit', month:'short' })}</p>
@@ -1072,7 +1072,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-sand-muted">Aparecen en la página principal.</p>
                   <button onClick={() => setNewTestimonial({ name:'', role:'', city:'', comment:'', rating:5, avatar:'' })}
                     className="text-xs font-bold px-4 py-2 rounded-lg transition-colors"
-                    style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.28)', color: '#D8C48D' }}>
+                    style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.28)', color: '#D9BC7A' }}>
                     + Agregar
                   </button>
                 </div>
@@ -1093,8 +1093,8 @@ export default function AdminDashboard() {
                     </div>
                     <div className="flex gap-3">
                       <button onClick={() => setNewTestimonial(null)} className="flex-1 py-2.5 rounded-xl border border-white/10 text-sand-muted text-sm">Cancelar</button>
-                      <button onClick={saveTestimonial} className="flex-1 py-2.5 rounded-xl text-white text-sm font-bold"
-                        style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}>Guardar</button>
+                      <button onClick={saveTestimonial} className="flex-1 py-2.5 rounded-xl text-bark-900 text-sm font-bold"
+                        style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}>Guardar</button>
                     </div>
                   </div>
                 )}
@@ -1106,7 +1106,7 @@ export default function AdminDashboard() {
                         <div key={t.id} className="bg-bark-800 border border-white/5 rounded-2xl p-4 flex items-start gap-3 hover:border-terra/20 transition-colors">
                           {t.avatar
                             ? <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                            : <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(201,179,126,0.18)', color: '#D8C48D' }}>{t.name[0]}</div>
+                            : <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(201,164,78,0.18)', color: '#D9BC7A' }}>{t.name[0]}</div>
                           }
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-sand text-sm">{t.name}</p>
@@ -1128,7 +1128,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-sand-muted">Aparecen en &quot;Empresas que confían&quot;.</p>
                   <button onClick={() => setNewCompany({ name:'', logo:'', comment:'', type:'' })}
                     className="text-xs font-bold px-4 py-2 rounded-lg transition-colors"
-                    style={{ background: 'rgba(201,179,126,0.18)', border: '1px solid rgba(201,179,126,0.28)', color: '#D8C48D' }}>
+                    style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.28)', color: '#D9BC7A' }}>
                     + Agregar
                   </button>
                 </div>
@@ -1144,8 +1144,8 @@ export default function AdminDashboard() {
                     ))}
                     <div className="flex gap-3">
                       <button onClick={() => setNewCompany(null)} className="flex-1 py-2.5 rounded-xl border border-white/10 text-sand-muted text-sm">Cancelar</button>
-                      <button onClick={saveCompany} className="flex-1 py-2.5 rounded-xl text-white text-sm font-bold"
-                        style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}>Guardar</button>
+                      <button onClick={saveCompany} className="flex-1 py-2.5 rounded-xl text-bark-900 text-sm font-bold"
+                        style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}>Guardar</button>
                     </div>
                   </div>
                 )}
@@ -1157,7 +1157,7 @@ export default function AdminDashboard() {
                         <div key={c.id} className="bg-bark-800 border border-white/5 rounded-2xl p-4 flex items-center gap-3 hover:border-terra/20 transition-colors">
                           {c.logo
                             ? <img src={c.logo} alt={c.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                            : <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(201,179,126,0.18)', color: '#D8C48D' }}>{c.name[0]}</div>
+                            : <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(201,164,78,0.18)', color: '#D9BC7A' }}>{c.name[0]}</div>
                           }
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-sand text-sm">{c.name}</p>

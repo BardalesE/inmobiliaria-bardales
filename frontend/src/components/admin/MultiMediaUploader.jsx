@@ -122,19 +122,19 @@ export default function MultiMediaUploader({
         onClick={() => fileRef.current?.click()}
         className="relative cursor-pointer rounded-2xl transition-all"
         style={{
-          border: `2px dashed ${dropActive ? 'rgba(201,179,126,0.60)' : 'rgba(255,255,255,0.09)'}`,
-          background: dropActive ? 'rgba(201,179,126,0.05)' : 'rgba(21,15,7,0.55)',
+          border: `2px dashed ${dropActive ? 'rgba(201,164,78,0.60)' : 'rgba(255,255,255,0.09)'}`,
+          background: dropActive ? 'rgba(201,164,78,0.05)' : 'rgba(21,15,7,0.55)',
           padding: '26px 22px',
           transition: 'border-color 0.18s ease, background 0.18s ease',
         }}
       >
         <div className="flex flex-col items-center gap-2.5 select-none">
           <div className="w-11 h-11 rounded-xl flex items-center justify-center"
-            style={{ background: 'rgba(42,30,16,0.85)', border: `1px solid ${dropActive ? 'rgba(201,179,126,0.30)' : 'rgba(255,255,255,0.06)'}` }}>
-            {mode === 'video' ? <IconVideo color={dropActive ? '#D8C48D' : '#9A8268'} /> : <IconPdf color={dropActive ? '#D8C48D' : '#F87171'} />}
+            style={{ background: 'rgba(42,30,16,0.85)', border: `1px solid ${dropActive ? 'rgba(201,164,78,0.30)' : 'rgba(255,255,255,0.06)'}` }}>
+            {mode === 'video' ? <IconVideo color={dropActive ? '#D9BC7A' : '#9A8268'} /> : <IconPdf color={dropActive ? '#D9BC7A' : '#F87171'} />}
           </div>
           <div className="text-center">
-            <p className="text-sm font-semibold" style={{ color: dropActive ? '#D8C48D' : '#9A8268' }}>
+            <p className="text-sm font-semibold" style={{ color: dropActive ? '#D9BC7A' : '#9A8268' }}>
               {dropActive ? `Suelta ${label} aquí` : `Arrastra ${label} aquí o haz clic para seleccionar`}
             </p>
             <p className="text-[11px] mt-0.5" style={{ color: 'rgba(154,130,104,0.50)' }}>
@@ -143,7 +143,7 @@ export default function MultiMediaUploader({
           </div>
           {items.length > 0 && (
             <div className="mt-1 px-3 py-1.5 rounded-lg text-[11px] font-semibold"
-              style={{ background: 'rgba(201,179,126,0.10)', color: '#D8C48D' }}>
+              style={{ background: 'rgba(201,164,78,0.10)', color: '#D9BC7A' }}>
               + Agregar más {label}
             </div>
           )}
@@ -154,12 +154,12 @@ export default function MultiMediaUploader({
 
       {uploadingCount > 0 && (
         <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl"
-          style={{ background: 'rgba(201,179,126,0.06)', border: '1px solid rgba(201,179,126,0.18)' }}>
-          <svg className="animate-spin flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2.5">
+          style={{ background: 'rgba(201,164,78,0.06)', border: '1px solid rgba(201,164,78,0.18)' }}>
+          <svg className="animate-spin flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2.5">
             <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.22"/>
             <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
           </svg>
-          <span className="text-xs font-semibold" style={{ color: '#D8C48D' }}>
+          <span className="text-xs font-semibold" style={{ color: '#D9BC7A' }}>
             Subiendo {uploadingCount} {uploadingCount === 1 ? 'archivo' : 'archivos'}…
           </span>
         </div>
@@ -175,7 +175,7 @@ export default function MultiMediaUploader({
               )}
               <div className="flex items-center gap-3 p-3">
                 {item.status === 'uploading' && (
-                  <svg className="animate-spin flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2.5">
+                  <svg className="animate-spin flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2.5">
                     <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.2"/>
                     <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
                   </svg>
@@ -196,7 +196,7 @@ export default function MultiMediaUploader({
                   {item.status === 'uploading' && (
                     <div className="h-1 rounded-full overflow-hidden mt-1.5" style={{ background: 'rgba(255,255,255,0.08)' }}>
                       <div className="h-full rounded-full transition-all duration-300"
-                        style={{ width: `${item.progress}%`, background: 'linear-gradient(90deg, #C9B37E, #D8C48D)' }} />
+                        style={{ width: `${item.progress}%`, background: 'linear-gradient(90deg, #C9A44E, #D9BC7A)' }} />
                     </div>
                   )}
                   {item.status === 'error' && <p className="text-[11px] text-red-400/90 mt-0.5">{item.error}</p>}
@@ -206,7 +206,7 @@ export default function MultiMediaUploader({
                   {item.status === 'done' && mode === 'pdf' && (
                     <a href={item.url} target="_blank" rel="noopener noreferrer"
                       className="px-2.5 py-1.5 rounded-lg text-[10px] font-bold"
-                      style={{ background: 'rgba(201,179,126,0.10)', color: '#D8C48D', border: '1px solid rgba(201,179,126,0.20)' }}>
+                      style={{ background: 'rgba(201,164,78,0.10)', color: '#D9BC7A', border: '1px solid rgba(201,164,78,0.20)' }}>
                       Abrir ↗
                     </a>
                   )}

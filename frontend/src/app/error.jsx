@@ -21,15 +21,15 @@ export default function Error({ error, reset }) {
         <div className="flex items-center justify-center gap-3">
           <button
             onClick={reset}
-            className="px-6 py-3 rounded-xl text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
+            className="px-6 py-3 rounded-xl text-bark-900 font-bold text-sm"
+            style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}
           >
             Reintentar
           </button>
           <Link
             href="/"
             className="px-6 py-3 rounded-xl font-bold text-sm"
-            style={{ border: '1px solid rgba(201,179,126,0.4)', color: '#D8C48D' }}
+            style={{ border: '1px solid rgba(201,164,78,0.4)', color: '#D9BC7A' }}
           >
             Ir al inicio
           </Link>

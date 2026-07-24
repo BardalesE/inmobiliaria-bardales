@@ -91,8 +91,8 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
                     <div
                       className="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                       style={{
-                        background: 'rgba(201,179,126,0.90)',
-                        boxShadow: '0 8px 36px rgba(201,179,126,0.55), 0 0 0 1px rgba(255,255,255,0.15)',
+                        background: 'rgba(201,164,78,0.90)',
+                        boxShadow: '0 8px 36px rgba(201,164,78,0.55), 0 0 0 1px rgba(255,255,255,0.15)',
                       }}
                     >
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 3 }}>
@@ -131,7 +131,7 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
         <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
           {slide.type === 'video' && (
             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-              style={{ background: 'rgba(201,179,126,0.80)', backdropFilter: 'blur(8px)' }}>
+              style={{ background: 'rgba(201,164,78,0.80)', backdropFilter: 'blur(8px)' }}>
               <svg width="9" height="9" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               <span style={{ fontSize: 9, color: 'white', fontWeight: 700, letterSpacing: '0.1em' }}>VIDEO</span>
             </div>
@@ -162,7 +162,7 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
                   border: '1px solid rgba(255,255,255,0.14)',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(201,179,126,0.75)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(201,164,78,0.75)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.55)' }}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
@@ -182,7 +182,7 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
                   width: i === current ? 24 : 6,
                   height: 6,
                   borderRadius: 99,
-                  background: i === current ? '#D8C48D' : 'rgba(255,255,255,0.35)',
+                  background: i === current ? '#D9BC7A' : 'rgba(255,255,255,0.35)',
                   border: 'none',
                   padding: 0,
                   cursor: 'pointer',
@@ -209,8 +209,8 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
                   width: 96,
                   height: 68,
                   borderRadius: 10,
-                  border: active ? '2px solid #D8C48D' : '2px solid rgba(255,255,255,0.07)',
-                  boxShadow: active ? '0 0 0 1px rgba(216,196,141,0.3), 0 4px 16px rgba(201,179,126,0.25)' : 'none',
+                  border: active ? '2px solid #D9BC7A' : '2px solid rgba(255,255,255,0.07)',
+                  boxShadow: active ? '0 0 0 1px rgba(217,188,122,0.3), 0 4px 16px rgba(201,164,78,0.25)' : 'none',
                   transform: active ? 'scale(1.04)' : 'scale(1)',
                   opacity: active ? 1 : 0.55,
                 }}

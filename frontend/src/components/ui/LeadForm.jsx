@@ -26,15 +26,15 @@ export default function LeadForm({ propertyId, propertyTitle }) {
       <div
         className="rounded-2xl p-8 text-center"
         style={{
-          background: 'rgba(16,185,129,0.06)',
-          border: '1px solid rgba(16,185,129,0.22)',
+          background: 'rgba(201,164,78,0.06)',
+          border: '1px solid rgba(201,164,78,0.22)',
         }}
       >
         <div
           className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-          style={{ background: 'rgba(16,185,129,0.12)' }}
+          style={{ background: 'rgba(201,164,78,0.12)' }}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A44E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 6 9 17l-5-5"/>
           </svg>
         </div>
@@ -43,7 +43,7 @@ export default function LeadForm({ propertyId, propertyTitle }) {
         <button
           onClick={() => setStatus('idle')}
           className="mt-5 text-xs font-semibold transition-colors"
-          style={{ color: '#D8C48D' }}
+          style={{ color: '#D9BC7A' }}
         >
           Enviar otro mensaje →
         </button>
@@ -57,9 +57,9 @@ export default function LeadForm({ propertyId, propertyTitle }) {
       {propertyTitle && (
         <div
           className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs"
-          style={{ background: 'rgba(201,179,126,0.07)', border: '1px solid rgba(201,179,126,0.18)' }}
+          style={{ background: 'rgba(201,164,78,0.07)', border: '1px solid rgba(201,164,78,0.18)' }}
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
           </svg>
           <span style={{ color: 'rgba(154,130,104,0.8)' }}>Consultando: </span>
@@ -134,12 +134,12 @@ export default function LeadForm({ propertyId, propertyTitle }) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="cta-terra w-full py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-        style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
+        className="cta-terra w-full py-3.5 rounded-xl text-bark-900 font-bold text-sm tracking-wide flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}
       >
         {status === 'loading' ? (
           <>
-            <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+            <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F0A04" strokeWidth="2.5">
               <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.25"/>
               <path d="M21 12a9 9 0 00-9-9" strokeLinecap="round"/>
             </svg>

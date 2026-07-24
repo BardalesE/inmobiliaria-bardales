@@ -202,7 +202,7 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
                 className={`flex items-center gap-2 transition-all ${i < step ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 transition-all ${
                   i === step
-                    ? 'bg-terra text-white shadow-[0_0_16px_rgba(201,179,126,0.50)] scale-110'
+                    ? 'bg-terra text-white shadow-[0_0_16px_rgba(201,164,78,0.50)] scale-110'
                     : i < step
                     ? 'bg-emerald-500/18 text-emerald-400 border-2 border-emerald-500/45'
                     : 'bg-bark-700 text-sand-muted/40 border border-white/8'
@@ -266,12 +266,12 @@ export default function PropertyFormWizard({ initialData, propertyId, mode = 'cr
 
             {step < STEPS.length - 1 ? (
               <button type="button" onClick={goNext}
-                className="flex-[2] py-3.5 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold text-sm shadow-lg shadow-esmeralda/25 hover:shadow-esmeralda/45 hover:-translate-y-0.5 active:scale-[0.98] transition-all">
+                className="flex-[2] py-3.5 rounded-xl bg-gradient-to-br from-terra to-terra-light text-bark-900 font-bold text-sm shadow-lg shadow-terra/25 hover:shadow-terra/45 hover:-translate-y-0.5 active:scale-[0.98] transition-all">
                 Siguiente →
               </button>
             ) : (
               <button type="submit" disabled={submitting}
-                className="flex-[2] py-3.5 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold text-sm shadow-lg shadow-esmeralda/25 hover:shadow-esmeralda/45 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-50 disabled:transform-none disabled:shadow-none transition-all">
+                className="flex-[2] py-3.5 rounded-xl bg-gradient-to-br from-terra to-terra-light text-bark-900 font-bold text-sm shadow-lg shadow-terra/25 hover:shadow-terra/45 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-50 disabled:transform-none disabled:shadow-none transition-all">
                 {submitting ? (
                   <span className="flex items-center justify-center gap-2">
                     <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">

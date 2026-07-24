@@ -17,7 +17,7 @@ function pdfDownloadUrl(url, title = 'documento') {
 }
 
 const STATUS_CFG = {
-  AVAILABLE: { label: 'Disponible',  bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.30)', color: '#34d399' },
+  AVAILABLE: { label: 'Disponible',  bg: 'rgba(201,164,78,0.14)', border: 'rgba(201,164,78,0.32)', color: '#D9BC7A' },
   RESERVED:  { label: 'Separado',   bg: 'rgba(234,179,8,0.12)',  border: 'rgba(234,179,8,0.30)',  color: '#fbbf24' },
   SOLD:      { label: 'Vendido',    bg: 'rgba(113,113,122,0.12)',border: 'rgba(113,113,122,0.25)',color: '#a1a1aa' },
   HIDDEN:    { label: 'Oculto',     bg: 'rgba(113,113,122,0.12)',border: 'rgba(113,113,122,0.25)',color: '#a1a1aa' },
@@ -25,7 +25,7 @@ const STATUS_CFG = {
 }
 
 const OP_CFG = {
-  SALE: { label: 'En venta',   bg: 'rgba(201,179,126,0.14)',  border: 'rgba(201,179,126,0.30)',  color: '#D8C48D' },
+  SALE: { label: 'En venta',   bg: 'rgba(201,164,78,0.14)',  border: 'rgba(201,164,78,0.30)',  color: '#D9BC7A' },
   RENT: { label: 'En alquiler', bg: 'rgba(99,102,241,0.12)', border: 'rgba(99,102,241,0.28)', color: '#818cf8' },
 }
 
@@ -45,7 +45,7 @@ function SpecCard({ label, value, accent }) {
         backdropFilter: 'blur(8px)',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(201,179,126,0.22)'
+        e.currentTarget.style.borderColor = 'rgba(201,164,78,0.22)'
         e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.22)'
       }}
       onMouseLeave={e => {
@@ -58,7 +58,7 @@ function SpecCard({ label, value, accent }) {
         {label}
       </p>
       <p className={`font-bold text-sm leading-tight ${accent ? '' : 'text-sand'}`}
-        style={accent ? { color: '#D8C48D' } : {}}>
+        style={accent ? { color: '#D9BC7A' } : {}}>
         {value}
       </p>
     </div>
@@ -85,7 +85,7 @@ export default function PropertyDetailClient({ property }) {
         <div style={{
           position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)',
           width: '80%', height: '50%',
-          background: 'radial-gradient(ellipse, rgba(201,179,126,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(201,164,78,0.06) 0%, transparent 70%)',
         }} />
       </div>
 
@@ -95,7 +95,7 @@ export default function PropertyDetailClient({ property }) {
           onClick={() => router.push('/')}
           className="flex items-center gap-1.5 text-xs font-medium transition-colors duration-200"
           style={{ color: 'rgba(154,130,104,0.55)' }}
-          onMouseEnter={e => e.currentTarget.style.color = '#D8C48D'}
+          onMouseEnter={e => e.currentTarget.style.color = '#D9BC7A'}
           onMouseLeave={e => e.currentTarget.style.color = 'rgba(154,130,104,0.55)'}
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -110,7 +110,7 @@ export default function PropertyDetailClient({ property }) {
           onClick={() => router.back()}
           className="text-xs font-medium transition-colors duration-200"
           style={{ color: 'rgba(154,130,104,0.55)' }}
-          onMouseEnter={e => e.currentTarget.style.color = '#D8C48D'}
+          onMouseEnter={e => e.currentTarget.style.color = '#D9BC7A'}
           onMouseLeave={e => e.currentTarget.style.color = 'rgba(154,130,104,0.55)'}
         >
           Propiedades
@@ -118,7 +118,7 @@ export default function PropertyDetailClient({ property }) {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(154,130,104,0.3)" strokeWidth="2">
           <path d="M9 18l6-6-6-6"/>
         </svg>
-        <span className="text-xs font-semibold" style={{ color: '#D8C48D' }}>{property.ref}</span>
+        <span className="text-xs font-semibold" style={{ color: '#D9BC7A' }}>{property.ref}</span>
       </div>
 
       {/* ── Main content ── */}
@@ -134,7 +134,7 @@ export default function PropertyDetailClient({ property }) {
           <div className="space-y-4">
             {/* Badges row */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: 'rgba(216,196,141,0.7)' }}>
+              <span className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: 'rgba(217,188,122,0.7)' }}>
                 {property.ref}
               </span>
               <span className="w-1 h-1 rounded-full" style={{ background: 'rgba(154,130,104,0.3)' }} />
@@ -166,7 +166,7 @@ export default function PropertyDetailClient({ property }) {
 
             {/* Address */}
             <div className="flex items-start gap-2">
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                 <circle cx="12" cy="10" r="3"/>
               </svg>
@@ -182,7 +182,7 @@ export default function PropertyDetailClient({ property }) {
           {/* ── Separator ── */}
           <div className="flex items-center gap-4">
             <div className="h-px flex-1" style={{ background: 'rgba(255,255,255,0.05)' }} />
-            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(201,179,126,0.4)' }} />
+            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(201,164,78,0.4)' }} />
             <div className="h-px flex-1" style={{ background: 'rgba(255,255,255,0.05)' }} />
           </div>
 
@@ -215,10 +215,10 @@ export default function PropertyDetailClient({ property }) {
               style={{
                 background: 'rgba(28,19,8,0.55)',
                 border: '1px solid rgba(255,255,255,0.055)',
-                borderLeft: '3px solid rgba(201,179,126,0.45)',
+                borderLeft: '3px solid rgba(201,164,78,0.45)',
               }}
             >
-              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#D8C48D' }}>
+              <h3 className="font-display text-xl tracking-wide mb-3" style={{ color: '#D9BC7A' }}>
                 Descripción
               </h3>
               <p className="text-sm leading-7" style={{ color: 'rgba(154,130,104,0.85)' }}>
@@ -239,9 +239,9 @@ export default function PropertyDetailClient({ property }) {
                     key={i}
                     className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full"
                     style={{
-                      background: 'rgba(201,179,126,0.08)',
-                      border: '1px solid rgba(201,179,126,0.20)',
-                      color: '#D8C48D',
+                      background: 'rgba(201,164,78,0.08)',
+                      border: '1px solid rgba(201,164,78,0.20)',
+                      color: '#D9BC7A',
                     }}
                   >
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
@@ -285,15 +285,15 @@ export default function PropertyDetailClient({ property }) {
                     key={i}
                     className="flex items-center gap-4 p-4 rounded-2xl"
                     style={{
-                      background: 'rgba(201,179,126,0.06)',
-                      border: '1px solid rgba(201,179,126,0.15)',
+                      background: 'rgba(201,164,78,0.06)',
+                      border: '1px solid rgba(201,164,78,0.15)',
                     }}
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(201,179,126,0.12)', border: '1px solid rgba(201,179,126,0.22)' }}
+                      style={{ background: 'rgba(201,164,78,0.12)', border: '1px solid rgba(201,164,78,0.22)' }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
                       </svg>
@@ -309,9 +309,9 @@ export default function PropertyDetailClient({ property }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs font-bold px-3 py-2 rounded-lg transition-all duration-200"
-                        style={{ background: 'rgba(201,179,126,0.15)', border: '1px solid rgba(201,179,126,0.25)', color: '#D8C48D' }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,179,126,0.28)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(201,179,126,0.15)'}
+                        style={{ background: 'rgba(201,164,78,0.15)', border: '1px solid rgba(201,164,78,0.25)', color: '#D9BC7A' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,164,78,0.28)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'rgba(201,164,78,0.15)'}
                       >
                         Ver PDF ↗
                       </a>
@@ -341,13 +341,13 @@ export default function PropertyDetailClient({ property }) {
             className="sticky top-24 rounded-2xl overflow-hidden"
             style={{
               background: 'rgba(18,12,6,0.92)',
-              border: '1px solid rgba(201,179,126,0.18)',
+              border: '1px solid rgba(201,164,78,0.18)',
               boxShadow: '0 32px 80px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)',
               backdropFilter: 'blur(24px)',
             }}
           >
             {/* Terra glow header strip */}
-            <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #C9B37E 35%, #D8C48D 65%, transparent 100%)' }} />
+            <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, transparent 0%, #C9A44E 35%, #D9BC7A 65%, transparent 100%)' }} />
 
             <div className="p-6">
 
@@ -366,7 +366,7 @@ export default function PropertyDetailClient({ property }) {
               {/* Price */}
               <div className="mb-2">
                 <p className="font-display tracking-wide leading-none"
-                  style={{ fontSize: 42, background: 'linear-gradient(135deg,#FDF6E9 30%,#D8C48D 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  style={{ fontSize: 42, background: 'linear-gradient(135deg,#FDF6E9 30%,#D9BC7A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   S/ {property.price.toLocaleString()}
                 </p>
                 {priceM2 && (
@@ -378,7 +378,7 @@ export default function PropertyDetailClient({ property }) {
 
               {/* Negotiable */}
               <div className="flex items-center gap-1.5 mb-6 text-[11px] font-semibold"
-                style={{ color: 'rgba(52,211,153,0.8)' }}>
+                style={{ color: 'rgba(217,188,122,0.85)' }}>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
                   <path d="M20 6 9 17l-5-5"/>
                 </svg>
@@ -393,22 +393,22 @@ export default function PropertyDetailClient({ property }) {
                 href={`https://wa.me/${WHATSAPP}?text=${waMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl font-bold text-sm text-white mb-2.5 overflow-hidden"
+                className="relative flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl font-bold text-sm text-bark-900 mb-2.5 overflow-hidden"
                 style={{
-                  background: 'linear-gradient(135deg, #1aad52 0%, #25D366 60%, #22c55e 100%)',
-                  boxShadow: '0 6px 24px rgba(37,211,102,0.30)',
+                  background: 'linear-gradient(135deg, #8F7332 0%, #C9A44E 55%, #D9BC7A 100%)',
+                  boxShadow: '0 6px 24px rgba(201,164,78,0.30)',
                   transition: 'box-shadow 0.25s ease, transform 0.20s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = '0 8px 36px rgba(37,211,102,0.50)'
+                  e.currentTarget.style.boxShadow = '0 8px 36px rgba(201,164,78,0.50)'
                   e.currentTarget.style.transform = 'translateY(-1px)'
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(37,211,102,0.30)'
+                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(201,164,78,0.30)'
                   e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#0F0A04">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
                 </svg>
                 Consultar por WhatsApp
@@ -424,9 +424,9 @@ export default function PropertyDetailClient({ property }) {
                   color: 'rgba(154,130,104,0.85)',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(201,179,126,0.10)'
-                  e.currentTarget.style.borderColor = 'rgba(201,179,126,0.25)'
-                  e.currentTarget.style.color = '#D8C48D'
+                  e.currentTarget.style.background = 'rgba(201,164,78,0.10)'
+                  e.currentTarget.style.borderColor = 'rgba(201,164,78,0.25)'
+                  e.currentTarget.style.color = '#D9BC7A'
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.04)'

@@ -25,8 +25,8 @@ export default function Navbar() {
       className="sticky top-0 z-50 backdrop-blur-xl"
       style={{
         background: 'rgba(15,10,4,0.90)',
-        borderBottom: '1px solid rgba(201,179,126,0.13)',
-        boxShadow: '0 1px 0 rgba(201,179,126,0.07), 0 4px 32px rgba(0,0,0,0.35)',
+        borderBottom: '1px solid rgba(201,164,78,0.13)',
+        boxShadow: '0 1px 0 rgba(201,164,78,0.07), 0 4px 32px rgba(0,0,0,0.35)',
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-[58px]">
@@ -36,8 +36,8 @@ export default function Navbar() {
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-display text-sm flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, #C9B37E 0%, #D8C48D 100%)',
-              boxShadow: '0 2px 14px rgba(201,179,126,0.38)',
+              background: 'linear-gradient(135deg, #C9A44E 0%, #D9BC7A 100%)',
+              boxShadow: '0 2px 14px rgba(201,164,78,0.38)',
               transition: 'box-shadow 0.25s ease',
             }}
           >
@@ -47,7 +47,7 @@ export default function Navbar() {
             <span className="font-display text-[15px] tracking-widest text-sand group-hover:text-terra-light transition-colors duration-200">
               EE-Stars
             </span>
-            <span className="text-[8px] tracking-[0.22em] uppercase" style={{ color: 'rgba(216,196,141,0.65)' }}>
+            <span className="text-[8px] tracking-[0.22em] uppercase" style={{ color: 'rgba(217,188,122,0.65)' }}>
               Inmobiliaria Digital · Perú
             </span>
           </div>
@@ -75,7 +75,7 @@ export default function Navbar() {
           <Link
             href="/publicar"
             className="cta-outline px-4 py-2 rounded-lg text-terra-light text-xs font-bold tracking-wide"
-            style={{ border: '1px solid rgba(201,179,126,0.35)', background: 'transparent' }}
+            style={{ border: '1px solid rgba(201,164,78,0.35)', background: 'transparent' }}
           >
             + Publicar propiedad
           </Link>
@@ -85,8 +85,8 @@ export default function Navbar() {
             href={`https://wa.me/${WHATSAPP}?text=Hola,%20quiero%20información%20sobre%20sus%20propiedades`}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-wa ml-1.5 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-white text-xs font-bold"
-            style={{ background: 'rgba(34,197,94,0.82)' }}
+            className="cta-wa ml-1.5 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-bark-900 text-xs font-bold"
+            style={{ background: 'rgba(201,164,78,0.95)' }}
           >
             <WaIcon />
             WhatsApp
@@ -96,7 +96,7 @@ export default function Navbar() {
         {/* ── Mobile toggle ── */}
         <button
           className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg transition-colors"
-          style={{ color: open ? '#D8C48D' : '#9A8268' }}
+          style={{ color: open ? '#D9BC7A' : '#9A8268' }}
           onClick={() => setOpen(!open)}
           aria-label="Menú"
         >
@@ -118,7 +118,7 @@ export default function Navbar() {
           className="md:hidden px-4 pb-4 pt-2 flex flex-col gap-1"
           style={{
             background: 'rgba(20,13,5,0.98)',
-            borderTop: '1px solid rgba(201,179,126,0.10)',
+            borderTop: '1px solid rgba(201,164,78,0.10)',
           }}
         >
           {links.map((l) => {
@@ -129,8 +129,8 @@ export default function Navbar() {
                 href={l.href}
                 className="px-4 py-3 rounded-xl text-sm font-medium transition-colors"
                 style={{
-                  color:      active ? '#D8C48D' : '#9A8268',
-                  background: active ? 'rgba(201,179,126,0.08)' : 'transparent',
+                  color:      active ? '#D9BC7A' : '#9A8268',
+                  background: active ? 'rgba(201,164,78,0.08)' : 'transparent',
                 }}
                 onClick={() => setOpen(false)}
               >
@@ -144,7 +144,7 @@ export default function Navbar() {
           <Link
             href="/publicar"
             className="px-4 py-3 rounded-xl text-terra-light text-sm font-bold text-center"
-            style={{ border: '1px solid rgba(201,179,126,0.32)', background: 'rgba(201,179,126,0.05)' }}
+            style={{ border: '1px solid rgba(201,164,78,0.32)', background: 'rgba(201,164,78,0.05)' }}
             onClick={() => setOpen(false)}
           >
             + Publicar mi propiedad
@@ -154,8 +154,8 @@ export default function Navbar() {
             href={`https://wa.me/${WHATSAPP}?text=Hola,%20quiero%20información%20sobre%20sus%20propiedades`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white text-sm font-bold"
-            style={{ background: 'rgba(34,197,94,0.82)' }}
+            className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-bark-900 text-sm font-bold"
+            style={{ background: 'rgba(201,164,78,0.95)' }}
           >
             <WaIcon />
             Contactar por WhatsApp

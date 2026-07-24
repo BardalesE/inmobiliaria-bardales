@@ -10,26 +10,26 @@ export default function DocsBanner() {
           className="relative overflow-hidden rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center sm:items-start gap-8"
           style={{
             background: 'linear-gradient(135deg, #1C1308 0%, #0F0A04 60%, #1a0d04 100%)',
-            border: '1px solid rgba(201,179,126,0.22)',
+            border: '1px solid rgba(201,164,78,0.22)',
             boxShadow: '0 32px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04)',
           }}
         >
           {/* Radial glow */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 70% 80% at 10% 50%, rgba(201,179,126,0.13) 0%, transparent 65%)' }}
+            style={{ background: 'radial-gradient(ellipse 70% 80% at 10% 50%, rgba(201,164,78,0.13) 0%, transparent 65%)' }}
           />
 
           {/* Icon box */}
           <div
             className="relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, rgba(201,179,126,0.18) 0%, rgba(201,179,126,0.08) 100%)',
-              border: '1px solid rgba(201,179,126,0.32)',
-              boxShadow: '0 8px 28px rgba(201,179,126,0.18), inset 0 1px 0 rgba(255,255,255,0.06)',
+              background: 'linear-gradient(135deg, rgba(201,164,78,0.18) 0%, rgba(201,164,78,0.08) 100%)',
+              border: '1px solid rgba(201,164,78,0.32)',
+              boxShadow: '0 8px 28px rgba(201,164,78,0.18), inset 0 1px 0 rgba(255,255,255,0.06)',
             }}
           >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D8C48D" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
               <line x1="16" y1="13" x2="8" y2="13"/>
@@ -40,7 +40,7 @@ export default function DocsBanner() {
 
           {/* Text block */}
           <div className="relative flex-1 text-center sm:text-left">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-3" style={{ color: 'rgba(216,196,141,0.65)' }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-3" style={{ color: 'rgba(217,188,122,0.65)' }}>
               Transparencia total
             </div>
             <h2 className="font-display text-3xl sm:text-4xl tracking-wide leading-tight mb-3" style={{ color: '#FDF6E9' }}>
@@ -57,9 +57,9 @@ export default function DocsBanner() {
                   key={tag}
                   className="text-[10px] font-bold px-3 py-1.5 rounded-full"
                   style={{
-                    background: 'rgba(201,179,126,0.10)',
-                    border: '1px solid rgba(201,179,126,0.22)',
-                    color: '#D8C48D',
+                    background: 'rgba(201,164,78,0.10)',
+                    border: '1px solid rgba(201,164,78,0.22)',
+                    color: '#D9BC7A',
                   }}
                 >
                   ✓ {tag}
@@ -70,18 +70,18 @@ export default function DocsBanner() {
             {/* CTA */}
             <Link
               href="/docs"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm text-white transition-all duration-250"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-sm text-bark-900 transition-all duration-250"
               style={{
-                background: 'linear-gradient(135deg, #1F6D45, #2F8557)',
-                boxShadow: '0 6px 24px rgba(201,179,126,0.32)',
+                background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)',
+                boxShadow: '0 6px 24px rgba(201,164,78,0.32)',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 10px 32px rgba(201,179,126,0.48)'
+                e.currentTarget.style.boxShadow = '0 10px 32px rgba(201,164,78,0.48)'
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 6px 24px rgba(201,179,126,0.32)'
+                e.currentTarget.style.boxShadow = '0 6px 24px rgba(201,164,78,0.32)'
               }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -96,7 +96,7 @@ export default function DocsBanner() {
 
           {/* Decorative corner lines */}
           <div className="absolute bottom-0 right-0 w-40 h-40 pointer-events-none opacity-[0.04]"
-            style={{ background: 'radial-gradient(circle at 100% 100%, #D8C48D 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle at 100% 100%, #D9BC7A 0%, transparent 70%)' }} />
         </div>
       </div>
     </section>

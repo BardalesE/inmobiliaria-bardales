@@ -51,7 +51,7 @@ export default function StepPublish({ watch, setValue, errors, register, isEdit 
         </div>
         <button type="button"
           onClick={() => setValue('featured', !featured, { shouldDirty: true })}
-          className={`relative w-12 h-6 rounded-full transition-all flex-shrink-0 ${featured ? 'bg-terra shadow-[0_0_10px_rgba(201,179,126,0.35)]' : 'bg-bark-600 border border-white/12'}`}>
+          className={`relative w-12 h-6 rounded-full transition-all flex-shrink-0 ${featured ? 'bg-terra shadow-[0_0_10px_rgba(201,164,78,0.35)]' : 'bg-bark-600 border border-white/12'}`}>
           <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${featured ? 'translate-x-6' : 'translate-x-0.5'}`} />
         </button>
       </div>
@@ -63,7 +63,7 @@ export default function StepPublish({ watch, setValue, errors, register, isEdit 
         </label>
         <textarea {...register('notes')} rows={3}
           placeholder="Estado de negociación, recordatorios, contactos clave..."
-          className="w-full px-3.5 py-3 bg-bark-700 border border-white/8 rounded-xl text-sm text-sand placeholder-sand-muted/30 focus:outline-none focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,179,126,0.09)] resize-none transition-all leading-relaxed" />
+          className="w-full px-3.5 py-3 bg-bark-700 border border-white/8 rounded-xl text-sm text-sand placeholder-sand-muted/30 focus:outline-none focus:border-terra/60 focus:shadow-[0_0_0_3px_rgba(201,164,78,0.09)] resize-none transition-all leading-relaxed" />
       </div>
 
       {/* ── Vista previa tarjeta ───────────────────────── */}

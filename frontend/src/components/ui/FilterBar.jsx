@@ -75,10 +75,10 @@ export default function FilterBar({ onFilter, total }) {
                 onClick={() => handleChange('status', opt.value)}
                 className="px-3.5 py-2 rounded-full text-xs font-semibold transition-all duration-200"
                 style={{
-                  background:  active ? 'rgba(201,179,126,0.85)'      : 'rgba(42,30,16,0.65)',
+                  background:  active ? 'rgba(201,164,78,0.85)'      : 'rgba(42,30,16,0.65)',
                   color:        active ? '#FDF6E9'                    : '#9A8268',
-                  border:       active ? '1px solid rgba(201,179,126,0.6)' : '1px solid rgba(255,255,255,0.07)',
-                  boxShadow:    active ? '0 2px 14px rgba(201,179,126,0.25)' : 'none',
+                  border:       active ? '1px solid rgba(201,164,78,0.6)' : '1px solid rgba(255,255,255,0.07)',
+                  boxShadow:    active ? '0 2px 14px rgba(201,164,78,0.25)' : 'none',
                 }}
               >
                 {opt.label}
@@ -133,7 +133,7 @@ export default function FilterBar({ onFilter, total }) {
         {/* Count */}
         {total !== undefined && (
           <span className="text-xs ml-auto flex-shrink-0" style={{ color: 'rgba(154,130,104,0.6)' }}>
-            <span className="font-bold" style={{ color: '#D8C48D' }}>{total}</span>
+            <span className="font-bold" style={{ color: '#D9BC7A' }}>{total}</span>
             <span className="ml-1">propiedades</span>
           </span>
         )}

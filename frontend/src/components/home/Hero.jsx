@@ -32,7 +32,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 88% 62% at 50% -4%, rgba(201,179,126,0.32) 0%, rgba(201,179,126,0.07) 52%, transparent 76%)',
+          background: 'radial-gradient(ellipse 88% 62% at 50% -4%, rgba(201,164,78,0.32) 0%, rgba(201,164,78,0.07) 52%, transparent 76%)',
           animation: 'driftAmbient 26s ease-in-out infinite alternate',
           willChange: 'transform',
         }}
@@ -47,7 +47,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
       {/* L4 — Central light shaft: Apple/Stripe style focal beam */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 22% 65% at 50% 0%, rgba(201,179,126,0.11) 0%, transparent 68%)' }}
+        style={{ background: 'radial-gradient(ellipse 22% 65% at 50% 0%, rgba(201,164,78,0.11) 0%, transparent 68%)' }}
       />
 
       {/* Content — max 896px, centered, breathing room on all screens */}
@@ -57,9 +57,9 @@ export default function Hero({ heroVideos, stats, onSearch }) {
         <div
           className="hero-badge-anim inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-terra-light text-[11px] font-bold tracking-[0.22em] uppercase mb-8 backdrop-blur-md"
           style={{
-            border: '1px solid rgba(201,179,126,0.28)',
-            background: 'rgba(201,179,126,0.07)',
-            boxShadow: '0 0 0 1px rgba(201,179,126,0.10), 0 4px 22px rgba(201,179,126,0.13), inset 0 1px 0 rgba(255,255,255,0.055)',
+            border: '1px solid rgba(201,164,78,0.28)',
+            background: 'rgba(201,164,78,0.07)',
+            boxShadow: '0 0 0 1px rgba(201,164,78,0.10), 0 4px 22px rgba(201,164,78,0.13), inset 0 1px 0 rgba(255,255,255,0.055)',
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-terra-light animate-pulse flex-shrink-0" />
@@ -71,11 +71,11 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           className="hero-reveal font-display text-[3.25rem] xs:text-6xl sm:text-[5.5rem] md:text-8xl tracking-wider leading-[0.88] mb-0"
           style={{
             animationDelay: '0.16s',
-            background: 'linear-gradient(158deg, #FFFAF3 4%, #F8E8CC 32%, #D8C48D 62%, #9A8449 90%)',
+            background: 'linear-gradient(158deg, #FFFAF3 4%, #F8E8CC 32%, #D9BC7A 62%, #9A8449 90%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            filter: 'drop-shadow(0 3px 32px rgba(201,179,126,0.24))',
+            filter: 'drop-shadow(0 3px 32px rgba(201,164,78,0.24))',
           }}
         >
           ENCUENTRA TU<br />HOGAR IDEAL
@@ -89,7 +89,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-terra/40" />
           <div
             className="w-1.5 h-1.5 rounded-full bg-terra flex-shrink-0"
-            style={{ boxShadow: '0 0 10px 2px rgba(201,179,126,0.75)' }}
+            style={{ boxShadow: '0 0 10px 2px rgba(201,164,78,0.75)' }}
           />
           <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-terra/40" />
         </div>
@@ -127,8 +127,8 @@ export default function Hero({ heroVideos, stats, onSearch }) {
             className="flex-1 bg-transparent px-3 py-3.5 text-white placeholder-white/35 text-sm focus:outline-none min-w-0"
           />
           <button type="submit"
-            className="px-6 py-3 font-bold text-sm text-white flex-shrink-0 transition-all hover:brightness-110"
-            style={{ background: 'linear-gradient(135deg, #1F6D45, #2F8557)' }}
+            className="px-6 py-3 font-bold text-sm text-bark-900 flex-shrink-0 transition-all hover:brightness-110"
+            style={{ background: 'linear-gradient(135deg, #C9A44E, #D9BC7A)' }}
           >
             Buscar
           </button>
@@ -141,7 +141,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
         >
           <a
             href="#propiedades"
-            className="cta-terra inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-br from-esmeralda to-esmeralda-light text-white font-bold text-[0.9375rem]"
+            className="cta-terra inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-br from-terra to-terra-light text-bark-900 font-bold text-[0.9375rem]"
           >
             <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" strokeLinecap="round"/>
@@ -151,7 +151,7 @@ export default function Hero({ heroVideos, stats, onSearch }) {
           <Link
             href="/publicar"
             className="cta-outline px-7 py-3.5 rounded-xl text-terra-light font-bold text-[0.9375rem] backdrop-blur-sm"
-            style={{ border: '1px solid rgba(201,179,126,0.42)', background: 'rgba(201,179,126,0.04)' }}
+            style={{ border: '1px solid rgba(201,164,78,0.42)', background: 'rgba(201,164,78,0.04)' }}
           >
             + Publicar mi propiedad
           </Link>
@@ -159,9 +159,9 @@ export default function Hero({ heroVideos, stats, onSearch }) {
             href={`https://wa.me/${WHATSAPP}?text=Hola,%20quiero%20información%20sobre%20propiedades`}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-wa inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#22c55e]/85 text-white font-bold text-[0.9375rem]"
+            className="cta-wa inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#C9A44E] text-bark-900 font-bold text-[0.9375rem]"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0F0A04" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
             Contactar ahora
           </a>
         </div>

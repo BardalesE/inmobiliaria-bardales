@@ -21,8 +21,9 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
+    <>
     <nav
-      className="sticky top-0 z-50 backdrop-blur-xl"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl w-full"
       style={{
         background: 'rgba(15,10,4,0.90)',
         borderBottom: '1px solid rgba(201,164,78,0.13)',
@@ -115,7 +116,7 @@ export default function Navbar() {
       {/* ── Mobile menu ── */}
       {open && (
         <div
-          className="md:hidden px-4 pb-4 pt-2 flex flex-col gap-1"
+          className="md:hidden absolute left-0 right-0 top-[58px] px-4 pb-4 pt-2 flex flex-col gap-1 max-h-[calc(100vh-58px)] overflow-y-auto"
           style={{
             background: 'rgba(20,13,5,0.98)',
             borderTop: '1px solid rgba(201,164,78,0.10)',
@@ -163,5 +164,8 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    {/* Spacer: compensa el header ahora fixed para que el contenido no quede tapado */}
+    <div aria-hidden="true" style={{ height: 58 }} />
+    </>
   )
 }

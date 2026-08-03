@@ -34,32 +34,22 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
     const map = L.map(mapRef.current, { zoomControl: false }).setView([defaultLat, defaultLng], 16)
     mapInst.current = map
 
-    // Satellite layer (Esri World Imagery) — maxZoom capped a lo que Esri
-    // realmente cubre en zonas rurales del Perú; pasar de ahí es lo que
-    // producía la pantalla en blanco "Map data not yet available".
+    // Mismos tiles que usa Google Maps — híbrido (satélite + calles/nombres
+    // en un solo layer, sin capa de etiquetas aparte) y mapa de calles.
+    // Cobertura mucho mejor que Esri en Perú: ya no hay pantallas en blanco.
     const satelliteLayer = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: '© Esri · Maxar · Earthstar Geographics', maxZoom: 18, maxNativeZoom: 18 }
+      'https://{s}.google.com/vt/lyrs=y&hl=es&x={x}&y={y}&z={z}',
+      { attribution: '© Google', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], maxZoom: 21 }
     )
-    // Etiquetas (calles, lugares) superpuestas sobre el satélite — sin esto
-    // el modo satélite no mostraba ni nombres de calle ni de lugares.
-    const labelsLayer = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
-      { attribution: '© Esri', maxZoom: 18, maxNativeZoom: 18 }
-    )
-    // Street layer (OSM) — siempre tiene calles y nombres, y sirve de
-    // respaldo confiable cuando no hay imagen satelital en la zona.
     const streetLayer = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { attribution: '© OpenStreetMap', maxZoom: 19 }
+      'https://{s}.google.com/vt/lyrs=m&hl=es&x={x}&y={y}&z={z}',
+      { attribution: '© Google', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], maxZoom: 21 }
     )
 
     satelliteLayer.addTo(map)
-    labelsLayer.addTo(map)
-    layersRef.current = { satellite: satelliteLayer, labels: labelsLayer, street: streetLayer }
+    layersRef.current = { satellite: satelliteLayer, street: streetLayer }
 
-    // Si el satélite no tiene imagen en esta zona/zoom, cae a modo Mapa
-    // automáticamente en vez de dejar la pantalla en blanco.
+    // Red de seguridad: si algún tile no carga, avisa en vez de dejar hueco.
     let errorTimer = null
     satelliteLayer.on('tileerror', () => {
       clearTimeout(errorTimer)
@@ -101,18 +91,16 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
     }
   }, [lat, lng])
 
-  // Toggle satellite+etiquetas ↔ mapa de calles
+  // Toggle satélite (híbrido) ↔ mapa de calles
   const toggleLayer = () => {
     if (!mapInst.current) return
-    const { satellite: sat, labels, street } = layersRef.current
+    const { satellite: sat, street } = layersRef.current
     if (satellite) {
       mapInst.current.removeLayer(sat)
-      mapInst.current.removeLayer(labels)
       street.addTo(mapInst.current)
     } else {
       mapInst.current.removeLayer(street)
       sat.addTo(mapInst.current)
-      labels.addTo(mapInst.current)
     }
     setSatellite(v => !v)
     setNoImagery(false)
@@ -216,13 +204,13 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
             style={{ background: 'rgba(15,10,4,0.92)', border: '1px solid rgba(250,204,21,0.35)', color: '#FACC15', backdropFilter: 'blur(8px)' }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="flex-shrink-0"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Sin imagen satelital en esta zona a este zoom. Aléjate un poco o usa modo Mapa.
+            No se pudo cargar la imagen en esta zona. Revisa tu conexión o usa modo Mapa.
           </div>
         )}
       </div>
 
       <p className="text-[11px] text-sand-muted/50">
-        Busca la dirección, o haz clic en el mapa / arrastra el pin para ajustar la ubicación exacta. El modo Satélite ya muestra nombres de calles y lugares.
+        Busca la dirección, o haz clic en el mapa / arrastra el pin para ajustar la ubicación exacta.
       </p>
     </div>
   )

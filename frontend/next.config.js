@@ -28,6 +28,7 @@ const nextConfig = {
               'https://unpkg.com',
               'https://*.tile.openstreetmap.org',
               'https://server.arcgisonline.com',
+              'https://*.google.com',
             ].join(' ') + ';'
           }
         ]

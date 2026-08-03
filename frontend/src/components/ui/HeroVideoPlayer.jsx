@@ -133,6 +133,16 @@ export default function HeroVideoPlayer({ videos = [] }) {
           zIndex: front === 'A' ? 1 : 0,
         }}
       >
+        {/* Fondo difuminado: rellena el encuadre sin recortar el video real */}
+        <Image
+          src={vA.thumbnail || FALLBACK}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          style={{ filter: 'blur(48px)', transform: 'scale(1.2)', opacity: 0.55 }}
+        />
         <video
           ref={videoA}
           src={vA.videoUrl}
@@ -143,7 +153,7 @@ export default function HeroVideoPlayer({ videos = [] }) {
           playsInline
           preload="auto"
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain"
           onError={e => {
             console.warn('[HeroVideo] fallo al cargar', e.currentTarget.currentSrc)
             e.currentTarget.style.visibility = 'hidden'
@@ -160,6 +170,15 @@ export default function HeroVideoPlayer({ videos = [] }) {
           zIndex: front === 'B' ? 1 : 0,
         }}
       >
+        <Image
+          src={vB.thumbnail || FALLBACK}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          style={{ filter: 'blur(48px)', transform: 'scale(1.2)', opacity: 0.55 }}
+        />
         <video
           ref={videoB}
           src={vB.videoUrl}
@@ -168,7 +187,7 @@ export default function HeroVideoPlayer({ videos = [] }) {
           playsInline
           preload="auto"
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain"
           onError={e => {
             console.warn('[HeroVideo] fallo al cargar', e.currentTarget.currentSrc)
             e.currentTarget.style.visibility = 'hidden'

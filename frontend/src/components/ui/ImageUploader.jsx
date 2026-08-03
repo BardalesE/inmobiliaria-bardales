@@ -4,22 +4,42 @@ import api from '@/lib/api'
 
 const uid = () => Math.random().toString(36).slice(2, 9)
 
+/* Relación de aspecto estándar del catálogo: 4:3 (misma que usan las tarjetas y
+   el visor de propiedades). Recorte centrado + reescalado, todo en un solo canvas
+   para que cada foto salga ya normalizada de la cámara/celular del cliente. */
+const TARGET_RATIO = 4 / 3
+const MAX_W = 1400
+
 async function compress(file) {
   return new Promise((resolve) => {
     const img = new Image()
     const blobUrl = URL.createObjectURL(file)
     img.onload = () => {
       URL.revokeObjectURL(blobUrl)
-      const MAX = 1400
-      let w = img.naturalWidth, h = img.naturalHeight
-      if (w > MAX || h > MAX) {
-        if (w >= h) { h = Math.round(h * MAX / w); w = MAX }
-        else        { w = Math.round(w * MAX / h); h = MAX }
+      const iw = img.naturalWidth, ih = img.naturalHeight
+      const srcRatio = iw / ih
+
+      // Recorte centrado al ratio objetivo (sin deformar, sin estirar)
+      let sx, sy, sw, sh
+      if (srcRatio > TARGET_RATIO) {
+        sh = ih
+        sw = Math.round(ih * TARGET_RATIO)
+        sx = Math.round((iw - sw) / 2)
+        sy = 0
+      } else {
+        sw = iw
+        sh = Math.round(iw / TARGET_RATIO)
+        sx = 0
+        sy = Math.round((ih - sh) / 2)
       }
+
+      const outW = Math.min(sw, MAX_W)
+      const outH = Math.round(outW / TARGET_RATIO)
+
       const c = document.createElement('canvas')
-      c.width = w; c.height = h
-      c.getContext('2d').drawImage(img, 0, 0, w, h)
-      c.toBlob(blob => resolve(blob ?? file), 'image/jpeg', 0.82)
+      c.width = outW; c.height = outH
+      c.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, outW, outH)
+      c.toBlob(blob => resolve(blob ?? file), 'image/jpeg', 0.85)
     }
     img.onerror = () => { URL.revokeObjectURL(blobUrl); resolve(file) }
     img.src = blobUrl
@@ -165,7 +185,7 @@ export default function ImageUploader({ initialImages = [], onChange }) {
               {dropActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar'}
             </p>
             <p className="text-[11px] mt-1" style={{ color: 'rgba(154,130,104,0.50)' }}>
-              JPG, PNG, WEBP — compresión automática a 1400 px máx
+              JPG, PNG, WEBP — se recortan automáticamente a 4:3 (máx. 1400 px)
             </p>
           </div>
           {items.length > 0 && (

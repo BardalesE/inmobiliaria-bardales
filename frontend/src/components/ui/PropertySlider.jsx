@@ -133,16 +133,24 @@ export default function PropertySlider({
               /* Video slide — thumbnail + play button; click plays the real <video> inline */
               <div className="w-full h-full relative">
                 {active && playing ? (
-                  <video
-                    src={m.url}
-                    poster={m.thumb || undefined}
-                    controls
-                    autoPlay
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onClick={e => { e.preventDefault(); e.stopPropagation() }}
-                    onError={e => console.warn('[PropertySlider] fallo al cargar video', e.currentTarget.currentSrc)}
-                  />
+                  <>
+                    {m.thumb && (
+                      <Image src={m.thumb} alt="" aria-hidden="true" fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover"
+                        style={{ filter: 'blur(32px)', transform: 'scale(1.15)', opacity: 0.5 }} />
+                    )}
+                    <video
+                      src={m.url}
+                      poster={m.thumb || undefined}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-contain"
+                      onClick={e => { e.preventDefault(); e.stopPropagation() }}
+                      onError={e => console.warn('[PropertySlider] fallo al cargar video', e.currentTarget.currentSrc)}
+                    />
+                  </>
                 ) : (
                   <>
                     {m.thumb ? (
@@ -179,21 +187,33 @@ export default function PropertySlider({
                 )}
               </div>
             ) : (
-              /* Image slide — Ken Burns zoom on active slide */
-              <Image
-                src={m.url}
-                alt={m.alt}
-                fill
-                draggable={false}
-                priority={i === 0}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover"
-                style={{
-                  transform: active ? 'scale(1.04)' : 'scale(1)',
-                  transition: 'transform 700ms cubic-bezier(0.4,0,0.2,1)',
-                  willChange: 'transform',
-                }}
-              />
+              /* Image slide — fondo difuminado + foto completa sin recorte, Ken Burns zoom en la activa */
+              <>
+                <Image
+                  src={m.url}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  draggable={false}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                  style={{ filter: 'blur(32px)', transform: 'scale(1.15)', opacity: 0.5 }}
+                />
+                <Image
+                  src={m.url}
+                  alt={m.alt}
+                  fill
+                  draggable={false}
+                  priority={i === 0}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-contain"
+                  style={{
+                    transform: active ? 'scale(1.04)' : 'scale(1)',
+                    transition: 'transform 700ms cubic-bezier(0.4,0,0.2,1)',
+                    willChange: 'transform',
+                  }}
+                />
+              </>
             )}
           </div>
         )

@@ -17,12 +17,22 @@ export default function PropertyCard({ property }) {
     <Link href={`/properties/${property.id}`} className="group block">
       <div className="bg-bark-800 border border-terra/20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-2xl group-hover:border-terra/60">
         <div className="relative h-52 overflow-hidden bg-bark-700">
+          {/* Fondo difuminado: rellena el marco sin recortar la foto real */}
+          <Image
+            src={image}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover"
+            style={{ filter: 'blur(28px)', transform: 'scale(1.15)', opacity: 0.5 }}
+          />
           <Image
             src={image}
             alt={property.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-bark-900/80 to-transparent" />
           <span className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold tracking-wide ${STATUS_COLOR[property.status]}`}>

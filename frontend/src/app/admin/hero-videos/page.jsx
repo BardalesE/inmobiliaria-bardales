@@ -261,6 +261,7 @@ export default function AdminHeroVideos() {
                         {dragging ? 'Suelta el video aquí' : 'Arrastra un video o haz clic para seleccionar'}
                       </p>
                       <p className="text-[11px] text-sand-muted">MP4 · WebM · MOV · Máximo 100 MB</p>
+                      <p className="text-[10px] text-terra-light/70">Recomendado: horizontal 16:9 (1920×1080) para que se vea completo sin franjas</p>
                     </div>
                   )}
                 </div>

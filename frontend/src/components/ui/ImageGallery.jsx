@@ -65,15 +65,22 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
             /* Video slide — click plays the real <video> inline */
             <div className="w-full h-full relative">
               {playing ? (
-                <video
-                  src={slide.url}
-                  poster={slide.thumb || undefined}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={e => console.warn('[ImageGallery] fallo al cargar video', e.currentTarget.currentSrc)}
-                />
+                <>
+                  {slide.thumb && (
+                    <Image src={slide.thumb} alt="" aria-hidden="true" fill sizes="100vw"
+                      className="object-cover"
+                      style={{ filter: 'blur(40px)', transform: 'scale(1.15)', opacity: 0.5 }} />
+                  )}
+                  <video
+                    src={slide.url}
+                    poster={slide.thumb || undefined}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-contain"
+                    onError={e => console.warn('[ImageGallery] fallo al cargar video', e.currentTarget.currentSrc)}
+                  />
+                </>
               ) : (
                 <>
                   {slide.thumb ? (
@@ -104,15 +111,26 @@ export default function ImageGallery({ images = [], videos = [], videoUrl = '', 
               )}
             </div>
           ) : (
-            /* Image slide */
-            <Image
-              src={slide.url}
-              alt={slide.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 60vw"
-              priority={current === 0}
-            />
+            /* Image slide — fondo difuminado + foto completa sin recorte */
+            <>
+              <Image
+                src={slide.url}
+                alt=""
+                aria-hidden="true"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                style={{ filter: 'blur(40px)', transform: 'scale(1.15)', opacity: 0.5 }}
+              />
+              <Image
+                src={slide.url}
+                alt={slide.alt}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                priority={current === 0}
+              />
+            </>
           )}
         </div>
 

@@ -19,28 +19,29 @@ export default function MapEmbed({ lat, lng, title }) {
           loading="lazy"
           title={`Mapa: ${title}`}
         />
-        {/* Coords overlay */}
+        {/* Coords overlay — arriba a la izquierda para no tapar los controles
+            de Google Maps (satélite/zoom), que siempre están abajo. */}
         <div
-          className="absolute bottom-3 left-3 flex items-center gap-2 px-3 py-2 rounded-xl"
+          className="absolute top-3 left-3 flex items-center gap-2 px-3 py-2 rounded-xl pointer-events-none"
           style={{
-            background: 'rgba(8,4,1,0.88)',
+            background: 'rgba(8,4,1,0.92)',
             backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(201,164,78,0.22)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+            border: '1px solid rgba(201,164,78,0.30)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.45)',
           }}
         >
           <div
-            className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(201,164,78,0.18)', border: '1px solid rgba(201,164,78,0.35)' }}
+            className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+            style={{ background: 'rgba(201,164,78,0.20)', border: '1px solid rgba(201,164,78,0.40)' }}
           >
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2.5">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D9BC7A" strokeWidth="2.5">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
           <div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.1em]" style={{ color: '#D9BC7A' }}>Ubicación exacta</p>
-            <p className="text-[9px] font-mono" style={{ color: 'rgba(154,130,104,0.55)' }}>{lat.toFixed(5)}, {lng.toFixed(5)}</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.1em]" style={{ color: '#D9BC7A' }}>Ubicación exacta</p>
+            <p className="text-[10px] font-mono" style={{ color: 'rgba(200,180,150,0.75)' }}>{lat.toFixed(5)}, {lng.toFixed(5)}</p>
           </div>
         </div>
       </div>

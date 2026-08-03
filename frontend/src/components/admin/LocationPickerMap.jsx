@@ -11,6 +11,9 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
   const [results, setResults]     = useState([])
   const [searching, setSearching] = useState(false)
   const [satellite, setSatellite] = useState(true)
+  const [zoomLevel, setZoomLevel] = useState(16)
+  const [noImagery, setNoImagery] = useState(false)
+  const noImageryTimer = useRef(null)
 
   const defaultLat = lat || -7.2281
   const defaultLng = lng || -79.4328
@@ -31,19 +34,44 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
     const map = L.map(mapRef.current, { zoomControl: false }).setView([defaultLat, defaultLng], 16)
     mapInst.current = map
 
-    // Satellite layer (Esri World Imagery)
+    // Satellite layer (Esri World Imagery) — maxZoom capped a lo que Esri
+    // realmente cubre en zonas rurales del Perú; pasar de ahí es lo que
+    // producía la pantalla en blanco "Map data not yet available".
     const satelliteLayer = L.tileLayer(
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: '© Esri · Maxar · Earthstar Geographics', maxZoom: 20, maxNativeZoom: 19 }
+      { attribution: '© Esri · Maxar · Earthstar Geographics', maxZoom: 18, maxNativeZoom: 18 }
     )
-    // Street layer (OSM)
+    // Etiquetas (calles, lugares) superpuestas sobre el satélite — sin esto
+    // el modo satélite no mostraba ni nombres de calle ni de lugares.
+    const labelsLayer = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+      { attribution: '© Esri', maxZoom: 18, maxNativeZoom: 18 }
+    )
+    // Street layer (OSM) — siempre tiene calles y nombres, y sirve de
+    // respaldo confiable cuando no hay imagen satelital en la zona.
     const streetLayer = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       { attribution: '© OpenStreetMap', maxZoom: 19 }
     )
 
     satelliteLayer.addTo(map)
-    layersRef.current = { satellite: satelliteLayer, street: streetLayer }
+    labelsLayer.addTo(map)
+    layersRef.current = { satellite: satelliteLayer, labels: labelsLayer, street: streetLayer }
+
+    // Si el satélite no tiene imagen en esta zona/zoom, cae a modo Mapa
+    // automáticamente en vez de dejar la pantalla en blanco.
+    let errorTimer = null
+    satelliteLayer.on('tileerror', () => {
+      clearTimeout(errorTimer)
+      errorTimer = setTimeout(() => {
+        if (!mapInst.current) return
+        setNoImagery(true)
+        clearTimeout(noImageryTimer.current)
+        noImageryTimer.current = setTimeout(() => setNoImagery(false), 4500)
+      }, 150)
+    })
+
+    map.on('zoomend', () => setZoomLevel(map.getZoom()))
 
     // Custom zoom controls (top-right)
     L.control.zoom({ position: 'topright' }).addTo(map)
@@ -73,18 +101,21 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
     }
   }, [lat, lng])
 
-  // Toggle satellite ↔ street
+  // Toggle satellite+etiquetas ↔ mapa de calles
   const toggleLayer = () => {
     if (!mapInst.current) return
-    const { satellite: sat, street } = layersRef.current
+    const { satellite: sat, labels, street } = layersRef.current
     if (satellite) {
       mapInst.current.removeLayer(sat)
+      mapInst.current.removeLayer(labels)
       street.addTo(mapInst.current)
     } else {
       mapInst.current.removeLayer(street)
       sat.addTo(mapInst.current)
+      labels.addTo(mapInst.current)
     }
     setSatellite(v => !v)
+    setNoImagery(false)
   }
 
   const search = async (e) => {
@@ -143,36 +174,55 @@ export default function LocationPickerMap({ lat, lng, onChange }) {
       <div className="relative">
         <div ref={mapRef}
           className="w-full rounded-xl overflow-hidden border border-white/8"
-          style={{ height: 320, zIndex: 1 }} />
+          style={{ height: 380, zIndex: 1, background: '#1C1308' }} />
 
-        {/* Satellite/Street toggle */}
-        <button
-          type="button"
-          onClick={toggleLayer}
-          className="absolute bottom-3 left-3 z-[400] flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all"
-          style={{
-            background: 'rgba(15,10,4,0.82)',
-            border: '1px solid rgba(255,255,255,0.14)',
-            color: satellite ? '#6EE7B7' : '#9A8268',
-            backdropFilter: 'blur(8px)',
-          }}
+        {/* Satellite/Street segmented toggle — arriba a la izquierda, fuera del paso de los controles de zoom */}
+        <div
+          className="absolute top-3 left-3 z-[400] flex items-center gap-0.5 p-0.5 rounded-lg"
+          style={{ background: 'rgba(15,10,4,0.82)', border: '1px solid rgba(255,255,255,0.14)', backdropFilter: 'blur(8px)' }}
         >
-          {satellite ? (
-            <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-              Satélite
-            </>
-          ) : (
-            <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
-              Mapa
-            </>
-          )}
-        </button>
+          <button
+            type="button"
+            onClick={() => { if (!satellite) toggleLayer() }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition-all"
+            style={{ background: satellite ? 'rgba(110,231,183,0.16)' : 'transparent', color: satellite ? '#6EE7B7' : '#9A8268' }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            Satélite
+          </button>
+          <button
+            type="button"
+            onClick={() => { if (satellite) toggleLayer() }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition-all"
+            style={{ background: !satellite ? 'rgba(217,188,122,0.16)' : 'transparent', color: !satellite ? '#D9BC7A' : '#9A8268' }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+            Mapa
+          </button>
+        </div>
+
+        {/* Nivel de zoom */}
+        <div
+          className="absolute top-3 right-14 z-[400] px-2.5 py-1.5 rounded-lg text-[10px] font-bold"
+          style={{ background: 'rgba(15,10,4,0.82)', border: '1px solid rgba(255,255,255,0.14)', color: 'rgba(154,130,104,0.85)', backdropFilter: 'blur(8px)' }}
+        >
+          Zoom {zoomLevel}
+        </div>
+
+        {/* Aviso: sin imagen satelital en esta zona/zoom */}
+        {noImagery && satellite && (
+          <div
+            className="absolute bottom-3 left-3 right-3 z-[400] px-3.5 py-2.5 rounded-lg text-[11px] font-semibold flex items-center gap-2"
+            style={{ background: 'rgba(15,10,4,0.92)', border: '1px solid rgba(250,204,21,0.35)', color: '#FACC15', backdropFilter: 'blur(8px)' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="flex-shrink-0"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Sin imagen satelital en esta zona a este zoom. Aléjate un poco o usa modo Mapa.
+          </div>
+        )}
       </div>
 
       <p className="text-[11px] text-sand-muted/50">
-        Haz clic en el mapa o arrastra el pin para ubicar la propiedad exactamente.
+        Busca la dirección, o haz clic en el mapa / arrastra el pin para ajustar la ubicación exacta. El modo Satélite ya muestra nombres de calles y lugares.
       </p>
     </div>
   )
